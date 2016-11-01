@@ -1,5 +1,24 @@
 {
-  "version": "3.0.0-*",
+  "title": "Mojio.Platform.SDK2.DotNetCore",
+  "buildOptions": {
+    "outputName": "Mojio.Platform.SDK2.DotNetCore"
+  }, 
+
+  "description": "Preview of the DotNet Core compatible Mojio SDK", 
+
+  "version": "1.0.0-*",
+
+  "packOptions": {
+    "summary": "Preview of the DotNet Core compatible Mojio SDK",
+    "owners": [
+      "mojio"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mojio/mojio.platform.sdk"
+    },
+    "projectUrl": "https://github.com/mojio/mojio.platform.sdk"
+  }, 
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
