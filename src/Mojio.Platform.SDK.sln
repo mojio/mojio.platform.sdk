@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK", "Mojio.Platform.SDK\Mojio.Platform.SDK.xproj", "{69C5DAE9-9C5D-4F8E-B287-0A1D03207BB0}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK.DotNetCore", "Mojio.Platform.SDK\Mojio.Platform.SDK.DotNetCore.xproj", "{69C5DAE9-9C5D-4F8E-B287-0A1D03207BB0}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK.Contracts", "Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.xproj", "{36F2C1B1-7919-4367-9645-7EB126672007}"
 EndProject
