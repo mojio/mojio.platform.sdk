@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="Mojio.Platform.SDK.SampleApp.Controls.ActivityStream"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mojio.Platform.SDK.SampleApp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="NEWS FEED" Grid.Row="0" />
+        <ListView ItemsSource="{Binding ActivityStream}" Grid.Row="1" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1"
+                        BorderBrush="#43B7E9"
+                        Margin="5,5,5,5" CornerRadius="2"
+                            HorizontalAlignment="Stretch">
+                        <!--OUTER CARD-->
+                        <Grid Margin="15,15,15,15">
+                            <Grid.RowDefinitions>
+                                <!--HEADER Area   Image, Text descrption, datetime stamp-->
+                                <RowDefinition></RowDefinition>
+                                <!--Main Body-->
+                                <RowDefinition></RowDefinition>
+                                <!--Action buttons - empty for now-->
+                                <RowDefinition></RowDefinition>
+                                <!--Action results - empty for now-->
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <!--All content in here-->
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Inner area of header-->
+                            <Grid Grid.Row="0" Grid.Column="0" MinWidth="500">
+                                <Grid.RowDefinitions>
+                                    <!--Photo on the left, row height of 2, text desc to the right-->
+                                    <RowDefinition></RowDefinition>
+                                    <!--and datetime under text desc-->
+                                    <RowDefinition></RowDefinition>
+                                    <!--visual-->
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <!--will contain the photo, row height of 2-->
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <!--main text description-->
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <!--optionally a link to a map-->
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <!--optionally duration-->
+                                    <ColumnDefinition ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Width="45" Height="45" Source="{Binding VehicleImage}" Grid.Row="0" Grid.Column="0"></Image>
+                                <!--<TextBlock TextWrapping="NoWrap" Text="{Binding SummaryInitials}"
+                                           Grid.Row="0"
+                                           Grid.Column="0" />-->
+
+                                <TextBlock TextWrapping="Wrap" Text="{Binding TextDescription}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2" />
+
+                                <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding PublishedDateTime}"
+                                           Grid.Row="1"
+                                           Grid.Column="1" />
+
+                                <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" Visibility="{Binding HasDuration}" Text="{Binding Duration}"
+                                           Grid.Row="1"
+                                           Grid.Column="2" />
+
+                                <HyperlinkButton Margin="0,10,0,10" NavigateUri="{Binding MapUrl}" Visibility="{Binding HasMapLink}"
+                                                 Grid.Row="2"
+                                                 Grid.ColumnSpan="3"
+                                                 Grid.Column="1">
+                                    <Image Stretch="UniformToFill" MaxWidth="300"  Source="{Binding StaticMapLink}" Visibility="{Binding StaticMapVisibility}"></Image>
+                                </HyperlinkButton>
+                                <Grid  Grid.Row="3" Grid.Column="1" MaxWidth="80" HorizontalAlignment="Left">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image  HorizontalAlignment="Left" Margin="1,1,1,1" Width="35" Height="35" Grid.Column="0"  Source="../Assets/like.png"></Image>
+                                    <Image  HorizontalAlignment="Left" Margin="1,1,1,1" Width="35" Height="35" Grid.Column="1"  Source="../Assets/share.png"></Image>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

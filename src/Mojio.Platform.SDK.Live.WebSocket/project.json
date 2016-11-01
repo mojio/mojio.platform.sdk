@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Mojio.Platform.SDK.Contracts": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "System.Net.WebSockets.Client": "4.0.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="Mojio.Platform.SDK.SampleApp.Pages.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mojio.Platform.SDK.SampleApp.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Mojio.Platform.SDK.SampleApp.Converters"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Theme/Mojio/Custom.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="ms-appx:///Assets/logo-mojio.png" Margin="10" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding UsernameLabel}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Authorization.UserName, Mode=TwoWay}" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding PasswordLabel}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Authorization.Password, Mode=TwoWay}" />
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding LoginButtonLabel}"
+                Command="{Binding LoginTapped}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" Text="{Binding InvalidUsernamePassword}"
+                   Visibility="{Binding InvalidUsernamePasswordVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </Grid>
+</Page>
