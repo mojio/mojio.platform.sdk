@@ -1,9 +1,9 @@
-﻿using DryIoc;
-using Mojio.Platform.SDK.Contracts;
+﻿using Mojio.Platform.SDK.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using Mojio.Platform.SDK.DryIoc;
 
 namespace Mojio.Platform.SDK.Entities.DI
 {
