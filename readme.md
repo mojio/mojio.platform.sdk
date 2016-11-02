@@ -6,7 +6,7 @@
 >
 > Completed: 72
 > 
-> **Percent Complted: 76%**
+> **Percent Complted: 80%**
 
 
 ----
@@ -162,6 +162,13 @@ Vehicles | Get the service schedule for the vehicle. | GET | [Link](https://api.
 Vehicles | Get the next service schedule for the vehicle. | GET | [Link](https://api.moj.io/swagger/ui/index#!/Vehicles/CRUD_GetVehicleNextServiceSchedule) |  COMPLETE  | 
 
 
+### **ActivityStreams **
+
+ Group  |  Purpose  |  VERB  |  Action  |  STATUS 
+------- | --------- | -------- | -------- | --------
+ActivityStreams  | Get an entities activity stream. | DELETE | [Link](https://api.moj.io/swagger/ui/index#!/ActivityStreams/ActivityStreams_GetResourceActivities) |  COMPLETE
+
+
 ----
 
 ## [PUSH - Swagger](https://push.moj.io/swagger/ui/index#/)
@@ -204,4 +211,14 @@ PUSH - VEHICLES | Update an existing observer. | PUT | [Link](https://push.moj.i
 PUSH - VEHICLES | Get all vehicle observers accessible to the current user. | GET | [Link](https://push.moj.io/swagger/ui/index#!/Vehicles/Observer_GetAllVehicleObservers) |  COMPLETE  | 
 PUSH - VEHICLES | Create a new observer. The current user will be made an administrator of the observer. | POST | [Link](https://push.moj.io/swagger/ui/index#!/Vehicles/Observer_PostGroupVehicleObserver) |  COMPLETE  | 
 PUSH - VEHICLES | Create a new observer. The current user will be made an administrator of the observer. | PUT | [Link](https://push.moj.io/swagger/ui/index#!/Vehicles/Observer_PutGroupVehicleObserver) |  COMPLETE  | 
+
+
+### **PUSH - WEBSOCKETS**
+
+ Group  |  Purpose  |  VERB  |  Action  |  STATUS 
+------- | --------- | -------- | -------- | --------
+PUSH - VEHICLES | Establish a websocket connection for all vehicles or a single vehicle. |  |  |  COMPLETE  | 
+PUSH - MOJIOS | Establish a websocket connection for all mojios or a single mojio. |  | |  COMPLETE  | 
+PUSH - USERS | Establish a websocket connection for all users or a single user. |  | |  **NOT STARTED**  | 
+PUSH - ACTIVITIES | Establish a websocket connection for all activities. |  | |  COMPLETE  | 
 
