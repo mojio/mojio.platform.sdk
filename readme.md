@@ -162,7 +162,7 @@ Vehicles | Get the service schedule for the vehicle. | GET | [Link](https://api.
 Vehicles | Get the next service schedule for the vehicle. | GET | [Link](https://api.moj.io/swagger/ui/index#!/Vehicles/CRUD_GetVehicleNextServiceSchedule) |  COMPLETE  | 
 
 
-### **ActivityStreams **
+### **ActivityStreams**
 
  Group  |  Purpose  |  VERB  |  Action  |  STATUS 
 ------- | --------- | -------- | -------- | --------
