@@ -110,9 +110,9 @@
       <Link>ConsoleLogger.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.CLI\LoggingObserver.cs">
-      <Link>FileLogger.cs</Link>
+      <Link>LoggingObserver.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK.CLI\LoggingObserver.cs">
+    <Compile Include="..\..\Mojio.Platform.SDK.CLI\FileLogger.cs">
       <Link>FileLogger.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.CLI\Machine\SavedMachineStatesProvider.cs">
