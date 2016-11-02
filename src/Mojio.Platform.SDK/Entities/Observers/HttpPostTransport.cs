@@ -4,7 +4,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class HttpPostTransport : BaseTransport, IHttpPostTransport
     {
-        public HttpPostTransport() : base()
+        public HttpPostTransport()
         {
             TransportType = TransportTypes.HttpPost;
         }

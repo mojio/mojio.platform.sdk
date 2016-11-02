@@ -50,6 +50,14 @@ namespace Mojio.Platform.SDK.Contracts.Push
 
     }
 
+    public interface IEventHubTransport : ITransport
+    {
+        string ConnectionString { get; set; }
+
+        string Path { get; set; }
+
+    }
+
     public interface IMqttTransport : ITransport
     {
 

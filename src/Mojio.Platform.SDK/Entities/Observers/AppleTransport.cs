@@ -5,7 +5,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class AppleTransport : BaseTransport, IAppleTransport
     {
-        public AppleTransport() : base()
+        public AppleTransport()
         {
             TransportType = TransportTypes.Apple;
         }

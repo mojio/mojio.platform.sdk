@@ -4,7 +4,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class AndroidTransport : BaseTransport, IAndroidTransport
     {
-        public AndroidTransport() : base()
+        public AndroidTransport()
         {
             TransportType = TransportTypes.Android;
         }
