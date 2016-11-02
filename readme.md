@@ -1,5 +1,8 @@
 # C# SDK for Mojio Platform version 2
 
+### Building?
+![Build Status](https://mojio.visualstudio.com/_apis/public/build/definitions/1b4733a9-5dad-47aa-b18a-f4a981d9f0a6/3/badge)
+
 ----
 
 > Total: 95
