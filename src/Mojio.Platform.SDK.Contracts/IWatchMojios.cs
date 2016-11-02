@@ -10,6 +10,6 @@ namespace Mojio.Platform.SDK.Contracts
 {
     public interface IWatchMojios
     {
-        Task<IObserver<IMojio>> WatchVehicles(IClient client, CancellationToken cancellationToken, Action<IMojio> changedAction = null);
+        Task<IObservable<IMojio>> WatchMojios(IClient client, string mojioId = null, CancellationToken cancellationToken = default(CancellationToken), Action<IVehicle> changedAction = null);
     }
 }

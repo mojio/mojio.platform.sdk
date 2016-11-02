@@ -3,6 +3,7 @@ using Mojio.Platform.SDK.Contracts.ActivityStreams;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Contracts.Instrumentation;
+using Mojio.Platform.SDK.Contracts.Push;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.Live.WebSocket
 {
-    public class MojioWebSocket : IWatchVehicles
+    public class MojioWebSocket : IWatchVehicles, IWatchMojios, IWatchActivities
     {
         private readonly IDIContainer _contaner;
         private const int ReceiveChunkSize = 2048;
@@ -26,9 +27,16 @@ namespace Mojio.Platform.SDK.Live.WebSocket
         private IObservable<IVehicle> _vehicleObservable;
         private IObservable<IActivity> _activityObservable;
         private IObservable<IMojio> _mojioObservable;
+        private string _entityId;
 
-        public MojioWebSocket(IDIContainer contaner, ISerializer serializer, ILog log,
-            IObservable<IVehicle> vehicleObservable, IObservable<IActivity> activityObservable,
+        private bool _connected = false;
+
+        private ObserverEntity _entity = ObserverEntity.Vehicles;
+
+        public MojioWebSocket(IDIContainer contaner,
+            ISerializer serializer, ILog log,
+            IObservable<IVehicle> vehicleObservable,
+            IObservable<IActivity> activityObservable,
             IObservable<IMojio> mojioObservable)
         {
             _contaner = contaner;
@@ -40,16 +48,27 @@ namespace Mojio.Platform.SDK.Live.WebSocket
             _mojioObservable = mojioObservable;
         }
 
-        public async Task<IObservable<IVehicle>> WatchVehicles(IClient client, CancellationToken cancellationToken, Action<IVehicle> changedAction = null)
+        private async Task WatchEntity(ObserverEntity entity, IClient client,
+            string entityId = null, CancellationToken cancellationToken = default(CancellationToken),
+            Action<IVehicle> changedAction = null)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
             if (changedAction == null) throw new ArgumentNullException(nameof(changedAction));
+            if (_connected) throw new Exception("Cant setup more than watch per instance.");
+
+            _entity = entity;
+            _connected = true;
+            _entityId = entityId;
             _changedAction = changedAction;
             _cancellationToken = cancellationToken;
             _client = client;
 
             Task.Factory.StartNew(MonitorReceive, TaskCreationOptions.LongRunning);
+        }
 
+        public async Task<IObservable<IVehicle>> WatchVehicles(IClient client, string vehicleId = null, CancellationToken cancellationToken = default(CancellationToken), Action<IVehicle> changedAction = null)
+        {
+            await WatchEntity(ObserverEntity.Vehicles, client, vehicleId, cancellationToken, changedAction);
             return _vehicleObservable;
         }
 
@@ -57,7 +76,7 @@ namespace Mojio.Platform.SDK.Live.WebSocket
         {
             try
             {
-                var uri = _client.WebSocketObserverUri();
+                var uri = _client.WebSocketObserverUri(_entity, _entityId);
                 _socket = new ClientWebSocket();
                 _socket.Options.KeepAliveInterval = TimeSpan.FromSeconds(30);
                 _socket.Options.SetRequestHeader("Authorization", $"Bearer {_client.Authorization.MojioApiToken}");
@@ -128,6 +147,20 @@ namespace Mojio.Platform.SDK.Live.WebSocket
             {
                 _socket.Dispose();
             }
+        }
+
+        public async Task<IObservable<IMojio>> WatchMojios(IClient client, string mojioId = null, CancellationToken cancellationToken = new CancellationToken(),
+            Action<IVehicle> changedAction = null)
+        {
+            await WatchEntity(ObserverEntity.Mojios, client, mojioId, cancellationToken, changedAction);
+            return _mojioObservable;
+        }
+
+        public async Task<IObservable<IActivity>> WatchActivities(IClient client, CancellationToken cancellationToken = new CancellationToken(),
+            Action<IVehicle> changedAction = null)
+        {
+            await WatchEntity(ObserverEntity.Activities, client, null, cancellationToken, changedAction);
+            return _activityObservable;
         }
     }
 }

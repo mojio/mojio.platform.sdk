@@ -3,6 +3,7 @@ using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Contracts.Push;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,10 +14,9 @@ namespace Mojio.Platform.SDK
     {
         public System.Uri WebSocketObserverUri(ObserverEntity entity = ObserverEntity.Vehicles, string id = null)
         {
-            if (id == null) id = "";
             return
                 new Uri(
-                    $"{_container.Resolve<IConfiguration>().Environment.APIUri.Replace("https://", "wss://")}v2/vehicles/{id}");
+                    $"{_container.Resolve<IConfiguration>().Environment.APIUri.Replace("https://", "wss://")}v2/{entity.ToString()}/{id}");
         }
 
         public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)

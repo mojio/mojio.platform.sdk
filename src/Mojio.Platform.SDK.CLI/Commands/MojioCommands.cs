@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Mojio.Platform.SDK.Contracts;
+using Mojio.Platform.SDK.Contracts.Entities;
+using Mojio.Platform.SDK.Entities.DI;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.CLI.Commands
@@ -97,4 +101,40 @@ namespace Mojio.Platform.SDK.CLI.Commands
             }
         }
     }
+
+#if DOTNETCORE
+
+    [CommandDescriptor(Name = "watch-mojio", Description = "Begin watching a mojio or all mojios",
+         Usage = "watch-mojio /id:MojioId")]
+    public class WatchMojoCommand : BaseCommand
+    {
+        [Argument(ArgumentType.AtMostOnce, ShortName = "id")]
+        public string Id { get; set; } = null;
+
+        public override async Task Execute()
+        {
+            await Authorize();
+
+            var watch = DIContainer.Current.Resolve<IWatchMojios>();
+            if (watch != null)
+            {
+                var observer = DIContainer.Current.Resolve<IObserver<IMojio>>();
+                var observeable = await watch.WatchMojios(SimpleClient, Id, DIContainer.Current.Resolve<CancellationToken>(), vehicle =>
+                {
+                    Log.Debug(vehicle);
+                });
+                observeable.Subscribe(observer);
+            }
+            else
+            {
+                Log.Debug("Could not watch the vehicle. App level issue.");
+            }
+
+            //                var result = await SimpleClient.VehicleTrips(g, Skip, Top, Filter, Select, OrderBy);
+            //                Log.Debug(result);
+            UpdateAuthorization();
+        }
+    }
+
+#endif
 }

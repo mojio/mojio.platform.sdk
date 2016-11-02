@@ -1,6 +1,7 @@
 ﻿using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Contracts.Push;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
