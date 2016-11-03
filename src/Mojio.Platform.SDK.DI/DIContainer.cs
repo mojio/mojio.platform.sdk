@@ -100,6 +100,19 @@ namespace Mojio.Platform.SDK.Entities.DI
         }
 
         [DebuggerStepThrough]
+        public void RegisterSingleton<I, T>(string name = null) where T : I
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                _dryContainer.Register<I, T>(Reuse.Singleton, Made.Of(FactoryMethod.ConstructorWithResolvableArguments), ifAlreadyRegistered: IfAlreadyRegistered.Replace);
+            }
+            else
+            {
+                _dryContainer.Register<I, T>(Reuse.Singleton, Made.Of(FactoryMethod.ConstructorWithResolvableArguments), serviceKey: name, ifAlreadyRegistered: IfAlreadyRegistered.Replace);
+            }
+        }
+
+        [DebuggerStepThrough]
         public object Resolve(Type type)
         {
             return _dryContainer.Resolve(type, IfUnresolved.ReturnDefault);

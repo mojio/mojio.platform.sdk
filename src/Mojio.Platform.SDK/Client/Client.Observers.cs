@@ -1,6 +1,5 @@
 ﻿using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
-using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Contracts.Push;
 using System;
 using System.Net.Http;
@@ -19,20 +18,16 @@ namespace Mojio.Platform.SDK
                     $"{_container.Resolve<IConfiguration>().Environment.APIUri.Replace("https://", "wss://")}v2/vehicles/{id}");
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
-
+            
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var fragment = $"v2/{entity}";
                 if (entityId.HasValue && entityId.Value != Guid.Empty)
                 {
                     fragment = $"{fragment}/{entityId}";
-                }
-                if (!string.IsNullOrEmpty(key))
-                {
-                    fragment = $"{fragment}/{key}";
                 }
 
                 var json = _serializer.SerializeToString(observer);
@@ -43,19 +38,19 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IPushObserverResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveVehicle(Guid vehicleId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveVehicle(Guid vehicleId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
-            return await Observe(ObserverEntity.Vehicles, vehicleId, observer, key, cancellationToken, progress);
+            return await Observe(ObserverEntity.Vehicles, vehicleId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveMojio(Guid mojioId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveMojio(Guid mojioId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
-            return await Observe(ObserverEntity.Mojios, mojioId, observer, key, cancellationToken, progress);
+            return await Observe(ObserverEntity.Mojios, mojioId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
-            return await Observe(ObserverEntity.Users, userId, observer, key, cancellationToken, progress);
+            return await Observe(ObserverEntity.Users, userId, observer, cancellationToken, progress);
         }
 
         public async Task<IPlatformResponse<IGetPushObserverResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
