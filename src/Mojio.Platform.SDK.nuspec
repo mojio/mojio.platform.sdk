@@ -18,7 +18,7 @@
 		</dependencies>		
 	</metadata>
 	<files>
-	  <file src="Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
-    <file src="Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
+	  <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
+    <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
   </files>		
 </package>
