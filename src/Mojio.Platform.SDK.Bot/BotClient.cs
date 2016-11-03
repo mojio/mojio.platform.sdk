@@ -45,6 +45,8 @@ namespace Mojio.Platform.SDK.Bot
 
             _client.BaseAddress = new Uri(Url);
             _client.DefaultRequestHeaders.TryAddWithoutValidation("X-SkipAuth", "true");
+            _client.DefaultRequestHeaders.TryAddWithoutValidation("X-Chat-Off", "true");
+            _client.DefaultRequestHeaders.TryAddWithoutValidation("X-Wolf-Off", "true");
 
             var request = new HttpRequestMessage(HttpMethod.Post, "/api/messages");
 
