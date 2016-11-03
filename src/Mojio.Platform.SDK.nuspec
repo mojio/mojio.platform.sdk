@@ -2,8 +2,8 @@
 <package >
 	<metadata>
 		<id>Mojio.Platform.SDK</id>
-		<version>2.0.0</version>
-		<title>Mojio Platform SDK - C#</title>
+		<version>1.0.7</version>
+		<title>Mojio Platform SDK V2</title>
 		<authors>Mojio Dev Team</authors>
 		<owners>Mojio Dev Team</owners>
 		<licenseUrl>https://moj.io</licenseUrl>
@@ -14,11 +14,11 @@
 		<copyright>Copyright 2016</copyright>
 		<tags>Mojio Connected Car IoT</tags>
 		<dependencies>
-			<dependency id="Newtonsoft.Json" version="8.0.0" />
+			<dependency id="Newtonsoft.Json" version="9.0.1" />
 		</dependencies>		
 	</metadata>
 	<files>
-	  <file src="Mojio.Platform.SDK.CLI\bin\Release\Mojio.Platform.SDK*.dll" target="lib\portable-net40+sl5+wp80+win8+wpa81+MonoAndroid10+MonoTouch10" /> 
-	  <file src="Mojio.Platform.SDK.CLI\bin\Release\Mojio.Platform.SDK*.pdb" target="lib\portable-net40+sl5+wp80+win8+wpa81+MonoAndroid10+MonoTouch10" /> 
-	</files>		
+	  <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
+    <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win+MonoAndroid10+xamarinios10+MonoTouch10" />
+  </files>		
 </package>

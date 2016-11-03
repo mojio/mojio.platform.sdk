@@ -4,7 +4,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class MqttTransport : BaseTransport, IMqttTransport
     {
-        public MqttTransport() : base()
+        public MqttTransport()
         {
             TransportType = TransportTypes.Mqtt;
         }

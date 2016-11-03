@@ -5,7 +5,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
   
     public class MongoDBTransport : BaseTransport, IMongoDBTransport
     {
-        public MongoDBTransport() : base()
+        public MongoDBTransport()
         {
             TransportType = TransportTypes.MongoDB;
         }

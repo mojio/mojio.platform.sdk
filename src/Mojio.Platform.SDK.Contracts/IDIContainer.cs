@@ -10,6 +10,8 @@ namespace Mojio.Platform.SDK.Contracts
         void Register<I, T>(string name = null) where T : I;
 
         void RegisterInstance<T>(T instance, string serviceName = null);
+
+        void RegisterSingleton<I, T>(string name = null) where T : I;
     }
 
     public interface IUnregister

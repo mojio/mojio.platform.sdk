@@ -176,28 +176,28 @@ namespace Mojio.Platform.SDK.SimpleClient
             return SdkClient.WebSocketObserverUri(entity, id);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.Observe(entity, entityId, observer, key, cancellationToken, progress);
+            return await SdkClient.Observe(entity, entityId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveMojio(Guid mojioId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveMojio(Guid mojioId, IPushObserver observer,  CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.ObserveMojio(mojioId, observer, key, cancellationToken, progress);
+            return await SdkClient.ObserveMojio(mojioId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.ObserveUser(userId, observer, key, cancellationToken, progress);
+            return await SdkClient.ObserveUser(userId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveVehicle(Guid vehicleId, IPushObserver observer, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> ObserveVehicle(Guid vehicleId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.ObserveVehicle(vehicleId, observer, key, cancellationToken, progress);
+            return await SdkClient.ObserveVehicle(vehicleId, observer, cancellationToken, progress);
         }
 
         public async Task<IPlatformResponse<IVehicleLocationResponse>> TripHistoryLocations(string tripId, int skip = 0, int top = 10, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
