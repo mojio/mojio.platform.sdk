@@ -19,7 +19,8 @@ namespace Mojio.Platform.SDK.Contracts.Push
         Mqtt,
         SignalR,
         MongoDB, 
-        EventHub
+        EventHub, 
+        ServiceBusQueue
     }
 
     [Flags]

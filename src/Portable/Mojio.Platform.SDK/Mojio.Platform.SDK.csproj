@@ -218,6 +218,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\EventHubTransport.cs">
       <Link>Entities\Observers\EventHubTransport.cs</Link>
     </Compile>
+<Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\ServiceBusQueueTransport.cs">
+      <Link>Entities\Observers\ServiceBusQueueTransport.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\MqttTransport.cs">
       <Link>Entities\Observers\MqttTransport.cs</Link>
     </Compile>
