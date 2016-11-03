@@ -4,7 +4,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class SignalRTransport : BaseTransport, ISignalRTransport
     {
-        public SignalRTransport() : base()
+        public SignalRTransport()
         {
             TransportType = TransportTypes.SignalR;
         }
