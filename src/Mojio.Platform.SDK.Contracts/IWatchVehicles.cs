@@ -1,5 +1,6 @@
 ﻿using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
+using Mojio.Platform.SDK.Contracts.Push;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Mojio.Platform.SDK.Contracts
 {
     public interface IWatchVehicles
     {
-        Task<IObservable<IVehicle>> WatchVehicles(IClient client, CancellationToken cancellationToken, Action<IVehicle> changedAction = null);
+        Task<IObservable<IVehicle>> WatchVehicles(IClient client, string vehicleId = null, CancellationToken cancellationToken = default(CancellationToken), Action<IVehicle> changedAction = null);
     }
 }

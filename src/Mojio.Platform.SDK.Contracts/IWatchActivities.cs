@@ -11,6 +11,6 @@ namespace Mojio.Platform.SDK.Contracts
 {
     public interface IWatchActivities
     {
-        Task<IObserver<IActivity>> WatchVehicles(IClient client, CancellationToken cancellationToken, Action<IActivity> changedAction = null);
+        Task<IObservable<IActivity>> WatchActivities(IClient client, CancellationToken cancellationToken = default(CancellationToken), Action<IVehicle> changedAction = null);
     }
 }

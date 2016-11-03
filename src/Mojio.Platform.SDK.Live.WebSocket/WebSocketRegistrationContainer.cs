@@ -11,6 +11,8 @@ namespace Mojio.Platform.SDK.Live.WebSocket
         public void Register(IDIContainer container)
         {
             container.Register<IWatchVehicles, MojioWebSocket>();
+            container.Register<IWatchActivities, MojioWebSocket>();
+            container.Register<IWatchMojios, MojioWebSocket>();
         }
     }
 }

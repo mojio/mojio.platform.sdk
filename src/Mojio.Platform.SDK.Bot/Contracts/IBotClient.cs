@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Mojio.Platform.SDK.Contracts;
+﻿using Mojio.Platform.SDK.Contracts;
+using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.Bot.Contracts
 {
@@ -16,6 +16,8 @@ namespace Mojio.Platform.SDK.Bot.Contracts
 
     public interface IBotClient
     {
+        string Url { get; set; }
+
         Task<IPlatformResponse<IMessage>> SendMessage(IMessage input, string mojioApiToken = null);
     }
 }

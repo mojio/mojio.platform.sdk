@@ -60,7 +60,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK.DI\DIContainer.cs">
       <Link>DIContainer.cs</Link>
     </Compile>
-    <Compile Include="DryIoc\Container.cs" />
+    <Compile Include="..\..\Mojio.Platform.SDK.DI\DryIoc\Container.cs">
+      <Link>DryIoc\Container.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +74,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

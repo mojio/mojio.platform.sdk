@@ -21,6 +21,10 @@ namespace Mojio.Platform.SDK.Bot
             _container = container;
         }
 
+        //public BotClient()
+        //{
+        //}
+
         public string Url { get; set; }
 
         public async Task<IPlatformResponse<IMessage>> SendMessage(IMessage input, string mojioApiToken = null)
@@ -40,6 +44,7 @@ namespace Mojio.Platform.SDK.Bot
             var _client = new HttpClient();
 
             _client.BaseAddress = new Uri(Url);
+            _client.DefaultRequestHeaders.TryAddWithoutValidation("X-SkipAuth", "true");
 
             var request = new HttpRequestMessage(HttpMethod.Post, "/api/messages");
 

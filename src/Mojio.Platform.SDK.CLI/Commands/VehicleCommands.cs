@@ -2,6 +2,7 @@
 using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Entities.DI;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -224,12 +225,11 @@ namespace Mojio.Platform.SDK.CLI.Commands
 
 #if DOTNETCORE
 
-    [CommandDescriptor(Name = "watch-vehicle", Description = "Begin watching the vehlce",
-         Usage = "watch-vehicle /id:VehicleId")]
+    [CommandDescriptor(Name = "watch-vehicle", Description = "Begin watching all of the vehicles, or just one", Usage = "watch-vehicle /Id:VehicleId")]
     public class WatchVehicleCommand : BaseCommand
     {
         [Argument(ArgumentType.Multiple, ShortName = "id")]
-        public string[] Id { get; set; }
+        public string Id { get; set; } = null;
 
         public override async Task Execute()
         {
@@ -239,7 +239,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
             if (watch != null)
             {
                 var observer = DIContainer.Current.Resolve<IObserver<IVehicle>>();
-                var observeable = await watch.WatchVehicles(SimpleClient, DIContainer.Current.Resolve<CancellationToken>(), vehicle =>
+                var observeable = await watch.WatchVehicles(SimpleClient, Id, DIContainer.Current.Resolve<CancellationToken>(), vehicle =>
                 {
                     Log.Debug(vehicle);
                 });
