@@ -21,6 +21,10 @@ namespace Mojio.Platform.SDK.Bot
             _container = container;
         }
 
+        //public BotClient()
+        //{
+        //}
+
         public string Url { get; set; }
 
         public async Task<IPlatformResponse<IMessage>> SendMessage(IMessage input, string mojioApiToken = null)

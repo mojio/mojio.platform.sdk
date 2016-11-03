@@ -20,9 +20,6 @@ namespace Mojio.Platform.SDK.Entities.DI
             _dryContainer.RegisterInstance(this as IRegister);
             _dryContainer.RegisterInstance(CancellationTokenSource);
             _dryContainer.RegisterInstance(CancellationToken);
-
-            var coreServices = new CoreServicesRegistrationContainer();
-            coreServices.Register(this);
         }
 
         private static CancellationTokenSource CancellationTokenSource { get; } = new CancellationTokenSource();
@@ -36,7 +33,11 @@ namespace Mojio.Platform.SDK.Entities.DI
                 semaphore.Wait();
                 _current = new DIContainer();
 
+                var coreServices = new CoreServicesRegistrationContainer();
+                coreServices.Register(_current);
+
                 semaphore.Release();
+
                 return _current;
             }
         }
@@ -99,7 +100,7 @@ namespace Mojio.Platform.SDK.Entities.DI
             }
         }
 
-        [DebuggerStepThrough]
+        //[DebuggerStepThrough]
         public object Resolve(Type type)
         {
             return _dryContainer.Resolve(type, IfUnresolved.ReturnDefault);
