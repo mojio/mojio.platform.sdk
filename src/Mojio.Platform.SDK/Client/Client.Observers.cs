@@ -2,6 +2,7 @@
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Push;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -97,17 +98,17 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IGetTransportsResponse>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IList<ITransportResponse>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var fragment = $"v2/{entity}/{key}/transports";
-                return await _clientBuilder.Request<IGetTransportsResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                return await _clientBuilder.Request<IList<ITransportResponse>>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<IGetTransportsResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<IList<ITransportResponse>>>(null);
         }
     }
 }
