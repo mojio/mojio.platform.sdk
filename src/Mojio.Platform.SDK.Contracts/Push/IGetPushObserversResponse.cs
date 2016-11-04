@@ -2,7 +2,7 @@
 
 namespace Mojio.Platform.SDK.Contracts.Push
 {
-    public interface IGetPushObserverResponse
+    public interface IGetPushObserversResponse
     {
 
         int CurrentResults { get; set; }
@@ -13,7 +13,7 @@ namespace Mojio.Platform.SDK.Contracts.Push
         int Limit { get; set; }
         string Query { get; set; }
 
-        IPushObserverResponse Data { get; set; }
+        IList<IPushObserverResponse> Data { get; set; }
 
         IDictionary<string, string> Links { get; set; }
 

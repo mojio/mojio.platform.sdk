@@ -209,6 +209,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\GetPushObserverResponse.cs">
       <Link>Entities\Observers\GetPushObserverResponse.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\GetPushObserversResponse.cs">
+      <Link>Entities\Observers\GetPushObserversResponse.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\HttpPostTransport.cs">
       <Link>Entities\Observers\HttpPostTransport.cs</Link>
     </Compile>
@@ -218,7 +221,7 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\EventHubTransport.cs">
       <Link>Entities\Observers\EventHubTransport.cs</Link>
     </Compile>
-<Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\ServiceBusQueueTransport.cs">
+    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\ServiceBusQueueTransport.cs">
       <Link>Entities\Observers\ServiceBusQueueTransport.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\MqttTransport.cs">

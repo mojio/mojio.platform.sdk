@@ -1,7 +1,5 @@
-﻿using Mojio.Platform.SDK.Contracts.Entities;
-using Mojio.Platform.SDK.Contracts.Push;
+﻿using Mojio.Platform.SDK.Contracts.Push;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,6 +17,8 @@ namespace Mojio.Platform.SDK.Contracts.Client
 
         Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
-        Task<IPlatformResponse<IGetPushObserverResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+        Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+
+        Task<IPlatformResponse<IGetPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
     }
 }

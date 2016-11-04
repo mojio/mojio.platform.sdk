@@ -2,7 +2,6 @@
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Push;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -53,7 +52,7 @@ namespace Mojio.Platform.SDK
             return await Observe(ObserverEntity.Users, userId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IGetPushObserverResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -64,10 +63,19 @@ namespace Mojio.Platform.SDK
                 {
                     fragment = $"{fragment}/{entityId}";
                 }
-                if (!string.IsNullOrEmpty(key))
-                {
-                    fragment = $"{fragment}/{key}";
-                }
+                return await _clientBuilder.Request<IGetPushObserversResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<IGetPushObserversResponse>>(null);
+        }
+
+        public async Task<IPlatformResponse<IGetPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{key}";
                 return await _clientBuilder.Request<IGetPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
