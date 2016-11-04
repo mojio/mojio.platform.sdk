@@ -206,9 +206,6 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\BaseTransport.cs">
       <Link>Entities\Observers\BaseTransport.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\GetPushObserverResponse.cs">
-      <Link>Entities\Observers\GetPushObserverResponse.cs</Link>
-    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\GetPushObserversResponse.cs">
       <Link>Entities\Observers\GetPushObserversResponse.cs</Link>
     </Compile>

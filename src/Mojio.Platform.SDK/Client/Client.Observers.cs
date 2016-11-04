@@ -69,17 +69,17 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IGetPushObserversResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IGetPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var fragment = $"v2/{entity}/{key}";
-                return await _clientBuilder.Request<IGetPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                return await _clientBuilder.Request<IPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<IGetPushObserverResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<IPushObserverResponse>>(null);
         }
     }
 }
