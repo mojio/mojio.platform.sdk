@@ -6,7 +6,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK", 
 
-  "version": "1.0.3-*",
+  "version": "1.0.4-*",
 
   "packOptions": {
     "summary": "Preview of the DotNet Core compatible Mojio SDK",
@@ -21,7 +21,7 @@
   }, 
 
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "1.0.3-*",
+    "Mojio.Platform.SDK.Contracts": "1.0.4-*",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1"
   },

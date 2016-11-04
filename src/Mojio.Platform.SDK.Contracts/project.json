@@ -6,7 +6,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK Contracts",
 
-  "version": "1.0.2-*",
+  "version": "1.0.4-*",
 
   "packOptions": {
     "summary": "Preview of the DotNet Core compatible Mojio SDK Contracts",
@@ -19,8 +19,6 @@
     },
     "projectUrl": "https://github.com/mojio/mojio.platform.sdk"
   },
-  
-  "version": "1.0.2-*",
 
   "dependencies": {
     "NETStandard.Library": "1.6.0"
