@@ -2,7 +2,7 @@
 
 namespace Mojio.Platform.SDK.Contracts.Push
 {
-    public interface IGetPushObserverResponse
+    public interface IGetPushObserversResponse
     {
 
         int CurrentResults { get; set; }

@@ -97,6 +97,8 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<ITransport, MongoDBTransport>("MongoDB");
             container.Register<ITransport, MqttTransport>("Mqtt");
             container.Register<ITransport, SignalRTransport>("SignalR");
+            container.Register<ITransport, EventHubTransport>("EventHub");
+            container.Register<ITransport, ServiceBusQueueTransport>("ServiceBusQueue");
 
             container.Register<AndroidTransport, AndroidTransport>();
             container.Register<AppleTransport, AppleTransport>();
@@ -104,6 +106,8 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<MongoDBTransport, MongoDBTransport>();
             container.Register<MqttTransport, MqttTransport>();
             container.Register<SignalRTransport, SignalRTransport>();
+            container.Register<EventHubTransport, EventHubTransport>();
+            container.Register<ServiceBusQueueTransport, ServiceBusQueueTransport>();
 
             container.Register<IAndroidTransport, AndroidTransport>();
             container.Register<IAppleTransport, AppleTransport>();
@@ -111,11 +115,12 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<IMongoDBTransport, MongoDBTransport>();
             container.Register<IMqttTransport, MqttTransport>();
             container.Register<ISignalRTransport, SignalRTransport>();
+            container.Register<IEventHubTransport, EventHubTransport>();
+            container.Register<IServiceBusQueueTransport, ServiceBusQueueTransport>();
 
             container.Register<ITransportFactory, TransportFactory>();
             container.Register<IPushObserverResponse, PushObserverResponse>();
             container.Register<IPushObserver, PushObserverRequest>();
-            container.Register<IGetPushObserverResponse, GetPushObserverResponse>();
 
             container.Register<IGroup, Group>();
             container.Register<IGroupResponse, GroupResponse>();
