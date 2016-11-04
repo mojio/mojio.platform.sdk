@@ -22,5 +22,7 @@ namespace Mojio.Platform.SDK.Contracts.Client
         Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
         Task<IPlatformResponse<IGetTransportsResponse>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+
+        Task<IPlatformResponse<ITransportResponse>> AddObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
     }
 }

@@ -183,6 +183,12 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.GetObserverTransports(entity, key, cancellationToken, progress);
         }
 
+        public async Task<IPlatformResponse<ITransportResponse>> AddObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.AddObserverTransport(entity, observerKey, transport, cancellationToken, progress);
+        }
+
         public Uri WebSocketObserverUri(ObserverEntity entity = ObserverEntity.Vehicles, string id = null)
         {
             return SdkClient.WebSocketObserverUri(entity, id);
