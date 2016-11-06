@@ -98,6 +98,21 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
         }
 
+        public async Task<IPlatformResponse<ITransportResponse>> AddOrUpdateObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{observerKey}/transports";
+                var json = _serializer.SerializeToString(transport);
+
+                return await _clientBuilder.Request<ITransportResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, json);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
+        }
+
         public async Task<IPlatformResponse<IList<ITransportResponse>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);

@@ -14,7 +14,9 @@ namespace Mojio.Platform.SDK.Contracts.Push
     {
         string Key { get; set; }
 
-        TransportTypes TransportType { get; set; }
+        TransportTypes TransportType { get; }
+
+        string Type { get; }
 
     }
 
