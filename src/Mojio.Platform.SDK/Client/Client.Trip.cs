@@ -53,7 +53,7 @@ namespace Mojio.Platform.SDK
 
                 if (!string.IsNullOrEmpty(filter)) path = path + $"&filter={WebUtility.UrlEncode(filter)}";
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
-                if (!string.IsNullOrEmpty(orderby)) path = path + $"&%orderby={WebUtility.UrlEncode(orderby)}";
+                if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
                 return await CacheHitOrMiss($"Trips.{Authorization.UserName}", () => _clientBuilder.Request<ITripsResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
             }
