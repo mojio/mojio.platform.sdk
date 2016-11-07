@@ -53,7 +53,7 @@ namespace Mojio.Platform.SDK
             return await Observe(ObserverEntity.Users, userId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IGetPushObserverResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, string key = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -64,14 +64,51 @@ namespace Mojio.Platform.SDK
                 {
                     fragment = $"{fragment}/{entityId}";
                 }
-                if (!string.IsNullOrEmpty(key))
-                {
-                    fragment = $"{fragment}/{key}";
-                }
-                return await _clientBuilder.Request<IGetPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                return await _clientBuilder.Request<IGetPushObserversResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<IGetPushObserverResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<IGetPushObserversResponse>>(null);
+        }
+
+        public async Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{key}";
+                return await _clientBuilder.Request<IPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<IPushObserverResponse>>(null);
+        }
+
+        public async Task<IPlatformResponse<ITransportResponse>> AddObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{observerKey}/transports";
+                var json = _serializer.SerializeToString(transport);
+
+                return await _clientBuilder.Request<ITransportResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, json);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
+        }
+
+        public async Task<IPlatformResponse<IList<ITransportResponse>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{key}/transports";
+                return await _clientBuilder.Request<IList<ITransportResponse>>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<IList<ITransportResponse>>>(null);
         }
     }
 }

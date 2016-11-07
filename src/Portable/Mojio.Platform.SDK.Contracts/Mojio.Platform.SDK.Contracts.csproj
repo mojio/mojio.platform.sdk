@@ -202,14 +202,20 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Machine\IMachineStates.cs">
       <Link>Machine\IMachineStates.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IGetPushObserverResponse.cs">
-      <Link>Push\IGetPushObserverResponse.cs</Link>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IGetPushObserversResponse.cs">
+      <Link>Push\IGetPushObserversResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IGetTransportsResponse.cs">
+      <Link>Push\IGetTransportsResponse.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IPushObserver.cs">
       <Link>Push\IPushObserver.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IPushObserverResponse.cs">
       <Link>Push\IPushObserverResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\ITransportResponse.cs">
+      <Link>Push\ITransportResponse.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\ITransport.cs">
       <Link>Push\ITransport.cs</Link>

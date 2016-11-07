@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Mojio.Platform.SDK.Contracts.Push;
 
 namespace Mojio.Platform.SDK.Entities.Observers
 {
-    public class GetPushObserverResponse : IGetPushObserverResponse
+    public class GetPushObserversResponse : IGetPushObserversResponse
     {
         public int CurrentResults { get; set; }
         public string Next { get; set; }
