@@ -11,7 +11,7 @@ namespace Mojio.Platform.SDK.Entities
         public Guid VehicleId { get; set; }
         public object[] Tags { get; set; }
         public bool Completed { get; set; }
-        public string Duration { get; set; }
+        public TimeSpan Duration { get; set; }
         public DateTime StartTimestamp { get; set; }
         public DateTime EndTimestamp { get; set; }
         public IOdometer StartOdometer { get; set; }

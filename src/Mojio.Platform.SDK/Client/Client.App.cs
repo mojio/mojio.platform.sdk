@@ -19,12 +19,12 @@ namespace Mojio.Platform.SDK
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 string path = $"v2/apps?{RandomQueryString()}";
-                if (skip > 0) path = path + $"&%24skip={skip}";
-                if (top > 0) path = path + $"&%24top={top}";
+                if (skip > 0) path = path + $"&skip={skip}";
+                if (top > 0) path = path + $"&top={top}";
 
-                if (!string.IsNullOrEmpty(filter)) path = path + $"&%24filter={WebUtility.UrlEncode(filter)}";
-                if (!string.IsNullOrEmpty(select)) path = path + $"&%24select={WebUtility.UrlEncode(select)}";
-                if (!string.IsNullOrEmpty(orderby)) path = path + $"&%24orderBy={WebUtility.UrlEncode(orderby)}";
+                if (!string.IsNullOrEmpty(filter)) path = path + $"&filter={WebUtility.UrlEncode(filter)}";
+                if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
+                if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
                 return await CacheHitOrMiss($"Apps.{Authorization.UserName}", () => _clientBuilder.Request<IAppResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
             }

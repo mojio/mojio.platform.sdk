@@ -17,7 +17,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         object[] Tags { get; set; }
         Guid MojioId { get; set; }
         bool Completed { get; set; }
-        string Duration { get; set; }
+        TimeSpan Duration { get; set; }
         DateTime StartTimestamp { get; set; }
         DateTime EndTimestamp { get; set; }
         IOdometer StartOdometer { get; set; }
