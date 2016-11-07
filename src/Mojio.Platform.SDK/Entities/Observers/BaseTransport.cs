@@ -2,11 +2,11 @@
 
 namespace Mojio.Platform.SDK.Entities.Observers
 {
-    public class BaseTransport : ITransport
+    public abstract class BaseTransport : ITransport
     {
         public string Key { get; set; }
-        public TransportTypes TransportType { get; set; } = TransportTypes.HttpPost;
-
+        public abstract TransportTypes TransportType { get; }
+        public abstract string Type { get; }
 
     }
 }

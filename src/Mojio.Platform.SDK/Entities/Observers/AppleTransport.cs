@@ -5,10 +5,6 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class AppleTransport : BaseTransport, IAppleTransport
     {
-        public AppleTransport()
-        {
-            TransportType = TransportTypes.Apple;
-        }
         public string DeviceToken { get; set; }
         public string AlertBody { get; set; }
         public string AlertSound { get; set; }
@@ -16,5 +12,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
         public int Badge { get; set; }
         public Guid AppId { get; set; }
 
+        public override TransportTypes TransportType => TransportTypes.Apple;
+        public override string Type => TransportTypes.Apple.ToString().ToLower();
     }
 }

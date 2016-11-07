@@ -4,10 +4,6 @@ namespace Mojio.Platform.SDK.Entities.Observers
 {
     public class MqttTransport : BaseTransport, IMqttTransport
     {
-        public MqttTransport()
-        {
-            TransportType = TransportTypes.Mqtt;
-        }
         public const int DefaultPort = 1883;
 
         public string HostName { get; set; }
@@ -21,6 +17,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
 
         public string Password { get; set; }
 
-
+        public override TransportTypes TransportType => TransportTypes.Mqtt;
+        public override string Type => TransportTypes.Mqtt.ToString().ToLower();
     }
 }
