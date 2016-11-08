@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.6-*",
 
   "dependencies": {
     "Mojio.Platform.SDK": "1.0.0-*",

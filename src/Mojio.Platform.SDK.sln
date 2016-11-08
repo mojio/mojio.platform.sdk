@@ -41,7 +41,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK.Live.Web
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F070F0A6-69FA-49F3-9BEF-275517C296E7}"
 	ProjectSection(SolutionItems) = preProject
-		Mojio.Platform.SDK.Live.nuspec = Mojio.Platform.SDK.Live.nuspec
 		Mojio.Platform.SDK.nuspec = Mojio.Platform.SDK.nuspec
 	EndProjectSection
 EndProject
