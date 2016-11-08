@@ -1,8 +1,5 @@
 {
   "title": "Mojio Platform SDK DI V2 (DotNet Core)",
-  "buildOptions": {
-    "outputName": "Mojio.Platform.SDK2.DI.DotNetCore"
-  },
 
   "description": "Preview of the DotNet Core compatible Mojio SDK DI",
 

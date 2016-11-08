@@ -6,8 +6,7 @@
   "version": "1.0.7-*",
   "buildOptions": {
     "emitEntryPoint": true,
-    "define": [ "DOTNETCORE" ],
-    "outputName": "Mojio.Platform.SDK2.CLI.DotNetCore"
+    "define": [ "DOTNETCORE" ]
   },
 
   "dependencies": {

@@ -1,8 +1,5 @@
 {
   "title": "Mojio Platform SDK SimpleClient V2 (DotNet Core)",
-  "buildOptions": {
-    "outputName": "Mojio.Platform.SDK2.SimpleClient.DotNetCore"
-  },
 
   "description": "Preview of the DotNet Core compatible Mojio SDK SimpleClient",
 
