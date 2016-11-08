@@ -1,5 +1,12 @@
 {
-  "version": "1.0.6-*",
+  "title": "Mojio Platform SDK Live V2 (DotNet Core)",
+  "buildOptions": {
+    "outputName": "Mojio.Platform.SDK2.Live.DotNetCore"
+  },
+
+  "description": "Preview of the DotNet Core compatible Mojio SDK Live",
+
+  "version": "1.0.7-*",
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",

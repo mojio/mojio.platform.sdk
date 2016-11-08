@@ -1,8 +1,13 @@
 {
-  "version": "1.0.6-*",
+  "title": "Mojio Platform SDK CLI V2 (DotNet Core)",
+
+  "description": "Preview of the DotNet Core compatible Mojio SDK CLI",
+
+  "version": "1.0.7-*",
   "buildOptions": {
     "emitEntryPoint": true,
-    "define": [ "DOTNETCORE" ]
+    "define": [ "DOTNETCORE" ],
+    "outputName": "Mojio.Platform.SDK2.CLI.DotNetCore"
   },
 
   "dependencies": {

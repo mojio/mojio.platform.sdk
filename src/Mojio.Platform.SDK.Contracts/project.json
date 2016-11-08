@@ -6,7 +6,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK Contracts",
 
-  "version": "1.0.6-*",
+  "version": "1.0.7-*",
 
   "packOptions": {
     "summary": "Preview of the DotNet Core compatible Mojio SDK Contracts",

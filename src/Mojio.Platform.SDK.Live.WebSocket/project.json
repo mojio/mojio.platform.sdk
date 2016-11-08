@@ -1,5 +1,12 @@
 {
-  "version": "1.0.6-*",
+  "title": "Mojio Platform SDK Live WebSocket V2 (DotNet Core)",
+  "buildOptions": {
+    "outputName": "Mojio.Platform.SDK2.Live.WebSocket.DotNetCore"
+  },
+
+  "description": "Preview of the DotNet Core compatible Mojio SDK Live WebSocket",
+
+  "version": "1.0.7-*",
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
