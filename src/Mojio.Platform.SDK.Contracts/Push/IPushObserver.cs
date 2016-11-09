@@ -18,8 +18,9 @@ namespace Mojio.Platform.SDK.Contracts.Push
         HttpPost,
         Mqtt,
         SignalR,
-        MongoDB, 
-        EventHub, 
+        MongoDB,
+        Websocket,
+        EventHub,
         ServiceBusQueue
     }
 
@@ -44,7 +45,7 @@ namespace Mojio.Platform.SDK.Contracts.Push
 
         IList<string> Fields { get; set; }
 
-        IList<string> Conditions { get; set; }
+        string Conditions { get; set; }
 
         int? Debounce { get; set; }
 
