@@ -14,7 +14,7 @@ namespace Mojio.Platform.SDK.Entities.Observers
         public string Key { get; set; }
         public IList<ITransport> Transport { get; set; }
         public IList<string> Fields { get; set; }
-        public IList<string> Conditions { get; set; }
+        public string Conditions { get; set; }
         public int? Debounce { get; set; }
         public Timings? Timing { get; set; }
         public TimeSpan? Throttle { get; set; }
