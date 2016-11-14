@@ -171,6 +171,12 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.GetObservers(entity, entityId, cancellationToken, progress);
         }
 
+        public async Task<IPlatformResponse<IPushObserverResponse>> DeleteObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.DeleteObserver(entity, key, cancellationToken, progress);
+        }
+
         public async Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
