@@ -88,6 +88,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Me.cs">
       <Link>Client\IClient.Me.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Users.cs">
+      <Link>Client\IClient.Users.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Mojio.cs">
       <Link>Client\IClient.Mojio.cs</Link>
     </Compile>

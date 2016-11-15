@@ -50,8 +50,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Mojio.Platform.SDK\Client\Cilent.Machine.cs">
-      <Link>Client\Cilent.Machine.cs</Link>
+    <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Machine.cs">
+      <Link>Client\Client.Machine.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.ActivityStreams.cs">
       <Link>Client\Client.ActivityStreams.cs</Link>
@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Me.cs">
       <Link>Client\Client.Me.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Users.cs">
+      <Link>Client\Client.Users.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Mojio.cs">
       <Link>Client\Client.Mojio.cs</Link>

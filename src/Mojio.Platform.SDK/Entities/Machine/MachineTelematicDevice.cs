@@ -14,6 +14,8 @@ namespace Mojio.Platform.SDK.Entities.Machine
         public Guid VehicleId { get; set; }
         public IList<string> Tags { get; set; }
         public Guid Id { get; set; }
+        public string ICCID { get; set; }
+        public Guid OwnerId { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastModified { get; set; }
         public IDictionary<string, string> Links { get; set; }
