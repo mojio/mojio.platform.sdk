@@ -189,22 +189,22 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.GetObserver(entity, key, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IList<ITransportResponse>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IList<ITransport>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.GetObserverTransports(entity, key, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<ITransportResponse>> AddObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<TTr>> AddObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.AddObserverTransport(entity, observerKey, transport, cancellationToken, progress);
+            return await SdkClient.AddObserverTransport<TTr>(entity, observerKey, transport, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<ITransportResponse>> AddOrUpdateObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<TTr>> AddOrUpdateObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport
         {
             SetupTokenAndProgress(cancellationToken, progress);
-            return await SdkClient.AddOrUpdateObserverTransport(entity, observerKey, transport, cancellationToken, progress);
+            return await SdkClient.AddOrUpdateObserverTransport<TTr>(entity, observerKey, transport, cancellationToken, progress);
         }
 
         public Uri WebSocketObserverUri(ObserverEntity entity = ObserverEntity.Vehicles, string id = null)

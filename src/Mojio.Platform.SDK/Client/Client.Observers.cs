@@ -11,11 +11,9 @@ namespace Mojio.Platform.SDK
 {
     public partial class Client
     {
-        public System.Uri WebSocketObserverUri(ObserverEntity entity = ObserverEntity.Vehicles, string id = null)
+        public Uri WebSocketObserverUri(ObserverEntity entity = ObserverEntity.Vehicles, string id = null)
         {
-            return
-                new Uri(
-                    $"{_container.Resolve<IConfiguration>().Environment.APIUri.Replace("https://", "wss://")}v2/{entity.ToString()}/{id}");
+            return new Uri($"{_container.Resolve<IConfiguration>().Environment.APIUri.Replace("https://", "wss://")}v2/{entity}/{id}");
         }
 
         public async Task<IPlatformResponse<IPushObserverResponse>> Observe(ObserverEntity entity, Guid? entityId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
@@ -96,7 +94,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IPushObserverResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<ITransportResponse>> AddObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<TTr>> AddObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -105,13 +103,13 @@ namespace Mojio.Platform.SDK
                 var fragment = $"v2/{entity}/{observerKey}/transports";
                 var json = _serializer.SerializeToString(transport);
 
-                return await _clientBuilder.Request<ITransportResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, json);
+                return await _clientBuilder.Request<TTr>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, json);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<TTr>>(null);
         }
 
-        public async Task<IPlatformResponse<ITransportResponse>> AddOrUpdateObserverTransport(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<TTr>> AddOrUpdateObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -120,23 +118,23 @@ namespace Mojio.Platform.SDK
                 var fragment = $"v2/{entity}/{observerKey}/transports";
                 var json = _serializer.SerializeToString(transport);
 
-                return await _clientBuilder.Request<ITransportResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, json);
+               return await _clientBuilder.Request<TTr>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, json);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<ITransportResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<TTr>>(null);
         }
 
-        public async Task<IPlatformResponse<IList<ITransportResponse>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IList<ITransport>>> GetObserverTransports(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var fragment = $"v2/{entity}/{key}/transports";
-                return await _clientBuilder.Request<IList<ITransportResponse>>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                return await _clientBuilder.Request<IList<ITransport>>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<IList<ITransportResponse>>>(null);
+            return await Task.FromResult<IPlatformResponse<IList<ITransport>>>(null);
         }
     }
 }
