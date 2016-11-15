@@ -165,6 +165,12 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.Me(cancellationToken, progress);
         }
 
+        public async Task<IPlatformResponse<IUser>> GetUser(Guid userId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.GetUser(userId, cancellationToken, progress);
+        }
+
         public async Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);

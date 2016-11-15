@@ -18,6 +18,8 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         DateTimeOffset GatewayTime { get; set; }
         Guid VehicleId { get; set; }
         IList<string> Tags { get; set; }
+        string ICCID { get; set; }
+        Guid OwnerId { get; set; }
         Guid Id { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }
