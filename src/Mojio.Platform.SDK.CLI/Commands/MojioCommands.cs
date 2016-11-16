@@ -4,6 +4,7 @@ using Mojio.Platform.SDK.Entities.DI;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Mojio.Platform.SDK.Contracts.Push;
 
 namespace Mojio.Platform.SDK.CLI.Commands
 {
@@ -137,4 +138,22 @@ namespace Mojio.Platform.SDK.CLI.Commands
     }
 
 #endif
+
+    [CommandDescriptor(Name = "list-watched-mojios", Description = "List currently watched mojios",
+         Usage = "list-watched-mojios")]
+    public class ListWatchedMojiosCommand : BaseCommand
+    {
+        [Argument(ArgumentType.AtMostOnce, ShortName = "id")]
+        public string Id { get; set; } = null;
+
+        public override async Task Execute()
+        {
+            await Authorize();
+
+            var result = await SimpleClient.GetObservers(ObserverEntity.Mojios);
+            Log.Debug(result);
+
+            UpdateAuthorization();
+        }
+    }
 }
