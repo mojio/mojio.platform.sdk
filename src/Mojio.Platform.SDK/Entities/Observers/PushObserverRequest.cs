@@ -9,10 +9,10 @@ namespace Mojio.Platform.SDK.Entities.Observers
         public PushObserverRequest()
         {
             Key = Guid.NewGuid().ToString();
-            Transport = new List<ITransport>();
+            Transports = new List<ITransport>();
         }
         public string Key { get; set; }
-        public IList<ITransport> Transport { get; set; }
+        public IList<ITransport> Transports { get; set; }
         public IList<string> Fields { get; set; }
         public string Conditions { get; set; }
         public int? Debounce { get; set; }
