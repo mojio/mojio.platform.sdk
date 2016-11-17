@@ -18,7 +18,7 @@ namespace Mojio.Platform.SDK.Contracts.Client
 
         Task<IPlatformResponse<IPushObserverResponse>> ObserveUser(Guid userId, IPushObserver observer, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
-        Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+        Task<IPlatformResponse<IList<IPushObserver>>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
         Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
@@ -29,5 +29,7 @@ namespace Mojio.Platform.SDK.Contracts.Client
         Task<IPlatformResponse<TTr>> AddObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport;
 
         Task<IPlatformResponse<TTr>> AddOrUpdateObserverTransport<TTr>(ObserverEntity entity, string observerKey, ITransport transport, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null) where TTr : ITransport;
+
+        Task<IPlatformResponse<IPushObserverResponse>> DeleteObserverTransport(ObserverEntity entity, string observerKey, string transportKey, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
     }
 }

@@ -162,5 +162,12 @@ namespace Mojio.Platform.SDK.Live.WebSocket
             await WatchEntity(ObserverEntity.Activities, client, null, cancellationToken, changedAction);
             return _activityObservable;
         }
+
+        public async Task<IObservable<IMojio>> WatchUsers(IClient client, string mojioId = null, CancellationToken cancellationToken = new CancellationToken(),
+            Action<IVehicle> changedAction = null)
+        {
+            await WatchEntity(ObserverEntity.Users, client, mojioId, cancellationToken, changedAction);
+            return _mojioObservable;
+        }
     }
 }

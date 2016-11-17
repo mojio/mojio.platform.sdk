@@ -51,7 +51,7 @@ namespace Mojio.Platform.SDK
             return await Observe(ObserverEntity.Users, userId, observer, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IGetPushObserversResponse>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IList<IPushObserver>>> GetObservers(ObserverEntity entity, Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -62,10 +62,11 @@ namespace Mojio.Platform.SDK
                 {
                     fragment = $"{fragment}/{entityId}";
                 }
-                return await _clientBuilder.Request<IGetPushObserversResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                var result = await _clientBuilder.Request<IList<IPushObserver>>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress);
+                return result;
             }
             _log.Fatal(new Exception("Authorization Failed"));
-            return await Task.FromResult<IPlatformResponse<IGetPushObserversResponse>>(null);
+            return await Task.FromResult<IPlatformResponse<IList<IPushObserver>>>(null);
         }
 
         public async Task<IPlatformResponse<IPushObserverResponse>> GetObserver(ObserverEntity entity, string key, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
@@ -135,6 +136,20 @@ namespace Mojio.Platform.SDK
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IList<ITransport>>>(null);
+        }
+
+        public async Task<IPlatformResponse<IPushObserverResponse>> DeleteObserverTransport(ObserverEntity entity, string observerKey, string transportKey, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var fragment = $"v2/{entity}/{observerKey}/transports/{transportKey}";
+
+                return await _clientBuilder.Request<IPushObserverResponse>(ApiEndpoint.Push, fragment, tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<IPushObserverResponse>>(null);
         }
     }
 }

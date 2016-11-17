@@ -3,7 +3,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK Bot",
 
-  "version": "1.0.11-*",
+  "version": "1.0.12-*",
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",

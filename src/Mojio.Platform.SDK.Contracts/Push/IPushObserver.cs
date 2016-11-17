@@ -41,7 +41,7 @@ namespace Mojio.Platform.SDK.Contracts.Push
     {
         string Key { get; set; }
 
-        IList<ITransport> Transport { get; set; }
+        IList<ITransport> Transports { get; set; }
 
         IList<string> Fields { get; set; }
 

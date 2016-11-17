@@ -205,9 +205,6 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Machine\IMachineStates.cs">
       <Link>Machine\IMachineStates.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IGetPushObserversResponse.cs">
-      <Link>Push\IGetPushObserversResponse.cs</Link>
-    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\IPushObserver.cs">
       <Link>Push\IPushObserver.cs</Link>
     </Compile>
