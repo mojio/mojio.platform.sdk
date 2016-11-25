@@ -42,11 +42,11 @@ namespace Mojio.Platform.SDK.Entities.Environments
                     break;
 
                 case Contracts.Environments.NaProduction:
-                    prefix = "na-production-";
+                    prefix = "na-";
                     break;
 
                 case Contracts.Environments.EuProduction:
-                    prefix = "eu-production-";
+                    prefix = "eu-";
                     break;
 
                 case Contracts.Environments.EuStaging:

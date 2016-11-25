@@ -3,7 +3,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK", 
 
-  "version": "1.0.12-*",
+  "version": "1.0.13-*",
 
   "packOptions": {
     "summary": "Preview of the DotNet Core compatible Mojio SDK",
