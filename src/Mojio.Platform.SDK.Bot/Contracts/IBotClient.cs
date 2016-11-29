@@ -8,6 +8,7 @@ namespace Mojio.Platform.SDK.Bot.Contracts
         Ping,
         DeleteUserData,
         BotAddedToConversation,
+        BotRemovedFromConversation, 
         UserAddedToConversation,
         UserRemovedFromConversation,
         EndOfConversation,
