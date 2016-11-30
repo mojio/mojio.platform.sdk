@@ -42,6 +42,12 @@ namespace Mojio.Platform.SDK.CLI
 
             var client = new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
+            // pre-login if specified...
+            var UserName = configuration["UserName"];
+            var Password = configuration["Password"];
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password))
+                client.Login(UserName, Password).Wait();
+
             var p = new Program();
             p.Run(args, Logger, client).Wait();
         }

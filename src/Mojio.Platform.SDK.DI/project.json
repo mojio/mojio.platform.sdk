@@ -3,7 +3,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK DI",
 
-  "version": "1.0.14-*",
+  "version": "1.0.15-*",
 
   "dependencies": {
     "Mojio.Platform.SDK": "1.0.0-*",
