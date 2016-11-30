@@ -42,8 +42,11 @@ namespace Mojio.Platform.SDK.CLI
 
             var client = new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
-
-            client.Login(configuration["UserName"], configuration["Password"]).Wait();
+            // pre-login if specified...
+            var UserName = configuration["UserName"];
+            var Password = configuration["Password"];
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password))
+                client.Login(UserName, Password).Wait();
 
             var p = new Program();
             p.Run(args, Logger, client).Wait();
@@ -80,35 +83,35 @@ namespace Mojio.Platform.SDK.CLI
             {
                 Logger = logger;
             }
-            //            if (client == null)
-            //            {
-            //                //     insert application code here
-            //                Client = new SimpleClient.SimpleClient(Environments.Production, new Configuration
-            //                {
-            //                    ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052",
-            //                    ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c",
-            //                    RedirectUri = "https://www.moj.io"
-            //                });
-            //            }
-            //            else
-            //            {
-            Client = client;
-            //}
+            if (client == null)
+            {
+                //     insert application code here
+                Client = new SimpleClient.SimpleClient(Environments.Production, new Configuration
+                {
+                    ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052",
+                    ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c",
+                    RedirectUri = "https://www.moj.io"
+                });
+            }
+            else
+            {
+                Client = client;
+            }
             string input = null;
             if (args != null)
             {
                 input = string.Join(" ", args);
             }
-            //            if (!string.IsNullOrEmpty(input) && File.Exists(input))
-            //            {
-            //                await ExecuteFile(input, Client);
-            //                return;
-            //            }
-            //            if (!string.IsNullOrEmpty(input))
-            //            {
-            //                await ExecuteSingle(input, Client);
-            //                return;
-            //            }
+            if (!string.IsNullOrEmpty(input) && File.Exists(input))
+            {
+                await ExecuteFile(input, Client);
+                return;
+            }
+            if (!string.IsNullOrEmpty(input))
+            {
+                await ExecuteSingle(input, Client);
+                return;
+            }
 
             while (true)
             {
