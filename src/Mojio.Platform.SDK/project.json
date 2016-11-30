@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK V2 (DotNet Core)",
 
-  "description": "Preview of the DotNet Core compatible Mojio SDK", 
+  "description": "Preview of the DotNet Core compatible Mojio SDK",
 
   "version": "1.0.14-*",
 
@@ -15,7 +15,7 @@
       "url": "https://github.com/mojio/mojio.platform.sdk"
     },
     "projectUrl": "https://github.com/mojio/mojio.platform.sdk"
-  }, 
+  },
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
@@ -24,7 +24,7 @@
   },
 
   "frameworks": {
-    "netstandard1.6": {
+    "netstandard1.4": {
       "imports": "dnxcore50"
     }
   }
