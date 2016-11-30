@@ -3,7 +3,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK CLI",
 
-  "version": "1.0.14-*",
+  "version": "1.0.15-*",
   "buildOptions": {
     "emitEntryPoint": true,
     "define": [ "DOTNETCORE" ]
