@@ -17,7 +17,7 @@ namespace Mojio.Platform.SDK
             {
                 // TODO: integrate caching
 
-                var fragment = $"v2/user/{userId}";
+                var fragment = $"v2/users/{userId}";
                 return await _clientBuilder.Request<IUser>(ApiEndpoint.Api, fragment, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
