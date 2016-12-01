@@ -3,7 +3,7 @@
 
   "description": "Preview of the DotNet Core compatible Mojio SDK SimpleClient",
 
-  "version": "1.0.15-*",
+  "version": "1.0.16-*",
 
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
