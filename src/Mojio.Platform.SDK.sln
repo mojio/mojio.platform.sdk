@@ -42,6 +42,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F070F0A6-69FA-49F3-9BEF-275517C296E7}"
 	ProjectSection(SolutionItems) = preProject
 		Mojio.Platform.SDK.nuspec = Mojio.Platform.SDK.nuspec
+		Mojio.Platform.SDK.SimpleClient.nuspec = Mojio.Platform.SDK.SimpleClient.nuspec
 	EndProjectSection
 EndProject
 Global
