@@ -19,6 +19,6 @@
 		</dependencies>		
 	</metadata>
 	<files>
-		<file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win8+wpa81+wp8" />
+		<file src="Portable\Mojio.Platform.SDK.Contracts\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win8+wpa81+wp8" />
 	</files>		
 </package>
