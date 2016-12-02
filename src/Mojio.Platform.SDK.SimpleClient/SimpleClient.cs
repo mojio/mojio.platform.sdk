@@ -33,26 +33,25 @@ namespace Mojio.Platform.SDK.SimpleClient
             DIContainer.Current.RegisterInstance(ee, environment.ToString());
             DIContainer.Current.RegisterInstance(configuration);
 
-			var serializer = DIContainer.Current.Resolve<ISerializer>();
-			var log = DIContainer.Current.Resolve<Contracts.Instrumentation.ILog>();
+			SdkClient = DIContainer.Current.Resolve<IClient>();
+//            var serializer = DIContainer.Current.Resolve<ISerializer>();
+//            var log = DIContainer.Current.Resolve<Contracts.Instrumentation.ILog>();
+            //			SdkClient = new Client(
+            //				DIContainer.Current,
+            //				configuration,
+            //				DIContainer.Current.Resolve<IHttpClientBuilder>(),
+            ////				new MojioHttpClient(
+            ////					DIContainer.Current.Resolve<IAuthorization>(),
+            ////					configuration, 
+            ////					serializer, 
+            ////					DIContainer.Current, 
+            ////					log
+            ////				), 
+            //				log,
+            //				serializer,
+            //				DIContainer.Current.Resolve<ICache>());
 
-			//SdkClient = DIContainer.Current.Resolve<IClient>();
-			SdkClient = new Client(
-				DIContainer.Current,
-				configuration,
-				DIContainer.Current.Resolve<IHttpClientBuilder>(),
-//				new MojioHttpClient(
-//					DIContainer.Current.Resolve<IAuthorization>(),
-//					configuration, 
-//					serializer, 
-//					DIContainer.Current, 
-//					log
-//				), 
-				log,
-				serializer,
-				DIContainer.Current.Resolve<ICache>());
-            
-			_authManager = DIContainer.Current.Resolve<IAuthorizationManager>();
+            _authManager = DIContainer.Current.Resolve<IAuthorizationManager>();
         }
 
         public IClient SdkClient { get; set; }
