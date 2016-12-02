@@ -15,6 +15,7 @@
 		<tags>Mojio Connected Car IoT</tags>
 		<dependencies>
 			<dependency id="Newtonsoft.Json" version="9.0.1" />
+			<dependency id="Mojio.Platform.SDK.Contracts" version="1.0.21" />
 		</dependencies>		
 	</metadata>
 	<files>
