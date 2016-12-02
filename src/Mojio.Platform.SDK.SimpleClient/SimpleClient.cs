@@ -40,14 +40,14 @@ namespace Mojio.Platform.SDK.SimpleClient
 			SdkClient = new Client(
 				DIContainer.Current,
 				configuration,
-				//DIContainer.Current.Resolve<IHttpClientBuilder>(),
-				new MojioHttpClient(
-					DIContainer.Current.Resolve<IAuthorization>(),
-					configuration, 
-					serializer, 
-					DIContainer.Current, 
-					log
-				), 
+				DIContainer.Current.Resolve<IHttpClientBuilder>(),
+//				new MojioHttpClient(
+//					DIContainer.Current.Resolve<IAuthorization>(),
+//					configuration, 
+//					serializer, 
+//					DIContainer.Current, 
+//					log
+//				), 
 				log,
 				serializer,
 				DIContainer.Current.Resolve<ICache>());
