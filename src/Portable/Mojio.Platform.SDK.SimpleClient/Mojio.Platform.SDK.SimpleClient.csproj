@@ -52,6 +52,10 @@
       <Project>{78f28237-e5b0-4679-91a9-391eeca3dab7}</Project>
       <Name>Mojio.Platform.SDK.DI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mojio.Platform.SDK\Mojio.Platform.SDK.csproj">
+      <Project>{B280EB7D-D406-46FE-B08D-296C4FC4D966}</Project>
+      <Name>Mojio.Platform.SDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Mojio.Platform.SDK.SimpleClient\Configuration.cs">

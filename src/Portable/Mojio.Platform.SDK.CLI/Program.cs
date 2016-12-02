@@ -9,6 +9,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Configuration = Mojio.Platform.SDK.SimpleClient.Configuration;
+using System.Reflection;
+using System.Data;
+using System.Linq;
+using Mojio.Platform.SDK.Entities;
 
 namespace Mojio.Platform.SDK.CLI
 {
@@ -19,6 +23,8 @@ namespace Mojio.Platform.SDK.CLI
 
         public static void Main(string[] args)
         {
+			
+
             var env = Environments.Production;
             var Environment = ConfigurationManager.AppSettings["Environment"];
             if (!string.IsNullOrEmpty(Environment))
@@ -71,16 +77,18 @@ namespace Mojio.Platform.SDK.CLI
             {
                 input = string.Join(" ", args);
             }
-            if (!string.IsNullOrEmpty(input) && File.Exists(input))
-            {
-                await ExecuteFile(input, Client);
-                return;
-            }
-            if (!string.IsNullOrEmpty(input))
-            {
-                await ExecuteSingle(input, Client);
-                return;
-            }
+            //if (!string.IsNullOrEmpty(input) && File.Exists(input))
+            //{
+            //    await ExecuteFile(input, Client);
+            //    return;
+            //}
+            //if (!string.IsNullOrEmpty(input))
+            //{
+            //    await ExecuteSingle(input, Client);
+            //    return;
+            //}
+
+
 
             while (true)
             {

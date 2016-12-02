@@ -138,6 +138,10 @@
       <Project>{a8871d53-dad8-4967-abe7-b568224bd5b1}</Project>
       <Name>Mojio.Platform.SDK.SimpleClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mojio.Platform.SDK\Mojio.Platform.SDK.csproj">
+      <Project>{B280EB7D-D406-46FE-B08D-296C4FC4D966}</Project>
+      <Name>Mojio.Platform.SDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

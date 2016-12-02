@@ -236,7 +236,7 @@ namespace Mojio.Platform.SDK.Entities.DI
         private void RegisterOverhead(IDIContainer container)
         {
             container.Register<IContractResolver, ContractResolver>();
-            container.Register<IHttpClientBuilder, MojioHttpClient>();
+            //container.Register<IHttpClientBuilder, MojioHttpClient>();
             container.Register<IEnvironment, Environment>("Template");
             container.Register<IEnvironmentFactory, EnvironmentFactory>();
             container.Register<IAuthorization, CoreAuthorization>();
