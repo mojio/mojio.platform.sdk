@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>Mojio.Platform.SDK</id>
-		<version>1.0.20</version>
+		<version>1.0.22</version>
 		<title>Mojio Platform SDK V2</title>
 		<authors>Mojio Dev Team</authors>
 		<owners>Mojio Dev Team</owners>
@@ -15,10 +15,11 @@
 		<tags>Mojio Connected Car IoT</tags>
 		<dependencies>
 			<dependency id="Newtonsoft.Json" version="9.0.1" />
+			<dependency id="Microsoft.Net.Http" version="2.2.29" />
+			<dependency id="Mojio.Platform.SDK.Contracts" version="1.0.22" />
 		</dependencies>		
 	</metadata>
 	<files>
-	  <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win8+wpa81+wp8" />
-    <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win8+wpa81+wp8" />
-  </files>		
+		<file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win8+wpa81+wp8" />
+	</files>		
 </package>
