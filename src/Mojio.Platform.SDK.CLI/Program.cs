@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.CommandLine;
-using Mojio.Platform.SDK.CLI.Commands;
+﻿using Mojio.Platform.SDK.CLI.Commands;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Instrumentation;
@@ -10,7 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Configuration = Mojio.Platform.SDK.SimpleClient.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Mojio.Platform.SDK.CLI
 {
@@ -22,9 +20,15 @@ namespace Mojio.Platform.SDK.CLI
         public static void Main(string[] args)
         {
             var env = Environments.Production;
-            ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+            var configBuilder = new ConfigurationBuilder();
+#if DOTNETCORE
             configBuilder.AddCommandLine(args);
             if (System.IO.File.Exists("appsettings.json")) configBuilder.AddJsonFile("appsettings.json");
+#else
+            // TODO: do something to read args when using .net 4.6
+            //configBuilder.AddCommandLine(args);
+            //if (System.IO.File.Exists("appsettings.json")) configBuilder.AddJsonFile("appsettings.json");
+#endif
             var configuration = configBuilder.Build();
             DIContainer.Current.RegisterInstance<IConfigurationRoot>(configuration);
 
@@ -40,7 +44,7 @@ namespace Mojio.Platform.SDK.CLI
             var RedirectUri = configuration["RedirectUri"];
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
 
-            var client = new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
+            var client = new SimpleClient.SimpleClient(env, new Mojio.Platform.SDK.SimpleClient.Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
             // pre-login if specified...
             var UserName = configuration["UserName"];
@@ -86,7 +90,7 @@ namespace Mojio.Platform.SDK.CLI
             if (client == null)
             {
                 //     insert application code here
-                Client = new SimpleClient.SimpleClient(Environments.Production, new Configuration
+                Client = new SimpleClient.SimpleClient(Environments.Production, new Mojio.Platform.SDK.SimpleClient.Configuration
                 {
                     ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052",
                     ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c",

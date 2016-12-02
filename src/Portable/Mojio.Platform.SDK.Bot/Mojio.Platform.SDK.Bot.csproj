@@ -67,17 +67,39 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Bot\Entities\MojioConversationData.cs">
       <Link>Entities\MojioConversationData.cs</Link>
     </Compile>
-    <Compile Include="Contracts\Entity.cs" />
-    <Compile Include="Contracts\IAttachment.cs" />
-    <Compile Include="Contracts\IBotClient.cs" />
-    <Compile Include="Contracts\IChannelAccount.cs" />
-    <Compile Include="Contracts\IEntity.cs" />
-    <Compile Include="Contracts\IIntent.cs" />
-    <Compile Include="Contracts\ILocation.cs" />
-    <Compile Include="Contracts\IMention.cs" />
-    <Compile Include="Contracts\IMessage.cs" />
-    <Compile Include="Contracts\IMojioConversationData.cs" />
-    <Compile Include="Contracts\Intent.cs" />
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\Entity.cs">
+      <Link>Contracts\Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IAttachment.cs">
+      <Link>Contracts\IAttachment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IBotClient.cs">
+      <Link>Contracts\IBotClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IChannelAccount.cs">
+      <Link>Contracts\IChannelAccount.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IEntity.cs">
+      <Link>Contracts\IEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IIntent.cs">
+      <Link>Contracts\IIntent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\ILocation.cs">
+      <Link>Contracts\ILocation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IMention.cs">
+      <Link>Contracts\IMention.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IMessage.cs">
+      <Link>Contracts\IMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\IMojioConversationData.cs">
+      <Link>Contracts\IMojioConversationData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Bot\Contracts\Intent.cs">
+      <Link>Contracts\Intent.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
