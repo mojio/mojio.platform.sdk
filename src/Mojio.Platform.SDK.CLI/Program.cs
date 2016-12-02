@@ -26,6 +26,8 @@ namespace Mojio.Platform.SDK.CLI
             if (System.IO.File.Exists("appsettings.json")) configBuilder.AddJsonFile("appsettings.json");
 #else
             // TODO: do something to read args when using .net 4.6
+            //configBuilder.AddCommandLine(args);
+            //if (System.IO.File.Exists("appsettings.json")) configBuilder.AddJsonFile("appsettings.json");
 #endif
             var configuration = configBuilder.Build();
             DIContainer.Current.RegisterInstance<IConfigurationRoot>(configuration);
