@@ -223,7 +223,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\SimpleObservable.cs">
       <Link>SimpleObservable.cs</Link>
     </Compile>
-    <Compile Include="Instrumentation\ILog.cs" />
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Instrumentation\ILog.cs">
+      <Link>Instrumentation\ILog.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
