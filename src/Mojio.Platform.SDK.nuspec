@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>Mojio.Platform.SDK</id>
-		<version>1.0.20</version>
+		<version>1.0.21</version>
 		<title>Mojio Platform SDK V2</title>
 		<authors>Mojio Dev Team</authors>
 		<owners>Mojio Dev Team</owners>
@@ -18,7 +18,6 @@
 		</dependencies>		
 	</metadata>
 	<files>
-	  <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.Contracts.dll" target="lib\portable-net45+win8+wpa81+wp8" />
-    <file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win8+wpa81+wp8" />
-  </files>		
+		<file src="Portable\Mojio.Platform.SDK\bin\PCL\Mojio.Platform.SDK.dll" target="lib\portable-net45+win8+wpa81+wp8" />
+	</files>		
 </package>
