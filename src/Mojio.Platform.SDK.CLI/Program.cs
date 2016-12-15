@@ -4,7 +4,6 @@ using Mojio.Platform.SDK.CLI.Commands;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Instrumentation;
-using Mojio.Platform.SDK.ElasticSearchLogging;
 using Mojio.Platform.SDK.Entities.DI;
 using System;
 using System.IO;
@@ -48,7 +47,7 @@ namespace Mojio.Platform.SDK.CLI
 
             //DIContainer.Current.Register<ILog, BareLogger>("Debug");
             DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
-            DIContainer.Current.Register<ILog, ElasticSearchLogger>("Elastic");
+            //DIContainer.Current.Register<ILog, ElasticSearchLogger>("Elastic");
 
             var client = new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
