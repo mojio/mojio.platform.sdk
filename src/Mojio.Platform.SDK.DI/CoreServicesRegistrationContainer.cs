@@ -136,6 +136,13 @@ namespace Mojio.Platform.SDK.Entities.DI
             var mojios = container.Resolve<IObservable<IMojio>>();
             container.RegisterInstance<IObservable<IMojio>>(mojios);
 
+            container.Register<ICapabilities, Capabilities>();
+            container.Register<IActuators, Actuators>();
+            container.Register<IWifiradio, Wifiradio>();
+            container.Register<ISensors, Sensors>();
+            container.Register<ITowstate, Towstate>();
+            container.Register<IUpdateWifiSettingsStatus, UpdateWifiSettingsStatus>();
+
             RegisterActivityStreams(container);
         }
 

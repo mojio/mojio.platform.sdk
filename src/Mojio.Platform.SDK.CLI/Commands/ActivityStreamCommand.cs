@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.CLI.Commands
 {
-    [CommandDescriptor(Name = "get-user-stream", Description = "List the current users activity stream", Usage = "get-user-stream")]
+    [CommandDescriptor(Name = "user-activity-stream", Description = "List the current users activity stream", Usage = "user-activity-stream")]
     public class ActivityStreamCommand : BaseCommand
     {
         public override async Task Execute()

@@ -30,6 +30,9 @@ namespace Mojio.Platform.SDK.Entities.Environments
 
             switch (environment)
             {
+                case Contracts.Environments.Load:
+                    prefix = "load-";
+                    break;
                 case Contracts.Environments.Develop:
                     prefix = "develop-";
                     break;
@@ -51,10 +54,6 @@ namespace Mojio.Platform.SDK.Entities.Environments
 
                 case Contracts.Environments.EuStaging:
                     prefix = "eu-staging-";
-                    break;
-
-                case Contracts.Environments.Staging:
-                    prefix = "staging-";
                     break;
 
                 default: //US Production

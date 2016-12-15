@@ -23,7 +23,8 @@ namespace Mojio.Platform.SDK
         private readonly ISerializer _serializer;
         private readonly HttpClientHandler handler = new HttpClientHandler();
 
-        public MojioHttpClient(IAuthorization authorization, IConfiguration configuration, ISerializer serializer, IDIContainer container, ILog log)
+        public MojioHttpClient(IAuthorization authorization, IConfiguration configuration, ISerializer serializer,
+            IDIContainer container, ILog log)
         {
             _configuration = configuration;
             _serializer = serializer;
@@ -43,19 +44,29 @@ namespace Mojio.Platform.SDK
                 var client = new HttpClient(handler);
                 if (Authorization != null && !string.IsNullOrEmpty(Authorization.MojioApiToken))
                 {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthorizationType, Authorization.MojioApiToken);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthorizationType,
+                        Authorization.MojioApiToken);
                 }
                 client.Timeout = TimeSpan.FromMinutes(3);
-
                 return client;
             }
         }
 
         public string AuthorizationType { get; set; } = "Bearer";
 
-        public async Task<IPlatformResponse<T>> Request<T>(ApiEndpoint endpoint, string relativePath, CancellationToken cancellationToken, IProgress<ISDKProgress> progress = null, HttpMethod method = null, string body = null, byte[] rawData = null, string contentType = "application/json", IDictionary<string, string> headers = null)
+        public async Task<IPlatformResponse<T>> Request<T>(ApiEndpoint endpoint, string relativePath,
+            CancellationToken cancellationToken, IProgress<ISDKProgress> progress = null, HttpMethod method = null,
+            string body = null, byte[] rawData = null, string contentType = "application/json",
+            IDictionary<string, string> headers = null)
         {
             var monitor = _container.Resolve<IProgressMonitor>();
+
+            var properties = new Dictionary<string, string>
+            {
+                {"MojioApiToken", Authorization.MojioApiToken},
+            };
+            var metrics = new Dictionary<string, double>();
+
             if (progress != null)
             {
                 monitor.Progress = progress;
@@ -123,7 +134,8 @@ namespace Mojio.Platform.SDK
             {
                 monitor.Report("Creating MultiPart Form Content", 0.2);
 
-                var requestContent = new MultipartFormDataContent(); //"Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                var requestContent = new MultipartFormDataContent();
+                //"Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture));
 
                 var imageContent = new ByteArrayContent(rawData);
                 var fileName = "image.png";
@@ -183,9 +195,17 @@ namespace Mojio.Platform.SDK
             var requestSw = new Stopwatch();
             requestSw.Start();
             Debug.WriteLine($"Pre-flight request URL: {request.RequestUri}");
-
+            var start = Stopwatch.GetTimestamp();
             using (var sendResult = await client.SendAsync(request, cancellationToken))
             {
+                var end = Stopwatch.GetTimestamp();
+                var delta = ((end - start) * 1000) / Stopwatch.Frequency; //in milliseconds
+
+                properties.Add("HttpStatusCode", sendResult.StatusCode.ToString());
+                properties.Add("Method", request.Method.ToString());
+                properties.Add("ReasonPhrase", sendResult.ReasonPhrase);
+                metrics.Add("DurationMS", delta);
+
                 platformResponse.RequestDurationMS = requestSw.ElapsedMilliseconds;
                 monitor.Report("Received Response from Http Request", 0.7);
                 requestSw.Stop();
@@ -198,10 +218,15 @@ namespace Mojio.Platform.SDK
 
                 try
                 {
-                    var cookie = (from h in sendResult.Headers where h.Key == "Set-Cookie" select h.Value.FirstOrDefault()).FirstOrDefault();
+                    var cookie =
+                        (from h in sendResult.Headers where h.Key == "Set-Cookie" select h.Value.FirstOrDefault())
+                            .FirstOrDefault();
                     if (cookie != null)
                     {
-                        platformResponse.ARRAffinityInstance = (from c in cookie.Split(';') where c.StartsWith("") select c.Split('=').LastOrDefault()).FirstOrDefault();
+                        platformResponse.ARRAffinityInstance =
+                            (from c in cookie.Split(';') where c.StartsWith("") select c.Split('=').LastOrDefault())
+                                .FirstOrDefault();
+                        properties.Add("ARRAffinityInstance", platformResponse.ARRAffinityInstance);
                     }
                 }
                 catch (Exception)
@@ -221,6 +246,13 @@ namespace Mojio.Platform.SDK
                     monitor.Report("Reading data from Response", 0.9);
                     var json = await sendResult.Content.ReadAsStringAsync();
 
+                    if (!string.IsNullOrEmpty(json))
+                    {
+                        var left = json;
+                        if (left.Length > 100) left = left.Substring(0, 100);
+                        properties.Add("raw", left);
+                    }
+
                     monitor.Report("Deserializing data", 0.95);
                     try
                     {
@@ -232,7 +264,8 @@ namespace Mojio.Platform.SDK
                     }
                     catch (Exception e)
                     {
-                        _log.Error(e, "Invalid response from the server. Received:{0}, expected:{1}.  Will continue.", json, typeof(T));
+                        _log.Error(e, "Invalid response from the server. Received:{0}, expected:{1}.  Will continue.",
+                            json, typeof(T));
                     }
 
                     if (typeof(T) == typeof(IAuthorization))
@@ -253,9 +286,6 @@ namespace Mojio.Platform.SDK
                     monitor.Report("Reading data from Response", 0.9);
                     var content = await sendResult.Content.ReadAsStringAsync();
 
-                    Debug.WriteLine(content);
-                    Debug.WriteLine(_serializer.SerializeToString(request));
-
                     if (!string.IsNullOrEmpty(content))
                     {
                         try
@@ -266,12 +296,14 @@ namespace Mojio.Platform.SDK
                             {
                                 if (result.Message != null)
                                 {
-                                    platformResponse.ErrorMessage = platformResponse.ErrorMessage + ", " + result.Message;
+                                    platformResponse.ErrorMessage = platformResponse.ErrorMessage + ", " +
+                                                                    result.Message;
                                 }
                                 else
                                 {
                                     platformResponse.ErrorMessage = platformResponse.ErrorMessage + ", " + content;
                                 }
+                                properties.Add("ErrorMessage", platformResponse.ErrorMessage);
                             }
                         }
                         catch (Exception)
@@ -283,6 +315,12 @@ namespace Mojio.Platform.SDK
             monitor.Report("Finished", 1);
 
             monitor.Stop();
+
+            _log.Event(
+                request.RequestUri.ToString(),
+                properties,
+                metrics
+            );
 
             return platformResponse;
         }
@@ -318,7 +356,10 @@ namespace Mojio.Platform.SDK
                 .Accept
                 .Add(new MediaTypeWithQualityHeaderValue(contentType));
 
-            client.BaseAddress = new Uri(_configuration.Environment.APIUri);
+            client.BaseAddress = new Uri(
+                //"https://babygroot.moj.io"
+                _configuration.Environment.APIUri
+                );
 
             return client;
         }

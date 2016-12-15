@@ -36,7 +36,7 @@ namespace Mojio.Platform.SDK
 
         private string RandomQueryString()
         {
-            return $"rnd={Rand.Next(0, 999999)}";
+            return $"";//rnd={Rand.Next(0, 999999)}";
         }
 
         public CancellationToken DefaultCancellationToken { get; set; }

@@ -4,6 +4,7 @@ using Mojio.Platform.SDK.CLI.Commands;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Instrumentation;
+using Mojio.Platform.SDK.ElasticSearchLogging;
 using Mojio.Platform.SDK.Entities.DI;
 using System;
 using System.IO;
@@ -21,10 +22,15 @@ namespace Mojio.Platform.SDK.CLI
 
         public static void Main(string[] args)
         {
+            Console.WriteLine(string.Join(",", args));
+
             var env = Environments.Production;
             ConfigurationBuilder configBuilder = new ConfigurationBuilder();
-            configBuilder.AddCommandLine(args);
-            if (System.IO.File.Exists("appsettings.json")) configBuilder.AddJsonFile("appsettings.json");
+            //configBuilder.AddCommandLine(args);
+            if (System.IO.File.Exists("appsettings.json"))
+            {
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
+            }
             var configuration = configBuilder.Build();
             DIContainer.Current.RegisterInstance<IConfigurationRoot>(configuration);
 
@@ -39,6 +45,10 @@ namespace Mojio.Platform.SDK.CLI
             if (string.IsNullOrEmpty(ClientSecret)) ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c";
             var RedirectUri = configuration["RedirectUri"];
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
+
+            //DIContainer.Current.Register<ILog, BareLogger>("Debug");
+            DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
+            DIContainer.Current.Register<ILog, ElasticSearchLogger>("Elastic");
 
             var client = new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
@@ -56,7 +66,7 @@ namespace Mojio.Platform.SDK.CLI
         {
             Console.CancelKeyPress += Console_CancelKeyPress;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-            DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
+
             DIContainer.Current.Register(typeof(IObserver<>), typeof(LoggingObserver<>));
 
 #if DOTNETCORE
@@ -157,6 +167,7 @@ namespace Mojio.Platform.SDK.CLI
             ICommand command;
             try
             {
+                //Logger.Error(null, line);
                 command = factory.GetCommand(line, client, Logger);
 
                 if (command != null)

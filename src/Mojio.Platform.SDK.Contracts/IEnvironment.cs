@@ -24,7 +24,9 @@
         EuStaging,
 
         //internal mojio testing
-        Develop
+        Develop,
+
+        Load
 
     }
 

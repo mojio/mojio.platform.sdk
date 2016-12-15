@@ -15,10 +15,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public string Id { get; set; }
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "t")]
-        public int Top { get; set; }
+        public int Top { get; set; } = 100;
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "s")]
-        public int Skip { get; set; }
+        public int Skip { get; set; } = 0;
 
         public override async Task Execute()
         {
@@ -46,10 +46,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public string Id { get; set; }
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "t")]
-        public int Top { get; set; }
+        public int Top { get; set; } = 100;
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "s")]
-        public int Skip { get; set; }
+        public int Skip { get; set; } = 0;
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "f")]
         public string Fields { get; set; } = null;
@@ -164,10 +164,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public string Id { get; set; }
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "t")]
-        public int Top { get; set; }
+        public int Top { get; set; } = 100;
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "s")]
-        public int Skip { get; set; }
+        public int Skip { get; set; } = 0;
 
         [Argument(ArgumentType.AtMostOnce, ShortName = "f")]
         public string Filter { get; set; }

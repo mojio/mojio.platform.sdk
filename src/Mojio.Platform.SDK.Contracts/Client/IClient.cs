@@ -20,7 +20,7 @@ namespace Mojio.Platform.SDK.Contracts.Client
         Push
     }
 
-    public interface IClient : IClientApp, IClientLogin, IClientMe, IClientTrip, IClientMojio, IClientVehicle, IClientSimulator, IClientObservers, IClientImage, IClientTags, IClientGroups, IClientActivityStreams, IClientUsers
+    public interface IClient : IClientApp, IClientLogin, IClientMe, IClientTrip, IClientMojio, IClientVehicle, IClientSimulator, IClientObservers, IClientImage, IClientTags, IClientGroups, IClientActivityStreams, IClientUsers, IClientWifi, IClientCapabilities
     {
         IProgress<ISDKProgress> DefaultProgress { get; set; }
         CancellationToken DefaultCancellationToken { get; set; }
