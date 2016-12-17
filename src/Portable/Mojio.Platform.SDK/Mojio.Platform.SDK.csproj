@@ -92,6 +92,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Vehicle.cs">
       <Link>Client\Client.Vehicle.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Wifi.cs">
+      <Link>Client\Client.Wifi.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Accelerometer.cs">
       <Link>Entities\Accelerometer.cs</Link>
     </Compile>
@@ -127,6 +130,9 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\CacheItem.cs">
       <Link>Entities\CacheItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Capabilities.cs">
+      <Link>Entities\Capabilities.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\ContractResolver.cs">
       <Link>Entities\ContractResolver.cs</Link>
@@ -296,6 +302,9 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Concurrent">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Collections.Concurrent.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Collections.Immutable.1.3.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>

@@ -1,60 +1,15 @@
-﻿using Mojio.Platform.SDK.Contracts;
-using Mojio.Platform.SDK.Contracts.Instrumentation;
+﻿using Mojio.Platform.SDK.Contracts.Instrumentation;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.Entities.Instrumentation
 {
     public class BroadcastLogger : ILog
     {
-        private static ConcurrentQueue<Tuple<string, IDictionary<string, string>, IDictionary<string, double>>>
-            _eventQueue = new ConcurrentQueue<Tuple<string, IDictionary<string, string>, IDictionary<string, double>>>();
-
         private static ImmutableArray<ILog> _loggers;
         private readonly bool _enabled = false;
-
-        static BroadcastLogger()
-        {
-            Task.Factory.StartNew(() => { WaitLoop(); }, TaskCreationOptions.LongRunning);
-        }
-
-        private static SemaphoreSlim _lock = new SemaphoreSlim(1);
-
-        private static async Task WaitLoop()
-        {
-            while (true)
-            {
-                try
-                {
-                    await _lock.WaitAsync();
-                    var list = _eventQueue.ToArray();
-                    _eventQueue =
-                        new ConcurrentQueue<Tuple<string, IDictionary<string, string>, IDictionary<string, double>>>();
-
-                    foreach (var e in list)
-                    {
-                        foreach (var l in _loggers)
-                        {
-                            l.Event(e.Item1, e.Item2, e.Item3);
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                }
-                finally
-                {
-                    _lock.Release();
-                }
-
-                await Task.Delay(500);
-            }
-        }
 
         public BroadcastLogger(IList<ILog> ll)
         {
@@ -120,7 +75,10 @@ namespace Mojio.Platform.SDK.Entities.Instrumentation
             IDictionary<string, double> metrics = null)
         {
             if (!_enabled) return;
-            _eventQueue.Enqueue(new Tuple<string, IDictionary<string, string>, IDictionary<string, double>>(message, properties, metrics));
+            foreach (var l in _loggers)
+            {
+                l.Event(message, properties, metrics);
+            }
         }
     }
 }

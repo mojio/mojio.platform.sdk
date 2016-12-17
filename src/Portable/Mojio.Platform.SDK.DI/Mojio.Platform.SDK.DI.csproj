@@ -44,6 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\Mojio.Platform.SDK.Bot\Mojio.Platform.SDK.Bot.csproj">
+      <Project>{2ce5514c-1cfb-461a-8998-500e4c71a898}</Project>
+      <Name>Mojio.Platform.SDK.Bot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj">
       <Project>{8e2323d3-2368-4853-b5dd-3cde99264b8d}</Project>
       <Name>Mojio.Platform.SDK.Contracts</Name>

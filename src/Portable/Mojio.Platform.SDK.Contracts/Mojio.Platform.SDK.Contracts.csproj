@@ -109,6 +109,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Vehicle.cs">
       <Link>Client\IClient.Vehicle.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Wifi.cs">
+      <Link>Client\IClient.Wifi.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\Authorization.cs">
       <Link>Entities\Authorization.cs</Link>
     </Compile>
@@ -120,6 +123,9 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\IAuthorizationManager.cs">
       <Link>Entities\IAuthorizationManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\ICapabilities.cs">
+      <Link>Entities\ICapabilities.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\IGroup.cs">
       <Link>Entities\IGroup.cs</Link>
@@ -196,6 +202,18 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\ISerializer.cs">
       <Link>ISerializer.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\IWatchActivities.cs">
+      <Link>IWatchActivities.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\IWatchMojios.cs">
+      <Link>IWatchMojios.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\IWatchUsers.cs">
+      <Link>IWatchUsers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\IWatchVehicles.cs">
+      <Link>IWatchVehicles.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Machine\IMachine.cs">
       <Link>Machine\IMachine.cs</Link>
     </Compile>
@@ -219,6 +237,9 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\ObservableDisposable.cs">
       <Link>ObservableDisposable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Push\ITransportResponse.cs">
+      <Link>Push\ITransportResponse.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\SimpleObservable.cs">
       <Link>SimpleObservable.cs</Link>
