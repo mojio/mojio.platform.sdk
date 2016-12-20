@@ -275,14 +275,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
     {
         IList<IVehicle> Data { get; set; }
         int Results { get; set; }
-        Links Links { get; set; }
-    }
-
-    public interface Links
-    {
-        string Self { get; set; }
-        string Next { get; set; }
-        string First { get; set; }
+        ILinks Links { get; set; }
     }
 
     public interface IFuellevel
@@ -293,6 +286,14 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         float BaseValue { get; set; }
         string Unit { get; set; }
         float Value { get; set; }
+    }
+
+
+    public interface ILinks
+    {
+        string Self { get; set; }
+        string Permissions { get; set; }
+        string Permission { get; set; }
     }
 
     public interface IVirtualodometer : IMeasurement
