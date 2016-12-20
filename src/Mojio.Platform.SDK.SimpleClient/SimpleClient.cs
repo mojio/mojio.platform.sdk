@@ -520,5 +520,11 @@ namespace Mojio.Platform.SDK.SimpleClient
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.Capabilities(mojioId, cancellationToken, progress);
         }
+
+        public async Task<IPlatformResponse<IAuthorization>> RefreshToken(CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.RefreshToken(cancellationToken, progress);
+        }
     }
 }

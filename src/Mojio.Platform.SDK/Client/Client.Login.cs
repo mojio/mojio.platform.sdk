@@ -77,6 +77,30 @@ namespace Mojio.Platform.SDK
             }
         }
 
+        public async Task<IPlatformResponse<IAuthorization>> RefreshToken(CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            //lets try to refresh the token
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            var refreshPayload = string.Format("grant_type=refresh_token&refresh_token={0}&redirect_uri={1}&client_id={2}&client_secret={3}", System.Net.WebUtility.UrlEncode(Authorization.RefreshToken), System.Net.WebUtility.UrlEncode(Configuration.RedirectUri), System.Net.WebUtility.UrlEncode(Configuration.ClientId), System.Net.WebUtility.UrlEncode(Configuration.ClientSecret));
+            var refreshResult = await _clientBuilder.Request<IAuthorization>(ApiEndpoint.Accounts, "oauth2/token", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, refreshPayload, null, "application/x-www-form-urlencoded");
+            if (refreshResult.Success)
+            {
+                Authorization.AccessToken = refreshResult.Response.AccessToken;
+                Authorization.ExpiresIn = refreshResult.Response.ExpiresIn;
+                Authorization.RefreshToken = refreshResult.Response.RefreshToken;
+                Authorization.TokenType = refreshResult.Response.TokenType;
+                refreshResult.Response = Authorization;
+                refreshResult.Response.IsLoggedIn = true;
+                Authorization.Refreshed = true;
+                refreshResult.Response.Success = true;
+
+                _log.Debug("Valid expired token found, try to refresh our token - success");
+                return refreshResult;
+            }
+            return null;
+        }
+
         private async Task<IPlatformResponse<IAuthorization>> LoginInternal(IAuthorization authorization, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             Authorization = authorization;

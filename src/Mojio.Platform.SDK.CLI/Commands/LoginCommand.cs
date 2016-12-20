@@ -1,4 +1,5 @@
-﻿using Mojio.Platform.SDK.Contracts;
+﻿using System;
+using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Entities.DI;
 using System.IO;
@@ -58,6 +59,43 @@ namespace Mojio.Platform.SDK.CLI.Commands
             }
 
             if (!string.IsNullOrEmpty(AuthorizationFile) && result.Success && !string.IsNullOrEmpty(result?.Response?.AccessToken))
+            {
+                File.WriteAllText(AuthorizationFile, _serialize.SerializeToString(result.Response));
+                result.Response.Refreshed = false;
+            }
+            Log.Debug(result);
+            UpdateAuthorization();
+        }
+    }
+
+
+
+    [CommandDescriptor(Name = "refresh", Description = "Refresh my mojio token", Usage = "refresh")]
+    public class RefreshCommand : BaseCommand
+    {
+        private readonly ISerialize _serialize;
+
+        public RefreshCommand()
+        {
+            _serialize = DIContainer.Current.Resolve<ISerialize>();
+        }
+
+        public override async Task Execute()
+        {
+            await Authorize();
+
+            IPlatformResponse<IAuthorization> result = null;
+
+            if (string.IsNullOrEmpty(SimpleClient.Authorization?.MojioApiToken))
+            {
+                Console.WriteLine("You must login first");
+            }
+            else
+            {
+                result = await SimpleClient.RefreshToken();
+            }
+
+            if (result !=null && result.Success && !string.IsNullOrEmpty(AuthorizationFile) && result.Success && !string.IsNullOrEmpty(result?.Response?.AccessToken))
             {
                 File.WriteAllText(AuthorizationFile, _serialize.SerializeToString(result.Response));
                 result.Response.Refreshed = false;
