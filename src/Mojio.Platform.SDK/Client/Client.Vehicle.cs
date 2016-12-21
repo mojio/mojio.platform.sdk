@@ -12,7 +12,7 @@ namespace Mojio.Platform.SDK
 {
     public partial class Client
     {
-        public async Task<IPlatformResponse<IVehiclesResponse>> Vehicles(int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null, bool skipCache = false)
+        public async Task<IPlatformResponse<IVehiclesResponse>> Vehicles(int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
             if ((await Login(Authorization, cancellationToken, progress)).Success)
@@ -27,14 +27,7 @@ namespace Mojio.Platform.SDK
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
                 if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
-                if (!skipCache)
-                {
-                    vehicles = await CacheHitOrMiss($"Vehicles.{Authorization.UserName}", () => _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(1));
-                }
-                else
-                {
                     vehicles = await _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress);
-                }
 
                 //if (vehicles != null && vehicles.Response != null && vehicles.Response.Data != null)
                 //{
@@ -64,7 +57,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"VehicleVinLookup.{Authorization.UserName}" + vehicleId, () => _clientBuilder.Request<IVinDetails>(ApiEndpoint.Api, string.Format("v2/vehicles/{0}/vin", vehicleId), tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IVinDetails>(ApiEndpoint.Api,
+                    string.Format("v2/vehicles/{0}/vin", vehicleId), tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVinDetails>>(null);
@@ -83,7 +77,8 @@ namespace Mojio.Platform.SDK
 
                 if (!string.IsNullOrEmpty(fields)) path = path + $"&fields={fields}";
 
-                return await CacheHitOrMiss($"VehicleHistoryStates.{Authorization.UserName}" + vehicleId, () => _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVehiclesResponse>>(null);
@@ -95,7 +90,9 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"VehicleNextService.{Authorization.UserName}" + vehicleId, () => _clientBuilder.Request<IServiceScheduleResponse>(ApiEndpoint.Api, string.Format("v2/vehicles/{0}/serviceschedule/next", vehicleId), tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IServiceScheduleResponse>(ApiEndpoint.Api,
+                    string.Format("v2/vehicles/{0}/serviceschedule/next", vehicleId), tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IServiceScheduleResponse>>(null);
@@ -115,7 +112,8 @@ namespace Mojio.Platform.SDK
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
                 if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
-                return await CacheHitOrMiss($"VehicleTrips.{Authorization.UserName}" + vehicleId, () => _clientBuilder.Request<ITripsResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
+                return await _clientBuilder.Request<ITripsResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<ITripsResponse>>(null);
@@ -132,7 +130,8 @@ namespace Mojio.Platform.SDK
                 if (skip > 0) path = path + $"&skip={skip}";
                 if (top > 0) path = path + $"&top={top}";
 
-                return await CacheHitOrMiss($"VehicleLocations.{Authorization.UserName}" + vehicleId, () => _clientBuilder.Request<IVehicleLocationResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
+                return await _clientBuilder.Request<IVehicleLocationResponse>(ApiEndpoint.Api, path,
+                    tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVehicleLocationResponse>>(null);
@@ -145,9 +144,7 @@ namespace Mojio.Platform.SDK
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var json = _serializer.SerializeToString(vehicle);
-                var result = await _clientBuilder.Request<IVehicle>(ApiEndpoint.Api, "v2/vehicles", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, json);
-                await _cache.Delete($"Vehicles.{Authorization.UserName}");
-                return result;
+                return await _clientBuilder.Request<IVehicle>(ApiEndpoint.Api, "v2/vehicles", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, json);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVehicle>>(null);

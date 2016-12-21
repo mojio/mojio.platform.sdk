@@ -18,7 +18,6 @@ namespace Mojio.Platform.SDK
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var result = await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, $"v2/{entityType}/{id}/image", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
-                await _cache.Delete($"Apps.{Authorization.UserName}{entityType}{id}");
                 return result;
             }
             _log.Fatal(new Exception("Authorization Failed"));
@@ -40,7 +39,6 @@ namespace Mojio.Platform.SDK
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var result = await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, $"v2/{entityType}/{id}/image", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, null, image, "application/json", headers);
-                await _cache.Delete($"Apps.{Authorization.UserName}{entityType}{id}");
                 return result;
             }
             _log.Fatal(new Exception("Authorization Failed"));
@@ -54,7 +52,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"VehicleImage.{Authorization.UserName}.{entityType}" + id, () => _clientBuilder.Request<IImage>(ApiEndpoint.Api, $"v2/{entityType}/{id}/image", tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IImage>(ApiEndpoint.Api, $"v2/{entityType}/{id}/image", tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IImage>>(null);

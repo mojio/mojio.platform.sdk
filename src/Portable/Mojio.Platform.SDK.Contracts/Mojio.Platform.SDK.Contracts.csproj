@@ -157,9 +157,6 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Extension\TaskExtensions.cs">
       <Link>Extension\TaskExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\ICache.cs">
-      <Link>ICache.cs</Link>
-    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\IConfiguration.cs">
       <Link>IConfiguration.cs</Link>
     </Compile>

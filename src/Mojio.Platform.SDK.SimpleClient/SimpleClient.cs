@@ -358,7 +358,7 @@ namespace Mojio.Platform.SDK.SimpleClient
 
         public async Task<IPlatformResponse<IVehiclesResponse>> Vehicles(int skip = 0, int top = 1000,
             string filter = null, string select = null, string orderby = null,
-            CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null, bool skipCache = false)
+            CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.Vehicles(skip, top, filter, select, orderby, cancellationToken, progress);

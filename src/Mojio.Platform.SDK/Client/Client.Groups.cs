@@ -17,7 +17,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"Groups.{Authorization.UserName}", () => _clientBuilder.Request<IGroupResponse>(ApiEndpoint.Api, "v2/groups", tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IGroupResponse>(ApiEndpoint.Api, "v2/groups",
+                    tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IGroupResponse>>(null);
@@ -29,7 +30,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"Group.{Authorization.UserName}.{id}", () => _clientBuilder.Request<IGroup>(ApiEndpoint.Api, $"v2/groups/{id}", tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IGroup>(ApiEndpoint.Api, $"v2/groups/{id}", tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IGroup>>(null);
@@ -41,7 +43,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"Group.{Authorization.UserName}", () => _clientBuilder.Request<IList<string>>(ApiEndpoint.Api, $"v2/groups/{id}/users", tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(60));
+                return await _clientBuilder.Request<IList<string>>(ApiEndpoint.Api, $"v2/groups/{id}/users",
+                    tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IList<string>>>(null);

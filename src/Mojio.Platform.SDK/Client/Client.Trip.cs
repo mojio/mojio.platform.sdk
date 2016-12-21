@@ -17,7 +17,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"GetTrip.{Authorization.UserName}" + tripId, () => _clientBuilder.Request<ITrip>(ApiEndpoint.Api, string.Format("v2/trips/{0}", tripId), tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<ITrip>(ApiEndpoint.Api, string.Format("v2/trips/{0}", tripId),
+                    tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<ITrip>>(null);
@@ -31,9 +32,6 @@ namespace Mojio.Platform.SDK
             {
                 var result = await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, string.Format("v2/trips/{0}", tripId), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
 
-                await _cache.Delete($"TripHistoryStates.{Authorization.UserName}");
-                await _cache.Delete($"Trips.{Authorization.UserName}");
-                await _cache.Delete($"GetTrip.{Authorization.UserName}" + tripId);
                 return result;
             }
 
@@ -55,7 +53,8 @@ namespace Mojio.Platform.SDK
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
                 if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
-                return await CacheHitOrMiss($"Trips.{Authorization.UserName}", () => _clientBuilder.Request<ITripsResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
+                return await _clientBuilder.Request<ITripsResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<ITripsResponse>>(null);
@@ -67,11 +66,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                var result = await _clientBuilder.Request<ITrip>(ApiEndpoint.Api, string.Format("v2/trips/{0}", tripId), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, "{\"Name\": \"" + name + "\"}");
-                await _cache.Delete($"TripHistoryStates.{Authorization.UserName}");
-                await _cache.Delete($"Trips.{Authorization.UserName}");
-                await _cache.Delete($"GetTrip.{Authorization.UserName}" + tripId);
-                return result;
+                return await _clientBuilder.Request<ITrip>(ApiEndpoint.Api, string.Format("v2/trips/{0}", tripId), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, "{\"Name\": \"" + name + "\"}");
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<ITrip>>(null);
@@ -88,7 +83,8 @@ namespace Mojio.Platform.SDK
                 if (skip > 0) path = path + $"&skip={skip}";
                 if (top > 0) path = path + $"&top={top}";
 
-                return await CacheHitOrMiss($"TripHistoryStates.{Authorization.UserName}" + tripId, () => _clientBuilder.Request<IVehicleLocationResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<IVehicleLocationResponse>(ApiEndpoint.Api, path,
+                    tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVehicleLocationResponse>>(null);
@@ -106,7 +102,8 @@ namespace Mojio.Platform.SDK
                 if (top > 0) path = path + $"&top={top}";
                 if (!string.IsNullOrEmpty(fields)) path = path + $"&fields={fields}";
 
-                return await CacheHitOrMiss($"TripHistoryStates.{Authorization.UserName}" + tripId, () => _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<IVehiclesResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IVehiclesResponse>>(null);

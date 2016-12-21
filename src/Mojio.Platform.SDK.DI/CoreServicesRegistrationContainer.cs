@@ -262,12 +262,9 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<ISerializer, JSONSerializer>();
             container.Register<ISerialize, JSONSerializer>();
             container.Register<IDeserialize, JSONSerializer>();
-            container.Register<IAuthorizationManager, CacheBasedAuthorizationManager>();
-            container.Register(typeof(ICacheItem<>), typeof(CacheItem<>));
 
             container.Register<ILog, BroadcastLogger>();
 
-            container.Register<ICache, NullCacheProvider>();
             container.Register<ILocationHelper, LocationHelper>();
             container.Register<ISDKProgress, DefaultSDKProgress>();
             container.Register<IProgressMonitor, MillisecondProgressMonitor>();

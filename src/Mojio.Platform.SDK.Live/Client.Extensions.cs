@@ -40,7 +40,7 @@ namespace Mojio.Platform.SDK.Live
 
             while (!cancellationToken.Value.IsCancellationRequested)
             {
-                var vehicles = await client.Vehicles(top: 1000, cancellationToken: cancellationToken, skipCache: true);
+                var vehicles = await client.Vehicles(top: 1000, cancellationToken: cancellationToken);
                 if (vehicles != null && vehicles.Response != null && vehicles.Response.Data != null)
                 {
                     foreach (var v in vehicles.Response.Data)

@@ -17,10 +17,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"UserActivityStream.{Authorization.UserName}",
-                    () => _clientBuilder.Request<IActivityStreamApiResponse>(
-                        ApiEndpoint.Api, "v2/Users/activities", tokenP.CancellationToken, tokenP.Progress),
-                    TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<IActivityStreamApiResponse>(ApiEndpoint.Api, "v2/Users/activities", tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
 

@@ -128,12 +128,6 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Battery.cs">
       <Link>Entities\Battery.cs</Link>
     </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK\Entities\CacheBasedAuthorizationManager.cs">
-      <Link>Entities\CacheBasedAuthorizationManager.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK\Entities\CacheItem.cs">
-      <Link>Entities\CacheItem.cs</Link>
-    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Capabilities.cs">
       <Link>Entities\Capabilities.cs</Link>
     </Compile>
@@ -211,9 +205,6 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\MojioResponse.cs">
       <Link>Entities\MojioResponse.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Mojio.Platform.SDK\Entities\NullCacheProvider.cs">
-      <Link>Entities\NullCacheProvider.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Observers\AndroidTransport.cs">
       <Link>Entities\Observers\AndroidTransport.cs</Link>

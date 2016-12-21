@@ -11,7 +11,6 @@ namespace Mojio.Platform.SDK
 {
     public partial class Client : IClient
     {
-        private readonly ICache _cache;
         private readonly IHttpClientBuilder _clientBuilder;
         private readonly IDIContainer _container;
         private readonly ILog _log;
@@ -21,7 +20,7 @@ namespace Mojio.Platform.SDK
         private static Random Rand = new Random();
 
         public Client(IDIContainer container, IConfiguration configuration, IHttpClientBuilder clientBuilder, ILog log,
-            ISerializer serializer, ICache cache, CancellationToken? defaultCancellationToken = null,
+            ISerializer serializer, CancellationToken? defaultCancellationToken = null,
             IProgress<ISDKProgress> defaultProgress = null)
         {
             Configuration = configuration;
@@ -31,12 +30,11 @@ namespace Mojio.Platform.SDK
             DefaultProgress = defaultProgress;
             _log = log;
             _serializer = serializer;
-            _cache = cache;
         }
 
         private string RandomQueryString()
         {
-            return $"";//rnd={Rand.Next(0, 999999)}";
+            return $"rnd={Rand.Next(0, 999999)}";
         }
 
         public CancellationToken DefaultCancellationToken { get; set; }
@@ -75,47 +73,6 @@ namespace Mojio.Platform.SDK
             if (progress != null) result.Progress = progress;
 
             return result;
-        }
-
-        private async Task<IPlatformResponse<T>> CacheHitOrMiss<T>(string key, Func<Task<IPlatformResponse<T>>> callback,
-            TimeSpan? expiryTimeSpan = null)
-        {
-            if (expiryTimeSpan == null) expiryTimeSpan = TimeSpan.FromMinutes(DefaultCacheExpiry);
-
-            var hitService = true;
-            IPlatformResponse<T> response = null;
-            if (_cache != null && await _cache.Exists(key))
-            {
-                try
-                {
-                    var cachedContent = await _cache.Get<IPlatformResponse<T>>(key);
-                    if (cachedContent != null)
-                    {
-                        cachedContent.Item.CacheHit = true;
-
-                        var dateDiff = DateTime.Now - cachedContent.StoredDateTime;
-                        if (expiryTimeSpan.Value.TotalMilliseconds <= 0 || dateDiff.TotalMilliseconds < expiryTimeSpan.Value.TotalMilliseconds)
-                        {
-                            hitService = false;
-                            response = cachedContent.Item;
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    _log.Error(e, key);
-                }
-            }
-
-            if (hitService)
-            {
-                response = await callback();
-                if (response.Success)
-                {
-                    await _cache.Set(key, response);
-                }
-            }
-            return response;
         }
 
         private class TokenAndProgress

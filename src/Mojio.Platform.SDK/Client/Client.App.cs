@@ -26,7 +26,7 @@ namespace Mojio.Platform.SDK
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
                 if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
-                return await CacheHitOrMiss($"Apps.{Authorization.UserName}", () => _clientBuilder.Request<IAppResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
+                return await _clientBuilder.Request<IAppResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IAppResponse>>(null);
@@ -74,7 +74,8 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                return await CacheHitOrMiss($"GetAppSecret.{Authorization.UserName}{id}", () => _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, string.Format("v2/apps/{0}/secret", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Get), TimeSpan.FromMinutes(1));
+                return await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api,
+                    string.Format("v2/apps/{0}/secret", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Get);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IMessageResponse>>(null);
@@ -87,7 +88,6 @@ namespace Mojio.Platform.SDK
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
                 var result = await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, string.Format("v2/apps/{0}/secret", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
-                await _cache.Delete($"GetAppSecret.{Authorization.UserName}" + id);
 
                 return result;
             }

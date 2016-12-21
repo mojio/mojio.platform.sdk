@@ -25,7 +25,8 @@ namespace Mojio.Platform.SDK
                 if (!string.IsNullOrEmpty(select)) path = path + $"&select={WebUtility.UrlEncode(select)}";
                 if (!string.IsNullOrEmpty(orderby)) path = path + $"&orderby={WebUtility.UrlEncode(orderby)}";
 
-                return await CacheHitOrMiss($"Mojios.{Authorization.UserName}", () => _clientBuilder.Request<IMojioResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken, tokenP.Progress), TimeSpan.FromMinutes(10));
+                return await _clientBuilder.Request<IMojioResponse>(ApiEndpoint.Api, path, tokenP.CancellationToken,
+                    tokenP.Progress);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IMojioResponse>>(null);
@@ -37,11 +38,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                var result = await _clientBuilder.Request<IMojio>(ApiEndpoint.Api, "v2/mojios", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, "{'IMEI' : '" + imei + "'}");
-
-                await _cache.Delete($"Mojios.{Authorization.UserName}");
-
-                return result;
+                return await _clientBuilder.Request<IMojio>(ApiEndpoint.Api, "v2/mojios", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, "{'IMEI' : '" + imei + "'}");
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IMojio>>(null);
@@ -53,11 +50,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                var result = await _clientBuilder.Request<IMojio>(ApiEndpoint.Api, string.Format("v2/mojios/{0}", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, "{'Name' : '" + name + "'}");
-
-                await _cache.Delete($"Mojios.{Authorization.UserName}");
-
-                return result;
+                return await _clientBuilder.Request<IMojio>(ApiEndpoint.Api, string.Format("v2/mojios/{0}", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Put, "{'Name' : '" + name + "'}");
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IMojio>>(null);
@@ -69,11 +62,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                var result = await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, string.Format("v2/mojios/{0}", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
-
-                await _cache.Delete($"Mojios.{Authorization.UserName}");
-
-                return result;
+                return await _clientBuilder.Request<IMessageResponse>(ApiEndpoint.Api, string.Format("v2/mojios/{0}", id), tokenP.CancellationToken, tokenP.Progress, HttpMethod.Delete);
             }
             _log.Fatal(new Exception("Authorization Failed"));
             return await Task.FromResult<IPlatformResponse<IMessageResponse>>(null);
