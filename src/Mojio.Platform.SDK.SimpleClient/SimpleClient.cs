@@ -526,5 +526,35 @@ namespace Mojio.Platform.SDK.SimpleClient
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.RefreshToken(cancellationToken, progress);
         }
+
+        public async Task<IPlatformResponse<IList<IClientGeofence>>> BrowseGeofences(CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.BrowseGeofences(cancellationToken, progress);
+        }
+
+        public async Task<IPlatformResponse<IClientGeofence>> ReadGeofences(Guid id, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.ReadGeofences(id, cancellationToken, progress);
+        }
+
+        public async Task<IPlatformResponse<IClientGeofence>> EditGeofence(IGeofenceRegion region, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.EditGeofence(region, cancellationToken, progress);
+        }
+
+        public async Task<IPlatformResponse<IClientGeofence>> AddGeofence(IGeofenceRegion region, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.AddGeofence(region, cancellationToken, progress);
+        }
+
+        public async Task<IPlatformResponse<IClientGeofence>> DeleteGeofence(Guid id, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.DeleteGeofence(id, cancellationToken, progress);
+        }
     }
 }

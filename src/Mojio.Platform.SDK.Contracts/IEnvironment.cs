@@ -37,5 +37,6 @@
         string APIUri { get; set; }
         string ImagesUri { get; set; }
         string PushUri { get; set; }
+        string GitHash { get; }
     }
 }

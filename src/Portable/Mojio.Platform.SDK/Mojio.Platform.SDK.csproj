@@ -50,6 +50,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Geofence.cs">
+      <Link>Client\Client.Geofence.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Client\Client.Machine.cs">
       <Link>Client\Client.Machine.cs</Link>
     </Compile>
@@ -154,6 +157,12 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Environments\EnvironmentFactory.cs">
       <Link>Entities\Environments\EnvironmentFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Environments\GitEnvironment.cs">
+      <Link>Entities\Environments\GitEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\Entities\Geofence.cs">
+      <Link>Entities\Geofence.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Groups.cs">
       <Link>Entities\Groups.cs</Link>

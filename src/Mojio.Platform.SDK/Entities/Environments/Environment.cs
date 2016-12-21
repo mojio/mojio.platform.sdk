@@ -2,7 +2,7 @@
 
 namespace Mojio.Platform.SDK.Entities.Environments
 {
-    public class Environment : IEnvironment
+    public partial class Environment : IEnvironment
     {
         public Contracts.Environments SelectedEnvironment { get; set; }
         public string AccountsUri { get; set; }

@@ -143,6 +143,17 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<ITowstate, Towstate>();
             container.Register<IUpdateWifiSettingsStatus, UpdateWifiSettingsStatus>();
 
+
+            //Geofenceing
+            container.Register<IGeofenceResponse, GeofenceResponse>();
+            container.Register<IGeofenceRegion, AddressGeofenceRegion>();
+            container.Register<ICircleGeofenceRegion, CircleGeofenceRegion>();
+            container.Register<IGeofenceRegion, GeofenceRegion>();
+            container.Register<IDistance, Distance>();
+            container.Register<IMetadata, Metadata>();
+            container.Register<IGeofenceRegionFactory, GeofenceRegionFactory>();
+
+
             RegisterActivityStreams(container);
         }
 

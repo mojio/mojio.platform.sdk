@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.Contracts.Entities
 {
@@ -9,16 +7,25 @@ namespace Mojio.Platform.SDK.Contracts.Entities
     public interface IGeofenceResponse
     {
         IGeofenceRegion Region { get; set; }
+
         string Description { get; set; }
+
         bool Deleted { get; set; }
 
-        List<string> Tags { get; set; }
-        string OwnerId { get; set; }
-        string Id { get; set; }
-        DateTime CreatedOn { get; set; }
-        DateTime LastModified { get; set; }
+        IList<string> Tags { get; set; }
+
+        Guid OwnerId { get; set; }
+
+        Guid Id { get; set; }
+
+        DateTimeOffset CreatedOn { get; set; }
+
+        DateTimeOffset LastModified { get; set; }
+
         IMetadata Metadata { get; set; }
+
         ILinks Links { get; set; }
+
     }
 
     public interface IAddressGeofenceRegion : IGeofenceRegion
@@ -48,7 +55,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
     public interface IDistance
     {
         string BaseUnit { get; set; }
-        DateTime Timestamp { get; set; }
+        DateTimeOffset Timestamp { get; set; }
         int BaseValue { get; set; }
         string Unit { get; set; }
         int Value { get; set; }
@@ -60,4 +67,9 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         IList<string> RequestPermissions { get; set; }
     }
 
+    public interface IGeofenceRegionFactory
+    {
+        IGeofenceRegion CreateGeofenceRegion(GeofenceRegionType type);
+        GeofenceRegionType GetTypeFromRegion(IGeofenceRegion region);
+    }
 }

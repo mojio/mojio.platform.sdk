@@ -76,6 +76,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.cs">
       <Link>Client\IClient.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Geofence.cs">
+      <Link>Client\IClient.Geofence.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Client\IClient.Groups.cs">
       <Link>Client\IClient.Groups.cs</Link>
     </Compile>
@@ -126,6 +129,9 @@
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\ICapabilities.cs">
       <Link>Entities\ICapabilities.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\IGeofence.cs">
+      <Link>Entities\IGeofence.cs</Link>
     </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK.Contracts\Entities\IGroup.cs">
       <Link>Entities\IGroup.cs</Link>
