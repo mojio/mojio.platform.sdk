@@ -6,6 +6,6 @@ SET var=%%F
 ECHO %var%
 
 
-Powershell.exe -Command  [System.IO.File]::WriteAllText('src\Mojio.Platform.SDK\Entities\Environments\GitEnvironment.cs', [System.IO.File]::ReadAllText('src\Mojio.Platform.SDK\Entities\Environments\GitEnvironment.cs').Replace('NOTSET','%var%'))
+Powershell.exe -File UpdateGitHash.ps1 %var%
 
 popd
