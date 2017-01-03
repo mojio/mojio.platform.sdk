@@ -6,21 +6,15 @@ namespace Mojio.Platform.SDK.Entities
 {
     public class Vehicle : IVehicle
     {
-        public string Id { get; set; }
-
-        public VehicleState VehicleState
-        {
-            get { return VehicleState.Green; }
-        }
-
+        public VehicleState VehicleState { get; }
         public bool Selected { get; set; }
         public IImage Image { get; set; }
         public string Name { get; set; }
         public string VIN { get; set; }
         public Guid MojioId { get; set; }
         public DateTimeOffset LastContactTime { get; set; }
-        public List<IDiagnosticCode> DiagnosticCodes { get; set; }
-        public IMeasurement Accelerometer { get; set; }
+        public IList<IDiagnosticCode> DiagnosticCodes { get; set; }
+        public IAccelerometer Accelerometer { get; set; }
         public IMeasurement Acceleration { get; set; }
         public IMeasurement Deceleration { get; set; }
         public IMeasurement Speed { get; set; }
@@ -43,6 +37,7 @@ namespace Mojio.Platform.SDK.Entities
         public IState ParkedState { get; set; }
         public IList<string> Tags { get; set; }
         public IList<string> OwnerGroups { get; set; }
+        public string Id { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastModified { get; set; }
         public IDictionary<string, string> Links { get; set; }
@@ -54,5 +49,7 @@ namespace Mojio.Platform.SDK.Entities
         public DateTimeOffset Time { get; set; }
         public IMeasurement VirtualFuelConsumption { get; set; }
         public IMeasurement VirtualFuelEfficiency { get; set; }
+
+        public IList<Guid> WithinGeofences { get; set; }
     }
 }

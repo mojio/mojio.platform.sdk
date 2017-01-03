@@ -28,8 +28,8 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         string VIN { get; set; }
         Guid MojioId { get; set; }
         DateTimeOffset LastContactTime { get; set; }
-        List<IDiagnosticCode> DiagnosticCodes { get; set; }
-        IMeasurement Accelerometer { get; set; }
+        IList<IDiagnosticCode> DiagnosticCodes { get; set; }
+        IAccelerometer Accelerometer { get; set; }
         IMeasurement Acceleration { get; set; }
         IMeasurement Deceleration { get; set; }
         IMeasurement Speed { get; set; }
@@ -66,6 +66,8 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         DateTimeOffset Time { get; set; }
         IMeasurement VirtualFuelConsumption { get; set; }
         IMeasurement VirtualFuelEfficiency { get; set; }
+
+        IList<Guid> WithinGeofences { get; set; }
     }
 
     public interface IVehiclesResponse
@@ -108,12 +110,6 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         bool Connected { get; set; }
         IMeasurement LowVoltageDuration { get; set; }
         IMeasurement HighVoltageDuration { get; set; }
-
-        string BaseUnit { get; set; }
-        DateTimeOffset Timestamp { get; set; }
-        float BaseValue { get; set; }
-        string Unit { get; set; }
-        float Value { get; set; }
     }
 
     public interface IHeading : IMeasurement
@@ -132,7 +128,11 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         double Dilution { get; set; }
         double Altitude { get; set; }
         string GeoHash { get; set; }
+        IMeasurement Accuracy { get; set; }
+        IHeading Heading { get; set; }
+
     }
+    
 
     public interface IAddress
     {
@@ -197,6 +197,9 @@ namespace Mojio.Platform.SDK.Contracts.Entities
     {
         DateTimeOffset Timestamp { get; set; }
         bool Value { get; set; }
+        DateTimeOffset StartTime { get; set; }
+        IMeasurement Duration { get; set; }
+
     }
 
     public interface IDiagnosticCode
@@ -278,22 +281,8 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         ILinks Links { get; set; }
     }
 
-    public interface IFuellevel
+    public interface ILinks : IDictionary<string, string>
     {
-        string BaseUnit { get; set; }
-        string RiskSeverity { get; set; }
-        DateTimeOffset Timestamp { get; set; }
-        float BaseValue { get; set; }
-        string Unit { get; set; }
-        float Value { get; set; }
-    }
-
-
-    public interface ILinks
-    {
-        string Self { get; set; }
-        string Permissions { get; set; }
-        string Permission { get; set; }
     }
 
     public interface IVirtualodometer : IMeasurement

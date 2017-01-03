@@ -293,6 +293,9 @@
     <Compile Include="..\..\Mojio.Platform.SDK\Entities\Warranty.cs">
       <Link>Entities\Warranty.cs</Link>
     </Compile>
+    <Compile Include="..\..\Mojio.Platform.SDK\InMemoryAuthorizationManager.cs">
+      <Link>InMemoryAuthorizationManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\Mojio.Platform.SDK\MojioHttpClient.cs">
       <Link>MojioHttpClient.cs</Link>
     </Compile>

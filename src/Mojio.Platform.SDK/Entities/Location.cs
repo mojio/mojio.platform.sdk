@@ -13,10 +13,19 @@ namespace Mojio.Platform.SDK.Entities
         public double Lng { get; set; }
         public string Status { get; set; }
         public string GeoHash { get; set; }
+        public IMeasurement Accuracy { get; set; }
+        public IHeading Heading { get; set; }
     }
 
     public class VirtualOdometer : Measurement, IVirtualodometer
     {
         public float RolloverValue { get; set; }
     }
+
+    public class ConnectedState : IConnectedState {
+        public DateTimeOffset Timestamp { get; set; }
+        public bool Value { get; set; }
+    }
+
+
 }

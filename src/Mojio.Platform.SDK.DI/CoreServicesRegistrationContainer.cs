@@ -152,6 +152,11 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<IDistance, Distance>();
             container.Register<IMetadata, Metadata>();
             container.Register<IGeofenceRegionFactory, GeofenceRegionFactory>();
+            container.Register<IGpsRadio, GpsRadio>();
+            container.Register<IAuthorizationManager, InMemoryAuthorizationManager>();
+            container.Register<IConnectedState, ConnectedState>();
+            container.Register<ILinks, Links>();
+            container.Register<IWifiRadio, WifiRadio>();
 
 
             RegisterActivityStreams(container);
