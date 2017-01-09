@@ -1,0 +1,4 @@
+login /u:robc@moj.io /p:1080HoweVehicles
+get-vehicles
+get-mojios
+exit
