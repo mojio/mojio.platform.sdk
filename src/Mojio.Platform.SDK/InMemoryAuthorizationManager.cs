@@ -20,7 +20,7 @@ namespace Mojio.Platform.SDK
         public Task Logout()
         {
             _authorization = null;
-            return default(Task);
+            return Mojio.Platform.SDK.Contracts.Extension.TaskExtensions.CompletedTask;
         }
 
         public Task SaveAuthorization(IAuthorization authorization)
@@ -34,7 +34,8 @@ namespace Mojio.Platform.SDK
                     _container.RegisterInstance<IAuthorization>(_authorization, "Session");
                 }
             }
-            return default(Task);
+            return Mojio.Platform.SDK.Contracts.Extension.TaskExtensions.CompletedTask;
+
         }
 
         public Task<IAuthorization> LoadAuthorization()
