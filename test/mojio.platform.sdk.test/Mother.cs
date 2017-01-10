@@ -21,13 +21,15 @@ namespace Mojio.Platform.SDK.Tests
 
             configBuilder.AddEnvironmentVariables();
             Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
+            configBuilder.SetBasePath(System.IO.Path.GetFullPath("."));           
+            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());        
+
             if (System.IO.File.Exists("appsettings.json"))
             {
                 Console.WriteLine("Mother:appsettings.json found, and loaded");
                 configBuilder.AddJsonFile(path: "appsettings.json", optional: false);
                 Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
             }
-
             _configurationRoot = configBuilder.Build();
             Entities.DI.DIContainer.Current.RegisterInstance<IConfigurationRoot>(_configurationRoot);
 
