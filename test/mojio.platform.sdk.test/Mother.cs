@@ -22,9 +22,9 @@ namespace Mojio.Platform.SDK.Tests
 
             if (System.IO.File.Exists("appsettings.json"))
             {
-                Console.WriteLine("appsettings.json found, and loaded");
-                Debug.WriteLine("appsettings.json found, and loaded");
-                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
+                Console.WriteLine("Mother:appsettings.json found, and loaded");
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);                
+                Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
             }
 
             _configurationRoot = configBuilder.Build();
@@ -39,13 +39,8 @@ namespace Mojio.Platform.SDK.Tests
                     Environment = env;
                 }
             }
-            Console.WriteLine($"Environment:{Environment}");
-            Debug.WriteLine($"Environment:{Environment}");
-            if (System.IO.File.Exists($"appsettings.{Environment}.json"))
-            {
-                configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: true);
-            }
 
+            Console.WriteLine($"Mother:Environment:{Environment}");
 
             ClientId = _configurationRoot["ClientId"];
             if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
