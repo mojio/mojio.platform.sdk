@@ -11,3 +11,5 @@ echo off
 
 :end
 dir
+type appsettings.json
+
