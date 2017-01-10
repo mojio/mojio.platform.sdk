@@ -1,8 +1,8 @@
 echo off
     if exist appsettings.%1.json (
         echo "%1 settings file found"
-        if exist appsettings.envrionment.json del appsettings.envrionment.json
-        copy appsettings.%1.json appsettings.envrionment.json
+        if exist appsettings.environment.json del appsettings.environment.json
+        copy appsettings.%1.json appsettings.environment.json
         goto end
     ) else (
         echo No environment settings file found, using default
@@ -10,3 +10,4 @@ echo off
 )
 
 :end
+dir

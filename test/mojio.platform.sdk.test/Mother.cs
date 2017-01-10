@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using mojio.platform.sdk.test;
 using Microsoft.Extensions.Configuration;
@@ -17,19 +19,19 @@ namespace Mojio.Platform.SDK.Tests
         static Mother()
         {
             var configBuilder = new ConfigurationBuilder();
-
-
             configBuilder.AddEnvironmentVariables();
-            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
-            configBuilder.SetBasePath(System.IO.Path.GetFullPath("."));           
-            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
 
-            configBuilder.AddJsonFile(path: "appsettings.envrionment.json", optional: true);
+            SetupTestingPath(configBuilder);
 
+            //automated testing via VSO will automatically create this file
+            //which just sets the Envrionment variable
+            configBuilder.AddJsonFile(path: "appsettings.environment.json", optional: false);
+
+            //do we have any global settings to add?
             if (System.IO.File.Exists("appsettings.json"))
             {
                 Console.WriteLine("Mother:appsettings.json found, and loaded");
-                configBuilder.AddJsonFile(path: "appsettings.json", optional: false);
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
                 Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
             }
             _configurationRoot = configBuilder.Build();
@@ -47,6 +49,7 @@ namespace Mojio.Platform.SDK.Tests
 
             Console.WriteLine($"Mother:Environment:{Environment}");
 
+            //finally add our environment specific settings
             if (System.IO.File.Exists($"appsettings.{Environment}.json"))
             {
                 configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
@@ -67,6 +70,44 @@ namespace Mojio.Platform.SDK.Tests
             Log.Debug(new {ClientId, ClientSecret, RedirectUri, Environment, Username, Password});
 
 
+        }
+
+        private static void SetupTestingPath(ConfigurationBuilder configBuilder)
+        {
+            var fileName = "appsettings.json";
+            var root = System.IO.Path.GetFullPath(".");
+            var appSettingsFilePath = System.IO.Path.Combine(root, fileName);
+
+            if (System.IO.File.Exists(appSettingsFilePath))
+            {
+                configBuilder.SetBasePath(root);
+            }
+            else
+            {
+                System.IO.DirectoryInfo rootDirectoryInfo = new DirectoryInfo(root);
+                root = rootDirectoryInfo.Parent.FullName;
+                appSettingsFilePath = System.IO.Path.Combine(root, fileName);
+                if (System.IO.File.Exists(appSettingsFilePath))
+                {
+                    configBuilder.SetBasePath(root);
+                }
+                else
+                {
+                    root = rootDirectoryInfo.GetDirectories()?.FirstOrDefault()?.FullName;
+                    if (root != null)
+                    {
+                        appSettingsFilePath = System.IO.Path.Combine(root, fileName);
+                    }
+                    if (System.IO.File.Exists(appSettingsFilePath))
+                    {
+                        configBuilder.SetBasePath(root);
+                    }
+                    else
+                    {
+                        throw new Exception("Configuration not found");
+                    }
+                }
+            }
         }
 
         public static ILog Log = null;
