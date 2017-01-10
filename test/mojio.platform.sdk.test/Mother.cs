@@ -26,16 +26,10 @@ namespace Mojio.Platform.SDK.Tests
 
             //automated testing via VSO will automatically create this file
             //which just sets the Envrionment variable
-            configBuilder.AddJsonFile(path: "appsettings.environment.json", optional: false);
-
-            //do we have any global settings to add?
-            Console.WriteLine("Mother:appsettings.json found, and loaded");
-            configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
-            Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
-
+            AddConfigFile(configBuilder, root, "appsettings.environment.json");
             _configurationRoot = configBuilder.Build();
-            Entities.DI.DIContainer.Current.RegisterInstance<IConfigurationRoot>(_configurationRoot);
-
+            
+            //our root settings should have provided us with an Environment var in our config file, if so, lets wire it up
             var configEnvironment = _configurationRoot["Environment"];
             if (!string.IsNullOrEmpty(configEnvironment))
             {
@@ -49,10 +43,7 @@ namespace Mojio.Platform.SDK.Tests
             Console.WriteLine($"Mother:Environment:{Environment}");
 
             //finally add our environment specific settings
-
-            configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
-
-            _configurationRoot = configBuilder.Build();
+            AddConfigFile(configBuilder, root, $"appsettings.{Environment}.json");
 
             ClientId = _configurationRoot["ClientId"];
             if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
@@ -62,12 +53,23 @@ namespace Mojio.Platform.SDK.Tests
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
 
             Entities.DI.DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
+            Entities.DI.DIContainer.Current.RegisterInstance(_configurationRoot);
 
             Log = Entities.DI.DIContainer.Current.Resolve<ILog>();
 
             Log.Debug(new {ClientId, ClientSecret, RedirectUri, Environment, Username, Password});
 
 
+        }
+
+        private static void AddConfigFile(ConfigurationBuilder configBuilder, string root, string name)
+        {
+            var p = System.IO.Path.Combine(root, name);
+            if (System.IO.File.Exists(p))
+            {
+                configBuilder.AddJsonFile(path: p, optional: true);
+                Console.WriteLine(System.IO.File.ReadAllText(p));
+            }
         }
 
         private static string SetupTestingPath(ConfigurationBuilder configBuilder, string root = null, bool checkProjectStructure = true)
