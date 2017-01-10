@@ -22,7 +22,9 @@ namespace Mojio.Platform.SDK.Tests
             configBuilder.AddEnvironmentVariables();
             Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
             configBuilder.SetBasePath(System.IO.Path.GetFullPath("."));           
-            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());        
+            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
+
+            configBuilder.AddJsonFile(path: "appsettings.envrionment.json", optional: true);
 
             if (System.IO.File.Exists("appsettings.json"))
             {
@@ -44,6 +46,12 @@ namespace Mojio.Platform.SDK.Tests
             }
 
             Console.WriteLine($"Mother:Environment:{Environment}");
+
+            if (System.IO.File.Exists($"appsettings.{Environment}.json"))
+            {
+                configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
+                _configurationRoot = configBuilder.Build();
+            }
 
             ClientId = _configurationRoot["ClientId"];
             if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
@@ -70,12 +78,26 @@ namespace Mojio.Platform.SDK.Tests
 
         public static IDIContainer DIContainer => Mojio.Platform.SDK.Entities.DI.DIContainer.Current;
 
+        public static System.Random Random => new System.Random();
+
+        private static int RandomId = Random.Next(0, 999);
+
         public static string Username
         {
             get
             {
                 var user = _configurationRoot["test_username"];
-                if(string.IsNullOrEmpty(user)) user = "robc@moj.io";
+                if (string.IsNullOrEmpty(user))
+                {
+                    if (Environment == Environments.Load)
+                    {
+                        user = "loadtest" + RandomId;
+                    }
+                    else
+                    {
+                        user = "robc@moj.io";
+                    }
+                }
                 return user;
             }
         }
@@ -85,7 +107,19 @@ namespace Mojio.Platform.SDK.Tests
             get
             {
                 var password = _configurationRoot["test_password"];
-                if (string.IsNullOrEmpty(password)) password = "1080HoweVehicles";
+                if (string.IsNullOrEmpty(password))
+                {
+                    if (Environment == Environments.Load)
+                    {
+                        password = "Password1";
+
+                    }
+                    else
+                    {
+                        password = "1080HoweVehicles";
+
+                    }
+                }
                 return password;                
             }   
         }
