@@ -24,7 +24,7 @@ namespace Mojio.Platform.SDK.Tests
             if (System.IO.File.Exists("appsettings.json"))
             {
                 Console.WriteLine("Mother:appsettings.json found, and loaded");
-                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: false);
                 Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
             }
 
