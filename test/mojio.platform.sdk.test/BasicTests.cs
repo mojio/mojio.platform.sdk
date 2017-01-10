@@ -22,6 +22,7 @@ namespace Mojio.Platform.SDK.Tests
         [Fact]
         [Trait("Category", "Functional")]
         [Trait("Category", "Load")]
+        [Trait("Category", "UnitTest")]
         public async Task BasicLoginTest()
         {
             Assert.NotNull(loginResults?.Response?.MojioApiToken);
@@ -30,6 +31,7 @@ namespace Mojio.Platform.SDK.Tests
         [Fact]
         [Trait("Category", "Functional")]
         [Trait("Category", "Load")]
+        [Trait("Category", "UnitTest")]
         public async Task GetVehicles()
         {
             var vehicles = await _loginSimpleClient.Vehicles();
@@ -40,6 +42,7 @@ namespace Mojio.Platform.SDK.Tests
         [Fact]
         [Trait("Category", "Functional")]
         [Trait("Category", "Load")]
+        [Trait("Category", "UnitTest")]
         public async Task GetMojios()
         {
             var vehicles = await _loginSimpleClient.Mojios();
