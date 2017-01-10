@@ -10,6 +10,9 @@ echo off
 )
 
 :end
+cd
 dir
 type appsettings.json
+copy appsettings.json ..\..\
+dir ..\..\
 
