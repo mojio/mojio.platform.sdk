@@ -20,7 +20,7 @@ namespace Mojio.Platform.SDK.Tests
 
 
             configBuilder.AddEnvironmentVariables();
-
+            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
             if (System.IO.File.Exists("appsettings.json"))
             {
                 Console.WriteLine("Mother:appsettings.json found, and loaded");
