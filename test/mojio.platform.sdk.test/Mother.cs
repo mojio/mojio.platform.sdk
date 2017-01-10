@@ -54,8 +54,9 @@ namespace Mojio.Platform.SDK.Tests
             if (System.IO.File.Exists($"appsettings.{Environment}.json"))
             {
                 configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
-                _configurationRoot = configBuilder.Build();
             }
+
+            _configurationRoot = configBuilder.Build();
 
             ClientId = _configurationRoot["ClientId"];
             if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
