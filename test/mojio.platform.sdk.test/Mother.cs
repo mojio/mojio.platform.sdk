@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Instrumentation;
+using Mojio.Platform.SDK.DryIoc;
 using Mojio.Platform.SDK.SimpleClient;
 
 namespace Mojio.Platform.SDK.Tests
@@ -78,7 +79,8 @@ namespace Mojio.Platform.SDK.Tests
             var fileName = "appsettings.json";
             if (string.IsNullOrEmpty(root))
             {
-                root = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+                root = typeof(Mother).GetAssembly().CodeBase;
+                //root = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
                 System.Uri uri = new Uri(root, UriKind.RelativeOrAbsolute);
                 System.IO.FileInfo fi = new FileInfo(uri.LocalPath);
                 root = fi.DirectoryName;
