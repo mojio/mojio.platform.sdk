@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,52 @@ namespace Mojio.Platform.SDK.Tests
 {
     public static class Mother
     {
+        static Mother()
+        {
+            var configBuilder = new ConfigurationBuilder();
+
+            configBuilder.AddCommandLine(System.Environment.GetCommandLineArgs());
+
+            configBuilder.AddEnvironmentVariables();
+
+            if (System.IO.File.Exists("appsettings.json"))
+            {
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
+            }
+
+            _configurationRoot = configBuilder.Build();
+            Entities.DI.DIContainer.Current.RegisterInstance<IConfigurationRoot>(_configurationRoot);
+
+            var configEnvironment = _configurationRoot["Environment"];
+            if (!string.IsNullOrEmpty(configEnvironment))
+            {
+                Environments env;
+                if (Enum.TryParse(configEnvironment, out env))
+                {
+                    Environment = env;
+                }
+            }
+            Debug.WriteLine($"Environment:{Environment}");
+            if (System.IO.File.Exists($"appsettings.{Environment}.json"))
+            {
+                configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: true);
+            }
+
+
+            ClientId = _configurationRoot["ClientId"];
+            if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
+            ClientSecret = _configurationRoot["ClientSecret"];
+            if (string.IsNullOrEmpty(ClientSecret)) ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c";
+            RedirectUri = _configurationRoot["RedirectUri"];
+            if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
+
+        }
+
+        private static string ClientId;
+        private static string ClientSecret;
+        private static string RedirectUri;
+        private static Environments Environment = Environments.Production;
+
         public static IDIContainer DIContainer => Mojio.Platform.SDK.Entities.DI.DIContainer.Current;
 
         public static string Username
@@ -36,37 +83,12 @@ namespace Mojio.Platform.SDK.Tests
 
         private static IConfigurationRoot _configurationRoot;
 
-        public static IClient SimpleClient
+        public static IClient GetNewSimpleClient
         {
             get
             {
-                var env = Environments.Production;
-                var configBuilder = new ConfigurationBuilder();
-                //configBuilder.AddCommandLine(args);
 
-                configBuilder.AddEnvironmentVariables();
-
-                if (System.IO.File.Exists("appsettings.json"))
-                {
-                    configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
-                }
-
-                _configurationRoot = configBuilder.Build();
-                Entities.DI.DIContainer.Current.RegisterInstance<IConfigurationRoot>(_configurationRoot);
-
-                var Environment = _configurationRoot["Environment"];
-                if (!string.IsNullOrEmpty(Environment))
-                {
-                    Enum.TryParse(Environment, out env);
-                }
-                var ClientId = _configurationRoot["ClientId"];
-                if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
-                var ClientSecret = _configurationRoot["ClientSecret"];
-                if (string.IsNullOrEmpty(ClientSecret)) ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c";
-                var RedirectUri = _configurationRoot["RedirectUri"];
-                if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
-
-                return new SimpleClient.SimpleClient(env, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
+                return new SimpleClient.SimpleClient(Environment, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
 
             }
         }
