@@ -72,10 +72,18 @@ namespace Mojio.Platform.SDK.Tests
 
         }
 
-        private static void SetupTestingPath(ConfigurationBuilder configBuilder)
+        private static void SetupTestingPath(ConfigurationBuilder configBuilder, string root = null, bool checkProjectStructure = true)
         {
+            
             var fileName = "appsettings.json";
-            var root = System.IO.Path.GetFullPath(".");
+            if (string.IsNullOrEmpty(root))
+            {
+                root = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+                System.Uri uri = new Uri(root, UriKind.RelativeOrAbsolute);
+                System.IO.FileInfo fi = new FileInfo(uri.LocalPath);
+                root = fi.DirectoryName;
+            }
+
             var appSettingsFilePath = System.IO.Path.Combine(root, fileName);
 
             Console.WriteLine("--Resolving appsettings--");
@@ -113,7 +121,15 @@ namespace Mojio.Platform.SDK.Tests
                     }
                     else
                     {
-                        throw new Exception("--Configuration not found--");
+                        if (checkProjectStructure)
+                        {
+                            root = System.IO.Path.GetFullPath(".");
+                            SetupTestingPath(configBuilder, root, false);
+                        }
+                        else
+                        {
+                            throw new Exception("--Configuration not found--");
+                        }
                     }
                 }
             }
