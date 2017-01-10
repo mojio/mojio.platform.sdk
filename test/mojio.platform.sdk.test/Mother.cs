@@ -24,7 +24,7 @@ namespace Mojio.Platform.SDK.Tests
             if (System.IO.File.Exists("appsettings.json"))
             {
                 Console.WriteLine("Mother:appsettings.json found, and loaded");
-                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);                
+                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
                 Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
             }
 
@@ -50,12 +50,16 @@ namespace Mojio.Platform.SDK.Tests
             RedirectUri = _configurationRoot["RedirectUri"];
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
 
-
             Entities.DI.DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
 
+            Log = Entities.DI.DIContainer.Current.Resolve<ILog>();
+
+            Log.Debug(new {ClientId, ClientSecret, RedirectUri, Environment, Username, Password});
 
 
         }
+
+        public static ILog Log = null;
 
         private static string ClientId;
         private static string ClientSecret;
