@@ -22,19 +22,17 @@ namespace Mojio.Platform.SDK.Tests
             var configBuilder = new ConfigurationBuilder();
             configBuilder.AddEnvironmentVariables();
 
-            SetupTestingPath(configBuilder);
+            var root = SetupTestingPath(configBuilder);
 
             //automated testing via VSO will automatically create this file
             //which just sets the Envrionment variable
             configBuilder.AddJsonFile(path: "appsettings.environment.json", optional: false);
 
             //do we have any global settings to add?
-            if (System.IO.File.Exists("appsettings.json"))
-            {
-                Console.WriteLine("Mother:appsettings.json found, and loaded");
-                configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
-                Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
-            }
+            Console.WriteLine("Mother:appsettings.json found, and loaded");
+            configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
+            Console.WriteLine(System.IO.File.ReadAllText("appsettings.json"));
+
             _configurationRoot = configBuilder.Build();
             Entities.DI.DIContainer.Current.RegisterInstance<IConfigurationRoot>(_configurationRoot);
 
@@ -51,10 +49,8 @@ namespace Mojio.Platform.SDK.Tests
             Console.WriteLine($"Mother:Environment:{Environment}");
 
             //finally add our environment specific settings
-            if (System.IO.File.Exists($"appsettings.{Environment}.json"))
-            {
-                configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
-            }
+
+            configBuilder.AddJsonFile(path: $"appsettings.{Environment}.json", optional: false);
 
             _configurationRoot = configBuilder.Build();
 
@@ -74,7 +70,7 @@ namespace Mojio.Platform.SDK.Tests
 
         }
 
-        private static void SetupTestingPath(ConfigurationBuilder configBuilder, string root = null, bool checkProjectStructure = true)
+        private static string SetupTestingPath(ConfigurationBuilder configBuilder, string root = null, bool checkProjectStructure = true)
         {
             
             var fileName = "appsettings.json";
@@ -96,6 +92,7 @@ namespace Mojio.Platform.SDK.Tests
             {
                 Console.WriteLine($"==IS GOOD:{root}==");
                 configBuilder.SetBasePath(root);
+                return root;
             }
             else
             {
@@ -108,6 +105,7 @@ namespace Mojio.Platform.SDK.Tests
                 {
                     Console.WriteLine($"==IS GOOD:{root}==");
                     configBuilder.SetBasePath(root);
+                    return root;
                 }
                 else
                 {
@@ -121,13 +119,14 @@ namespace Mojio.Platform.SDK.Tests
                     {
                         Console.WriteLine($"==IS GOOD:{root}==");
                         configBuilder.SetBasePath(root);
+                        return root;
                     }
                     else
                     {
                         if (checkProjectStructure)
                         {
                             root = System.IO.Path.GetFullPath(".");
-                            SetupTestingPath(configBuilder, root, false);
+                            return SetupTestingPath(configBuilder, root, false);
                         }
                         else
                         {
