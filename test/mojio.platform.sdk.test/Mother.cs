@@ -45,6 +45,9 @@ namespace Mojio.Platform.SDK.Tests
             //finally add our environment specific settings
             AddConfigFile(configBuilder, root, $"appsettings.{Environment}.json");
 
+
+            _configurationRoot = configBuilder.Build();
+
             ClientId = _configurationRoot["ClientId"];
             if (string.IsNullOrEmpty(ClientId)) ClientId = "f1b18a19-f810-4f16-8a39-d6135f5ec052";
             ClientSecret = _configurationRoot["ClientSecret"];
@@ -63,11 +66,12 @@ namespace Mojio.Platform.SDK.Tests
         }
 
         private static void AddConfigFile(ConfigurationBuilder configBuilder, string root, string name)
-        {
+        { 
             var p = System.IO.Path.Combine(root, name);
             if (System.IO.File.Exists(p))
             {
                 configBuilder.AddJsonFile(path: p, optional: true);
+                Console.WriteLine("Config File Added:" + p);
                 Console.WriteLine(System.IO.File.ReadAllText(p));
             }
         }
