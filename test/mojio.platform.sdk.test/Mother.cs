@@ -78,8 +78,12 @@ namespace Mojio.Platform.SDK.Tests
             var root = System.IO.Path.GetFullPath(".");
             var appSettingsFilePath = System.IO.Path.Combine(root, fileName);
 
+            Console.WriteLine("--Resolving appsettings--");
+
+            Console.WriteLine($"==Checking:{appSettingsFilePath}==");
             if (System.IO.File.Exists(appSettingsFilePath))
             {
+                Console.WriteLine($"==IS GOOD:{root}==");
                 configBuilder.SetBasePath(root);
             }
             else
@@ -87,8 +91,11 @@ namespace Mojio.Platform.SDK.Tests
                 System.IO.DirectoryInfo rootDirectoryInfo = new DirectoryInfo(root);
                 root = rootDirectoryInfo.Parent.FullName;
                 appSettingsFilePath = System.IO.Path.Combine(root, fileName);
+
+                Console.WriteLine($"==Checking:{appSettingsFilePath}==");
                 if (System.IO.File.Exists(appSettingsFilePath))
                 {
+                    Console.WriteLine($"==IS GOOD:{root}==");
                     configBuilder.SetBasePath(root);
                 }
                 else
@@ -98,13 +105,15 @@ namespace Mojio.Platform.SDK.Tests
                     {
                         appSettingsFilePath = System.IO.Path.Combine(root, fileName);
                     }
+                    Console.WriteLine($"==Checking:{appSettingsFilePath}==");
                     if (System.IO.File.Exists(appSettingsFilePath))
                     {
+                        Console.WriteLine($"==IS GOOD:{root}==");
                         configBuilder.SetBasePath(root);
                     }
                     else
                     {
-                        throw new Exception("Configuration not found");
+                        throw new Exception("--Configuration not found--");
                     }
                 }
             }
