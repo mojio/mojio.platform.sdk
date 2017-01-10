@@ -22,6 +22,8 @@ namespace Mojio.Platform.SDK.Tests
 
             if (System.IO.File.Exists("appsettings.json"))
             {
+                Console.WriteLine("appsettings.json found, and loaded");
+                Debug.WriteLine("appsettings.json found, and loaded");
                 configBuilder.AddJsonFile(path: "appsettings.json", optional: true);
             }
 
@@ -37,6 +39,7 @@ namespace Mojio.Platform.SDK.Tests
                     Environment = env;
                 }
             }
+            Console.WriteLine($"Environment:{Environment}");
             Debug.WriteLine($"Environment:{Environment}");
             if (System.IO.File.Exists($"appsettings.{Environment}.json"))
             {
