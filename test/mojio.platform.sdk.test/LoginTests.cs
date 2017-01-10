@@ -15,6 +15,8 @@ namespace Mojio.Platform.SDK.Tests
         }
 
         [Fact]
+        [Trait("Category", "Functional")]
+        [Trait("Category", "Load")]
         public async Task BasicLoginTest()
         {
 
