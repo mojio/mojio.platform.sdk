@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using mojio.platform.sdk.test;
 using Microsoft.Extensions.Configuration;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
@@ -48,6 +49,11 @@ namespace Mojio.Platform.SDK.Tests
             if (string.IsNullOrEmpty(ClientSecret)) ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c";
             RedirectUri = _configurationRoot["RedirectUri"];
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
+
+
+            Entities.DI.DIContainer.Current.Register<ILog, ConsoleLogger>(B"Debug");
+
+
 
         }
 
