@@ -51,7 +51,7 @@ namespace Mojio.Platform.SDK.Tests
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
 
 
-            Entities.DI.DIContainer.Current.Register<ILog, ConsoleLogger>(B"Debug");
+            Entities.DI.DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");
 
 
 
