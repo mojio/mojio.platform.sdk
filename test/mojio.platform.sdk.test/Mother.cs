@@ -17,7 +17,6 @@ namespace Mojio.Platform.SDK.Tests
         {
             var configBuilder = new ConfigurationBuilder();
 
-            configBuilder.AddCommandLine(System.Environment.GetCommandLineArgs());
 
             configBuilder.AddEnvironmentVariables();
 
