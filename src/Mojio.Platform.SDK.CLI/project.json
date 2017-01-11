@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK CLI V2 (DotNet Core)",
   "description": "Preview of the DotNet Core compatible Mojio SDK CLI",
-  "version": "1.0.16-*",
+  "version": "1.0.17-*",
   "buildOptions": {
     "emitEntryPoint": true,
     "define": ["DOTNETCORE"]
@@ -17,9 +17,9 @@
       "Mojio.Platform.SDK.Live.WebSocket": "1.0.0-*",
       "Mojio.Platform.SDK.SimpleClient": "1.0.0-*"
     },
-    "Mojio.Platform.SDK.Contracts": "1.0.16-*",
-    "Mojio.Platform.SDK.DI": "1.0.16-*",
-    "Mojio.Platform.SDK.SimpleClient": "1.0.16-*"
+    "Mojio.Platform.SDK.Contracts": "1.0.17-*",
+    "Mojio.Platform.SDK.DI": "1.0.17-*",
+    "Mojio.Platform.SDK.SimpleClient": "1.0.17-*"
   },
   "frameworks": {
     "netcoreapp1.0": {

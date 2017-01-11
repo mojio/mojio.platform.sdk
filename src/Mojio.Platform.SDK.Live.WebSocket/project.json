@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK Live WebSocket V2 (DotNet Core)",
   "description": "Preview of the DotNet Core compatible Mojio SDK Live WebSocket",
-  "version": "1.0.16-*",
+  "version": "1.0.17-*",
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
     "NETStandard.Library": "1.6.0",

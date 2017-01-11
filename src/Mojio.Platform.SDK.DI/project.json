@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK DI V2 (DotNet Core)",
   "description": "Preview of the DotNet Core compatible Mojio SDK DI",
-  "version": "1.0.16-*",
+  "version": "1.0.17-*",
   "dependencies": {
     "Mojio.Platform.SDK": "1.0.0-*",
     "Mojio.Platform.SDK.Bot": "1.0.0-*",

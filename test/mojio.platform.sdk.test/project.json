@@ -10,9 +10,9 @@
     "System.Runtime.Serialization.Primitives": "4.3.0",
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-192208-24",
-    "Mojio.Platform.SDK.Contracts": "1.0.16-*",
-    "Mojio.Platform.SDK.DI": "1.0.16-*",
-    "Mojio.Platform.SDK.SimpleClient": "1.0.16-*",
+    "Mojio.Platform.SDK.Contracts": "1.0.17-*",
+    "Mojio.Platform.SDK.DI": "1.0.17-*",
+    "Mojio.Platform.SDK.SimpleClient": "1.0.17-*",
     "Microsoft.Extensions.Configuration": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0"

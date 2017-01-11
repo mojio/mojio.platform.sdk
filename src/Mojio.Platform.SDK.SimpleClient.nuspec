@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>Mojio.Platform.SDK.SimpleClient</id>
-		<version>1.0.22</version>
+		<version>1.0.23</version>
 		<title>Mojio Platform SDK V2 Simple Client</title>
 		<authors>Mojio Dev Team</authors>
 		<owners>Mojio Dev Team</owners>
@@ -15,8 +15,8 @@
 		<tags>Mojio Connected Car IoT</tags>
 		<dependencies>
 			<dependency id="Newtonsoft.Json" version="9.0.1" />
-			<dependency id="Mojio.Platform.SDK.Contracts" version="1.0.22" />
-			<dependency id="Mojio.Platform.SDK.DI" version="1.0.22" />
+			<dependency id="Mojio.Platform.SDK.Contracts" version="1.0.23" />
+			<dependency id="Mojio.Platform.SDK.DI" version="1.0.23" />
 		</dependencies>		
 	</metadata>
 	<files>
