@@ -1,19 +1,43 @@
 {
   "title": "Mojio Platform SDK SimpleClient V2 (DotNet Core)",
-
   "description": "Preview of the DotNet Core compatible Mojio SDK SimpleClient",
-
   "version": "1.0.16-*",
-
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
     "Mojio.Platform.SDK.DI": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },
-
   "frameworks": {
-    "netstandard1.4": {
-      "imports": "dnxcore50"
+    "net452": {
+      "frameworkAssemblies": {
+        "System.Data": "",
+        "System.Numerics": "",
+        "System.Runtime.Serialization": ""
+      },
+      "dependencies": {
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": {
+        "define": [
+          "PORTABLE"
+        ]
+      },
+      "frameworkAssemblies": {
+      },
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "netstandard1.1": {
+      "buildOptions": {
+        "define": [
+          "NETSTANDARD1_1",
+          "PORTABLE"
+        ]
+      },
+      "dependencies": {
+      }
     }
   }
 }

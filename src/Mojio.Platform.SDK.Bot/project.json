@@ -1,19 +1,81 @@
 {
   "title": "Mojio Platform SDK Bot V2 (DotNet Core)",
-
   "description": "Preview of the DotNet Core compatible Mojio SDK Bot",
-
   "version": "1.0.16-*",
-
   "dependencies": {
     "Mojio.Platform.SDK.Contracts": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1"
   },
-
   "frameworks": {
-    "netstandard1.4": {
-      "imports": "dnxcore50"
+    "net452": {
+      "frameworkAssemblies": {
+        "System.Data": "",
+        "System.Numerics": "",
+        "System.Runtime.Serialization": ""
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "Microsoft.Net.Http": "2.2.29",
+        "System.Collections": "4.3.0",
+        "System.Diagnostics.Debug": "4.3.0",
+        "System.Dynamic.Runtime": "4.3.0",
+        "System.Globalization": "4.3.0",
+        "System.IO": "4.3.0",
+        "System.Linq": "4.3.0",
+        "System.Linq.Expressions": "4.3.0",
+        "System.ObjectModel": "4.3.0",
+        "System.Reflection": "4.3.0",
+        "System.Reflection.Extensions": "4.3.0",
+        "System.Resources.ResourceManager": "4.3.0",
+        "System.Runtime": "4.3.0",
+        "System.Runtime.Extensions": "4.3.0",
+        "System.Runtime.Numerics": "4.3.0",
+        "System.Runtime.Serialization.Primitives": "4.3.0"
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": {
+        "define": [
+          "PORTABLE"
+        ]
+      },
+      "frameworkAssemblies": {
+        "Microsoft.CSharp": "",
+        "System": "",
+        "System.Collections": "",
+        "System.Core": "",
+        "System.Diagnostics.Debug": "",
+        "System.Dynamic.Runtime": "",
+        "System.Globalization": "",
+        "System.IO": "",
+        "System.Linq": "",
+        "System.Linq.Expressions": "",
+        "System.ObjectModel": "",
+        "System.Reflection": "",
+        "System.Reflection.Extensions": "",
+        "System.Resources.ResourceManager": "",
+        "System.Runtime": "",
+        "System.Runtime.Extensions": "",
+        "System.Runtime.Serialization": "",
+        "System.Runtime.Serialization.Primitives": "",
+        "System.Text.Encoding": "",
+        "System.Text.Encoding.Extensions": "",
+        "System.Text.RegularExpressions": ""
+      },
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "netstandard1.1": {
+      "buildOptions": {
+        "define": [
+          "NETSTANDARD1_1",
+          "PORTABLE"
+        ]
+      },
+      "dependencies": {
+      }
     }
   }
 }
