@@ -16,38 +16,41 @@
         "win10-x86-aot": {},
         "win10-x64": {},
         "win10-x64-aot": {}
-      }
-    },
-    "net452": {
-      "frameworkAssemblies": {
-        "System.Data": "",
-        "System.Numerics": "",
-        "System.Runtime.Serialization": ""
       },
       "dependencies": {
+        "Microsoft.CSharp": "4.3.0"
       }
     },
-    ".NETPortable,Version=v4.5,Profile=Profile259": {
-      "buildOptions": {
-        "define": [
-          "PORTABLE"
-        ]
+      "net452": {
+        "frameworkAssemblies": {
+        },
+        "dependencies": {
+          "Microsoft.CSharp": "4.3.0",
+          "Microsoft.Net.Http": "2.2.29"
+        }
       },
-      "frameworkAssemblies": {
+      ".NETPortable,Version=v4.5,Profile=Profile259": {
+        "buildOptions": {
+          "define": [
+            "PORTABLE"
+          ]
+        },
+        "frameworkAssemblies": {
+          "Microsoft.CSharp": ""
+        },
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        }
       },
-      "dependencies": {
-        "Microsoft.Net.Http": "2.2.29"
-      }
-    },
-    "netstandard1.1": {
-      "buildOptions": {
-        "define": [
-          "NETSTANDARD1_1",
-          "PORTABLE"
-        ]
-      },
-      "dependencies": {
+      "netstandard1.1": {
+        "buildOptions": {
+          "define": [
+            "NETSTANDARD1_1",
+            "PORTABLE"
+          ]
+        },
+        "dependencies": {
+        }
       }
     }
-  }
 }

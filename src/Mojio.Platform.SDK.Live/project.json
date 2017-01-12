@@ -7,7 +7,6 @@
     "Mojio.Platform.SDK.DI": "2.0.1-*",
     "NETStandard.Library": "1.6.0"
   },
-
   "frameworks": {
     "uap10.0": {
       "runtimes": {
@@ -17,10 +16,41 @@
         "win10-x86-aot": {},
         "win10-x64": {},
         "win10-x64-aot": {}
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0"
       }
     },
-    "netstandard1.4": {
-      "imports": "dnxcore50"
+    "net452": {
+      "frameworkAssemblies": {
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": {
+        "define": [
+          "PORTABLE"
+        ]
+      },
+      "frameworkAssemblies": {
+        "Microsoft.CSharp": ""
+      },
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "netstandard1.1": {
+      "buildOptions": {
+        "define": [
+          "NETSTANDARD1_1",
+          "PORTABLE"
+        ]
+      },
+      "dependencies": {
+      }
     }
   }
 }
