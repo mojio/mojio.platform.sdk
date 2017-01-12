@@ -1,9 +1,9 @@
 {
-  "title": "Mojio Platform SDK Bot V2 (DotNet Core)",
-  "description": "Preview of the DotNet Core compatible Mojio SDK Bot",
+  "title": "Mojio Platform SDK V2 - Bot Client Implementation",
+  "description": "Mojio Platform SDK V2 - Bot Client Implementation",
   "version": "2.0.1-*",
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "2.0.0-*",
+    "Mojio.Platform.SDK.Contracts": "2.0.1-*",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1"
   },

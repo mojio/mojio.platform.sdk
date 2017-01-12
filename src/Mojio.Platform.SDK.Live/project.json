@@ -1,13 +1,10 @@
 {
-  "title": "Mojio Platform SDK Live V2 (DotNet Core)",
-
-  "description": "Preview of the DotNet Core compatible Mojio SDK Live",
-
+  "title": "Mojio Platform SDK V2 - Live / Observer - Long Polling",
+  "description": "Mojio Platform SDK V2 - Live / Observer - Long Polling",
   "version": "2.0.1-*",
-
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "2.0.0-*",
-    "Mojio.Platform.SDK.DI": "2.0.0-*",
+    "Mojio.Platform.SDK.Contracts": "2.0.1-*",
+    "Mojio.Platform.SDK.DI": "2.0.1-*",
     "NETStandard.Library": "1.6.0"
   },
 

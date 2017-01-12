@@ -1,9 +1,9 @@
 {
-  "title": "Mojio Platform SDK Contracts V2",
-  "description": "DotNet Core compatible Mojio SDK Contracts",
+  "title": "Mojio Platform SDK V2 - Contract Definitions",
+  "description": "Mojio Platform SDK V2 - Contract Definitions",
   "version": "2.0.1-*",
   "packOptions": {
-    "summary": "DotNet Core compatible Mojio SDK Contracts",
+    "summary": "Mojio Platform SDK V2 - Contract Definitions",
     "owners": [
       "mojio"
     ],

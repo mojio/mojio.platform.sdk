@@ -271,8 +271,15 @@ namespace Mojio.Platform.SDK
                     if (typeof(T) == typeof(IAuthorization))
                     {
                         monitor.Report("Setting internal auth token", 0.99);
-                        Authorization.MojioApiToken = (platformResponse.Response as IAuthorization).AccessToken;
-                        _container.RegisterInstance(Authorization, "Session");
+                        if (platformResponse != null && platformResponse.Response != null)
+                        {
+                            Authorization.MojioApiToken = (platformResponse.Response as IAuthorization).AccessToken;
+                            _container.RegisterInstance(Authorization, "Session");
+                        }
+                        else
+                        {
+                            return platformResponse;
+                        }
                     }
                 }
                 else

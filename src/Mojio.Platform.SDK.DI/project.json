@@ -1,11 +1,11 @@
 {
-  "title": "Mojio Platform SDK DI V2 (DotNet Core)",
-  "description": "Preview of the DotNet Core compatible Mojio SDK DI",
+  "title": "Mojio Platform SDK V2 - Dependancy Injection",
+  "description": "Mojio Platform SDK V2 - Dependancy Injection",
   "version": "2.0.1-*",
   "dependencies": {
-    "Mojio.Platform.SDK": "2.0.0-*",
-    "Mojio.Platform.SDK.Bot": "2.0.0-*",
-    "Mojio.Platform.SDK.Contracts": "2.0.0-*",
+    "Mojio.Platform.SDK": "2.0.1-*",
+    "Mojio.Platform.SDK.Bot": "2.0.1-*",
+    "Mojio.Platform.SDK.Contracts": "2.0.1-*",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1"
   },

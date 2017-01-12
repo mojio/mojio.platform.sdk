@@ -19,16 +19,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK.CLI", "M
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mojio.Platform.SDK.Live.WebSocket", "Mojio.Platform.SDK.Live.WebSocket\Mojio.Platform.SDK.Live.WebSocket.xproj", "{2CEEEEF6-5BAD-4468-9732-9D387417D253}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F070F0A6-69FA-49F3-9BEF-275517C296E7}"
-	ProjectSection(SolutionItems) = preProject
-		Mojio.Platform.SDK.Bot.nuspec = Mojio.Platform.SDK.Bot.nuspec
-		Mojio.Platform.SDK.Contracts.nuspec = Mojio.Platform.SDK.Contracts.nuspec
-		Mojio.Platform.SDK.DI.nuspec = Mojio.Platform.SDK.DI.nuspec
-		Mojio.Platform.SDK.Live.nuspec = Mojio.Platform.SDK.Live.nuspec
-		Mojio.Platform.SDK.nuspec = Mojio.Platform.SDK.nuspec
-		Mojio.Platform.SDK.SimpleClient.nuspec = Mojio.Platform.SDK.SimpleClient.nuspec
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B3106721-F7FA-44F4-8FCC-71125BF7D264}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "mojio.platform.sdk.test", "..\test\mojio.platform.sdk.test\mojio.platform.sdk.test.xproj", "{D0595DF6-4F46-4400-865C-1E762F6F47FB}"

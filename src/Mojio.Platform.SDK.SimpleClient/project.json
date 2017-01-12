@@ -1,10 +1,10 @@
 {
-  "title": "Mojio Platform SDK SimpleClient V2 (DotNet Core)",
-  "description": "Preview of the DotNet Core compatible Mojio SDK SimpleClient",
+  "title": "Mojio Platform SDK V2 - A simple client wrapper around the entire SDK, start here.",
+  "description": "Mojio Platform SDK V2 - A simple client wrapper around the entire SDK, start here.",
   "version": "2.0.1-*",
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "2.0.0-*",
-    "Mojio.Platform.SDK.DI": "2.0.0-*",
+    "Mojio.Platform.SDK.Contracts": "2.0.1-*",
+    "Mojio.Platform.SDK.DI": "2.0.1-*",
     "NETStandard.Library": "1.6.0"
   },
   "frameworks": {
