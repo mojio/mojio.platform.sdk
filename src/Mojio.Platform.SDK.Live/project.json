@@ -1,10 +1,10 @@
 {
   "title": "Mojio Platform SDK V2 - Live / Observer - Long Polling",
   "description": "Mojio Platform SDK V2 - Live / Observer - Long Polling",
-  "version": "2.*",
+  "version": "2.2.1",
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "2.0.1-*",
-    "Mojio.Platform.SDK.DI": "2.0.1-*",
+    "Mojio.Platform.SDK.Contracts": "2.2.1.*",
+    "Mojio.Platform.SDK.DI": "2.2.1.*",
     "NETStandard.Library": "1.6.0"
   },
   "frameworks": {
