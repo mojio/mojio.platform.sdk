@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK Contracts V2",
   "description": "DotNet Core compatible Mojio SDK Contracts",
-  "version": "1.0.17-*",
+  "version": "2.0.1-*",
   "packOptions": {
     "summary": "DotNet Core compatible Mojio SDK Contracts",
     "owners": [
@@ -17,6 +17,16 @@
     "NETStandard.Library": "1.6.0"
   },
   "frameworks": {
+    "uap10.0": {
+      "runtimes": {
+        "win10-arm": {},
+        "win10-arm-aot": {},
+        "win10-x86": {},
+        "win10-x86-aot": {},
+        "win10-x64": {},
+        "win10-x64-aot": {}
+      }
+    },
     "net452": {
       "frameworkAssemblies": {
         "System.Data": "",
