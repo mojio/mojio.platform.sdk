@@ -1,7 +1,7 @@
 {
   "title": "Mojio Platform SDK V2 - Entities Implementation",
   "description": "Mojio Platform SDK V2 - Entities Implementation",
-  "version": "2.0.1-*",
+  "version": "*",
   "packOptions": {
     "summary": "Preview of the DotNet Core compatible Mojio SDK",
     "owners": [
@@ -33,36 +33,36 @@
         "Microsoft.CSharp": "4.3.0"
       }
     },
-      "net452": {
-        "frameworkAssemblies": {
-        },
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "Microsoft.Net.Http": "2.2.29"
-        }
+    "net452": {
+      "frameworkAssemblies": {
       },
-      ".NETPortable,Version=v4.5,Profile=Profile259": {
-        "buildOptions": {
-          "define": [
-            "PORTABLE"
-          ]
-        },
-        "frameworkAssemblies": {
-          "Microsoft.CSharp": ""
-        },
-        "dependencies": {
-          "Microsoft.Net.Http": "2.2.29"
-        }
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": {
+        "define": [
+          "PORTABLE"
+        ]
       },
-      "netstandard1.1": {
-        "buildOptions": {
-          "define": [
-            "NETSTANDARD1_1",
-            "PORTABLE"
-          ]
-        },
-        "dependencies": {
-        }
+      "frameworkAssemblies": {
+        "Microsoft.CSharp": ""
+      },
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "netstandard1.1": {
+      "buildOptions": {
+        "define": [
+          "NETSTANDARD1_1",
+          "PORTABLE"
+        ]
+      },
+      "dependencies": {
       }
     }
+  }
 }

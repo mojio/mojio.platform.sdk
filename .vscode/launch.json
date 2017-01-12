@@ -29,6 +29,17 @@
             "externalConsole": false,
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": ".NET Core Functional Tests (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "test",
+            "args": [ "-traits='Category=Functional'"],
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
         }        
     ]
 }
