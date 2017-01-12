@@ -21,7 +21,6 @@ namespace Mojio.Platform.SDK.Tests
 
         [Fact]
         [Trait("Category", "Functional")]
-        [Trait("Category", "Load")]
         [Trait("Category", "UnitTest")]
         public async Task BasicLoginTest()
         {
@@ -30,7 +29,6 @@ namespace Mojio.Platform.SDK.Tests
 
         [Fact]
         [Trait("Category", "Functional")]
-        [Trait("Category", "Load")]
         [Trait("Category", "UnitTest")]
         public async Task GetVehicles()
         {
@@ -41,12 +39,21 @@ namespace Mojio.Platform.SDK.Tests
 
         [Fact]
         [Trait("Category", "Functional")]
-        [Trait("Category", "Load")]
         [Trait("Category", "UnitTest")]
         public async Task GetMojios()
         {
             var vehicles = await _loginSimpleClient.Mojios();
             Assert.NotNull(vehicles?.Response?.Data);
+
+        }
+        [Fact]
+        [Trait("Category", "Functional")]
+        [Trait("Category", "UnitTest")]
+        public async Task GetMe()
+        {
+            var vehicles = await _loginSimpleClient.Me();
+            Assert.NotNull(vehicles?.Response?.Id);
+            Assert.True(vehicles?.Response?.Id != Guid.NewGuid());         
 
         }
     }
