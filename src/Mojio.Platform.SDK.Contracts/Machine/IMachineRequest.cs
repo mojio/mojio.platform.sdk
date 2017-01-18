@@ -10,7 +10,6 @@ namespace Mojio.Platform.SDK.Contracts.Machine
         DateTimeOffset DeviceTime { get; set; }
         IVehicle Vehicle { get; set; }
         IMojio TelematicDevice { get; set; }
-        ITrip Trip { get; set; }
         Guid MessageId { get; set; }
     }
 }
