@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Mojio Platform SDK V2 - Contract Definitions</Description>
+    <AssemblyTitle>Mojio Platform SDK V2 - Contract Definitions</AssemblyTitle>
+    <VersionPrefix>2.2.1</VersionPrefix>
+    <TargetFrameworks>uap10.0;net452;portable45-net45+win8+wp8+wpa81;netstandard1.1</TargetFrameworks>
+    <AssemblyName>Mojio.Platform.SDK.Contracts</AssemblyName>
+    <PackageId>Mojio.Platform.SDK.Contracts</PackageId>
+    <PackageProjectUrl>https://github.com/mojio/mojio.platform.sdk</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mojio/mojio.platform.sdk</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
+    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <Reference Include="System" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
+    <DefineConstants>$(DefineConstants);PORTABLE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+    <DefineConstants>$(DefineConstants);NETSTANDARD1_1</DefineConstants>
+  </PropertyGroup>
+
+</Project>
