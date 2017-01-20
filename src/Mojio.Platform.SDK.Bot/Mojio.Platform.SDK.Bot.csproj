@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <Description>Mojio Platform SDK V2 - Bot Client Implementation</Description>
@@ -13,29 +13,35 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Mojio.Platform.SDK.Contracts/Mojio.Platform.SDK.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-  </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <Reference Include="System" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <Reference Include="Microsoft.CSharp" />
+  <ItemGroup>
+    <Compile Include="BotClient.cs" />
+    <Compile Include="BotRegistrationContainer.cs" />
+    <Compile Include="Contracts\Entity.cs" />
+    <Compile Include="Contracts\IAttachment.cs" />
+    <Compile Include="Contracts\IBotClient.cs" />
+    <Compile Include="Contracts\IChannelAccount.cs" />
+    <Compile Include="Contracts\IEntity.cs" />
+    <Compile Include="Contracts\IIntent.cs" />
+    <Compile Include="Contracts\ILocation.cs" />
+    <Compile Include="Contracts\IMention.cs" />
+    <Compile Include="Contracts\IMessage.cs" />
+    <Compile Include="Contracts\IMojioConversationData.cs" />
+    <Compile Include="Contracts\Intent.cs" />
+    <Compile Include="Entities\Attachment.cs" />
+    <Compile Include="Entities\ChannelAccount.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Mention.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\MojioConversationData.cs" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
     <DefineConstants>$(DefineConstants);PORTABLE</DefineConstants>
   </PropertyGroup>

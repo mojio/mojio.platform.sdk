@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <Description>Mojio Platform SDK V2 - Contract Definitions</Description>
@@ -17,23 +17,88 @@
 
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <Reference Include="System" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <Reference Include="Microsoft.CSharp" />
+  <ItemGroup>
+    <Compile Include="IConfiguration.cs" />
+    <Compile Include="IContractResolver.cs" />
+    <Compile Include="IDeserialize.cs" />
+    <Compile Include="IDIContainer.cs" />
+    <Compile Include="IEnvironment.cs" />
+    <Compile Include="IEnvironmentFactory.cs" />
+    <Compile Include="IHttpClientBuilder.cs" />
+    <Compile Include="ILocationHelper.cs" />
+    <Compile Include="IMessageResponse.cs" />
+    <Compile Include="IPlatformResponse.cs" />
+    <Compile Include="IProgressConsumer.cs" />
+    <Compile Include="IProgressMonitor.cs" />
+    <Compile Include="IRegistrationContainer.cs" />
+    <Compile Include="ISDKProgress.cs" />
+    <Compile Include="ISerialize.cs" />
+    <Compile Include="ISerializer.cs" />
+    <Compile Include="IWatchActivities.cs" />
+    <Compile Include="IWatchMojios.cs" />
+    <Compile Include="IWatchUsers.cs" />
+    <Compile Include="IWatchVehicles.cs" />
+    <Compile Include="ObservableDisposable.cs" />
+    <Compile Include="SimpleObservable.cs" />
+    <Compile Include="ActivityStreams\ActorTypes.cs" />
+    <Compile Include="ActivityStreams\CoreTypes.cs" />
+    <Compile Include="ActivityStreams\Enums.cs" />
+    <Compile Include="ActivityStreams\ExtendedTypes.cs" />
+    <Compile Include="ActivityStreams\IActivityStreamApiResponse.cs" />
+    <Compile Include="ActivityStreams\ObjectAndLinkTypes.cs" />
+    <Compile Include="ActivityStreams\Properties.cs" />
+    <Compile Include="Client\IClient.ActivityStreams.cs" />
+    <Compile Include="Client\IClient.App.cs" />
+    <Compile Include="Client\IClient.Geofence.cs" />
+    <Compile Include="Client\IClient.Groups.cs" />
+    <Compile Include="Client\IClient.Image.cs" />
+    <Compile Include="Client\IClient.Login.cs" />
+    <Compile Include="Client\IClient.Me.cs" />
+    <Compile Include="Client\IClient.Mojio.cs" />
+    <Compile Include="Client\IClient.Observers.cs" />
+    <Compile Include="Client\IClient.Simulator.cs" />
+    <Compile Include="Client\IClient.Tags.cs" />
+    <Compile Include="Client\IClient.Trip.cs" />
+    <Compile Include="Client\IClient.Users.cs" />
+    <Compile Include="Client\IClient.Vehicle.cs" />
+    <Compile Include="Client\IClient.Wifi.cs" />
+    <Compile Include="Client\IClient.cs" />
+    <Compile Include="Entities\Authorization.cs" />
+    <Compile Include="Entities\IApp.cs" />
+    <Compile Include="Entities\IAuthorization.cs" />
+    <Compile Include="Entities\IAuthorizationManager.cs" />
+    <Compile Include="Entities\ICapabilities.cs" />
+    <Compile Include="Entities\IGeofence.cs" />
+    <Compile Include="Entities\IGroup.cs" />
+    <Compile Include="Entities\IMojio.cs" />
+    <Compile Include="Entities\IServiceSchedule.cs" />
+    <Compile Include="Entities\ITrip.cs" />
+    <Compile Include="Entities\IUser.cs" />
+    <Compile Include="Entities\IVehicle.cs" />
+    <Compile Include="Extension\Streams.cs" />
+    <Compile Include="Extension\TaskExtensions.cs" />
+    <Compile Include="Instrumentation\ILog.cs" />
+    <Compile Include="Machine\IMachine.cs" />
+    <Compile Include="Machine\IMachineRequest.cs" />
+    <Compile Include="Machine\IMachineStates.cs" />
+    <Compile Include="Push\IPushObserver.cs" />
+    <Compile Include="Push\IPushObserverResponse.cs" />
+    <Compile Include="Push\ITransport.cs" />
+    <Compile Include="Push\ITransportFactory.cs" />
+    <Compile Include="Push\ITransportResponse.cs" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
     <DefineConstants>$(DefineConstants);PORTABLE</DefineConstants>
   </PropertyGroup>

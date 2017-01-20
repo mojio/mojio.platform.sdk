@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <Description>Mojio Platform SDK V2 - Entities Implementation</Description>
@@ -16,30 +16,103 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Mojio.Platform.SDK.Contracts/Mojio.Platform.SDK.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.Collections.Immutable" Version="1.3.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.3.0</Version>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <Reference Include="System" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <Reference Include="Microsoft.CSharp" />
+  <ItemGroup>
+    <Compile Include="InMemoryAuthorizationManager.cs" />
+    <Compile Include="MojioHttpClient.cs" />
+    <Compile Include="Client\Client.ActivityStreams.cs" />
+    <Compile Include="Client\Client.App.cs" />
+    <Compile Include="Client\Client.Geofence.cs" />
+    <Compile Include="Client\Client.Groups.cs" />
+    <Compile Include="Client\Client.Image.cs" />
+    <Compile Include="Client\Client.Login.cs" />
+    <Compile Include="Client\Client.Machine.cs" />
+    <Compile Include="Client\Client.Me.cs" />
+    <Compile Include="Client\Client.Mojio.cs" />
+    <Compile Include="Client\Client.Observers.cs" />
+    <Compile Include="Client\Client.Tags.cs" />
+    <Compile Include="Client\Client.Trip.cs" />
+    <Compile Include="Client\Client.Users.cs" />
+    <Compile Include="Client\Client.Vehicle.cs" />
+    <Compile Include="Client\Client.Wifi.cs" />
+    <Compile Include="Client\Client.cs" />
+    <Compile Include="Entities\Accelerometer.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\AppResponse.cs" />
+    <Compile Include="Entities\Battery.cs" />
+    <Compile Include="Entities\Capabilities.cs" />
+    <Compile Include="Entities\ContractResolver.cs" />
+    <Compile Include="Entities\DefaultSDKProgress.cs" />
+    <Compile Include="Entities\DiagnosticCode.cs" />
+    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Engine.cs" />
+    <Compile Include="Entities\Geofence.cs" />
+    <Compile Include="Entities\Groups.cs" />
+    <Compile Include="Entities\Heading.cs" />
+    <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\JSONSerializer.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\LocationHelper.cs" />
+    <Compile Include="Entities\Measurement.cs" />
+    <Compile Include="Entities\MessageResponse.cs" />
+    <Compile Include="Entities\MillisecondProgressMonitor.cs" />
+    <Compile Include="Entities\Mojio.cs" />
+    <Compile Include="Entities\MojioResponse.cs" />
+    <Compile Include="Entities\Odometer.cs" />
+    <Compile Include="Entities\PlatformResponse.cs" />
+    <Compile Include="Entities\Recall.cs" />
+    <Compile Include="Entities\RiskMeasurement.cs" />
+    <Compile Include="Entities\ServiceBulletin.cs" />
+    <Compile Include="Entities\ServiceScheduleResponse.cs" />
+    <Compile Include="Entities\State.cs" />
+    <Compile Include="Entities\TelephoneNumber.cs" />
+    <Compile Include="Entities\Transmission.cs" />
+    <Compile Include="Entities\Trip.cs" />
+    <Compile Include="Entities\TripsResponse.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Vehicle.cs" />
+    <Compile Include="Entities\VehicleLocationResponse.cs" />
+    <Compile Include="Entities\VehiclesResponse.cs" />
+    <Compile Include="Entities\VinDetails.cs" />
+    <Compile Include="Entities\Warranty.cs" />
+    <Compile Include="Entities\ActivityStreams\ActivityStreamApiResponse.cs" />
+    <Compile Include="Entities\ActivityStreams\ActorTypes.cs" />
+    <Compile Include="Entities\ActivityStreams\CoreTypes.cs" />
+    <Compile Include="Entities\ActivityStreams\ExtendedTypes.cs" />
+    <Compile Include="Entities\ActivityStreams\ObjectAndLinkTypes.cs" />
+    <Compile Include="Entities\ActivityStreams\Properties.cs" />
+    <Compile Include="Entities\Environments\Environment.cs" />
+    <Compile Include="Entities\Environments\EnvironmentFactory.cs" />
+    <Compile Include="Entities\Environments\GitEnvironment.cs" />
+    <Compile Include="Entities\Instrumentation\BroadcastLogger.cs" />
+    <Compile Include="Entities\Machine\HttpMachine.cs" />
+    <Compile Include="Entities\Machine\MachineRequest.cs" />
+    <Compile Include="Entities\Machine\MachineStates.cs" />
+    <Compile Include="Entities\Machine\MachineTelematicDevice.cs" />
+    <Compile Include="Entities\Observers\AndroidTransport.cs" />
+    <Compile Include="Entities\Observers\AppleTransport.cs" />
+    <Compile Include="Entities\Observers\BaseTransport.cs" />
+    <Compile Include="Entities\Observers\EventHubTransport.cs" />
+    <Compile Include="Entities\Observers\HttpPostTransport.cs" />
+    <Compile Include="Entities\Observers\MongoDBTransport.cs" />
+    <Compile Include="Entities\Observers\MqttTransport.cs" />
+    <Compile Include="Entities\Observers\PushObserverRequest.cs" />
+    <Compile Include="Entities\Observers\PushObserverResponse.cs" />
+    <Compile Include="Entities\Observers\ServiceBusQueueTransport.cs" />
+    <Compile Include="Entities\Observers\SignalRTransport.cs" />
+    <Compile Include="Entities\Observers\TransportFactory.cs" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
     <DefineConstants>$(DefineConstants);PORTABLE</DefineConstants>
   </PropertyGroup>

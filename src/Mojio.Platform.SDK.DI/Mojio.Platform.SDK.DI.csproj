@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <Description>Mojio Platform SDK V2 - Dependancy Injection</Description>
@@ -13,31 +13,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Mojio.Platform.SDK/Mojio.Platform.SDK.csproj" />
-    <ProjectReference Include="../Mojio.Platform.SDK.Bot/Mojio.Platform.SDK.Bot.csproj" />
-    <ProjectReference Include="../Mojio.Platform.SDK.Contracts/Mojio.Platform.SDK.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-  </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <Reference Include="System" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <Reference Include="Microsoft.CSharp" />
+  <ItemGroup>
+    <Compile Include="CoreServicesRegistrationContainer.cs" />
+    <Compile Include="DIContainer.cs" />
+    <Compile Include="DryIoc\Container.cs" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'portable45-net45+win8+wp8+wpa81' ">
     <DefineConstants>$(DefineConstants);PORTABLE</DefineConstants>
   </PropertyGroup>
@@ -46,4 +34,9 @@
     <DefineConstants>$(DefineConstants);NETSTANDARD1_1</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
 </Project>

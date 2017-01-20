@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <VersionPrefix>2.0.0</VersionPrefix>
@@ -17,9 +17,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Mojio.Platform.SDK.Contracts/Mojio.Platform.SDK.Contracts.csproj" />
-    <ProjectReference Include="../../src/Mojio.Platform.SDK.DI/Mojio.Platform.SDK.DI.csproj" />
-    <ProjectReference Include="../../src/Mojio.Platform.SDK.SimpleClient/Mojio.Platform.SDK.SimpleClient.csproj" />
+    <ProjectReference Include="../../src/Mojio.Platform.SDK.Contracts/Mojio.Platform.SDK.Contracts.csproj">
+      <Project>{63507CEA-DD14-4C46-89A3-BC52F6731656}</Project>
+      <Name>Mojio.Platform.SDK.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../src/Mojio.Platform.SDK.DI/Mojio.Platform.SDK.DI.csproj">
+      <Project>{D6101B94-D711-4391-8167-3258F424919F}</Project>
+      <Name>Mojio.Platform.SDK.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../src/Mojio.Platform.SDK.SimpleClient/Mojio.Platform.SDK.SimpleClient.csproj">
+      <Project>{D0AA3601-0522-40DC-A9EE-1351DBA10345}</Project>
+      <Name>Mojio.Platform.SDK.SimpleClient</Name>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,4 +45,12 @@
     <PackageReference Include="Microsoft.NETCore.App" Version="1.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="BasicTests.cs" />
+    <Compile Include="ConsoleLogger.cs" />
+    <Compile Include="Mother.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="setup.test.env.bat" />
+  </ItemGroup>
 </Project>
