@@ -1,49 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="CommandLine.cs" />
-    <Compile Include="ConsoleLogger.cs" />
-    <Compile Include="FileLogger.cs" />
-    <Compile Include="LoggingObserver.cs" />
-    <Compile Include="Commands\ActivityStreamCommand.cs" />
-    <Compile Include="Commands\AppCommands.cs" />
-    <Compile Include="Commands\BaseCommand.cs" />
-    <Compile Include="Commands\CapabilitiesCommands.cs" />
-    <Compile Include="Commands\CommandDescriptorAttribute.cs" />
-    <Compile Include="Commands\CommandFactory.cs" />
-    <Compile Include="Commands\GetTripsCommand.cs" />
-    <Compile Include="Commands\HelpCommand.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\LSCommand.cs" />
-    <Compile Include="Commands\LocationCommand.cs" />
-    <Compile Include="Commands\LoginCommand.cs" />
-    <Compile Include="Commands\MachineCommands.cs" />
-    <Compile Include="Commands\MeCommand.cs" />
-    <Compile Include="Commands\MojioCommands.cs" />
-    <Compile Include="Commands\ObserverCommands.cs" />
-    <Compile Include="Commands\ShowClientCommand.cs" />
-    <Compile Include="Commands\SleepCommand.cs" />
-    <Compile Include="Commands\UserCommands.cs" />
-    <Compile Include="Commands\VehicleCommands.cs" />
-    <Compile Include="Machine\SavedMachineStatesProvider.cs" />
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="Machine\Simulator.json" />
-    <None Include="Machine\SimulatorBig.json" />
-    <None Include="Machine\simulated.trip.json" />
+    <PackageReference Include="NETStandard.Library" Version="1.6" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
+
 </Project>

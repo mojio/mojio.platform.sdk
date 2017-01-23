@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mojio.Platform.SDK.Contracts.Push
+﻿namespace Mojio.Platform.SDK.Contracts.Push
 {
 
     public enum IdentifierType
