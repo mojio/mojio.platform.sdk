@@ -31,6 +31,7 @@ namespace Mojio.Platform.SDK.Entities.DI
 
         private void RegisterSDKDomain(IDIContainer container)
         {
+            container.Register<IUsersResponse, UsersResponse>();
             container.Register<IUser, User>();
             container.Register<ITelephoneNumber, TelephoneNumber>();
             container.Register<IVehicle, Vehicle>();

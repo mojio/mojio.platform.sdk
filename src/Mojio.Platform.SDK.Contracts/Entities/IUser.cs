@@ -5,7 +5,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
 {
     public interface IUsersResponse
     {
-        List<IUser> Data { get; set; }
+        IList<IUser> Data { get; set; }
         int Results { get; set; }
         IDictionary<string, string> Links { get; set; }
     }
@@ -13,10 +13,10 @@ namespace Mojio.Platform.SDK.Contracts.Entities
     public interface IUser
     {
         string UserName { get; set; }
-        List<IEmail> Emails { get; set; }
-        List<ITelephoneNumber> PhoneNumbers { get; set; }
+        IList<IEmail> Emails { get; set; }
+        IList<ITelephoneNumber> PhoneNumbers { get; set; }
         IImage Image { get; set; }
-        List<string> Tags { get; set; }
+        IList<string> Tags { get; set; }
         Guid Id { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }
