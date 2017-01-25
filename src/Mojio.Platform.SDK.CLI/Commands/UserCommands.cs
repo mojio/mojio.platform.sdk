@@ -25,4 +25,31 @@ namespace Mojio.Platform.SDK.CLI.Commands
             }
         }
     }
+    [CommandDescriptor(Name = "get-users", Description = "Gets the specified user", Usage = "get-users")]
+    public class GetUsersCommand : BaseCommand
+    {
+        [Argument(ArgumentType.AtMostOnce, ShortName = "t")]
+        public int Top { get; set; }
+
+        [Argument(ArgumentType.AtMostOnce, ShortName = "s")]
+        public int Skip { get; set; }
+
+        [Argument(ArgumentType.AtMostOnce, ShortName = "f")]
+        public string Filter { get; set; }
+
+        [Argument(ArgumentType.AtMostOnce, ShortName = "se")]
+        public string Select { get; set; }
+
+        [Argument(ArgumentType.AtMostOnce, ShortName = "order")]
+        public string OrderBy { get; set; }
+
+        public override async Task Execute()
+        {
+            await Authorize();
+
+            var result = await SimpleClient.Users(Skip, Top, Filter, Select, OrderBy);
+            Log.Debug(result);
+            UpdateAuthorization();
+        }
+    }
 }

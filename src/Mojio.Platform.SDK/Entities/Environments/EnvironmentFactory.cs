@@ -40,6 +40,10 @@ namespace Mojio.Platform.SDK.Entities.Environments
                     prefix = "trial-";
                     break;
 
+                case Contracts.Environments.Staging:
+                    prefix = "staging-";
+                    break;
+
                 case Contracts.Environments.NaStaging:
                     prefix = "na-staging-";
                     break;

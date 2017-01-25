@@ -193,8 +193,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.GetUser(userId, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IUsersResponse>> Users(int skip = 0, int top = 10, string filter = null,
-            string select = null, string orderby = null, CancellationToken? cancellationToken = null,
+        public async Task<IPlatformResponse<IUsersResponse>> Users(int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
