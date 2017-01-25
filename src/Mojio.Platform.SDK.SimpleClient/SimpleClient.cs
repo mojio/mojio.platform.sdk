@@ -564,5 +564,12 @@ namespace Mojio.Platform.SDK.SimpleClient
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.DeleteGeofence(id, cancellationToken, progress);
         }
+
+        public async Task<IPlatformResponse<IServerStatus>> GetServerStatus(CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.GetServerStatus(cancellationToken, progress);
+
+        }
     }
 }

@@ -61,12 +61,6 @@ namespace Mojio.Platform.SDK
         {
             var monitor = _container.Resolve<IProgressMonitor>();
 
-            var properties = new Dictionary<string, string>
-            {
-                {"MojioApiToken", Authorization.MojioApiToken},
-            };
-            var metrics = new Dictionary<string, double>();
-
             if (progress != null)
             {
                 monitor.Progress = progress;
@@ -192,29 +186,19 @@ namespace Mojio.Platform.SDK
                 return platformResponse;
             }
             monitor.Report("Sending Http Request", 0.6);
-            var requestSw = new Stopwatch();
-            requestSw.Start();
-            Debug.WriteLine($"Pre-flight request URL: {request.RequestUri}");
             var start = Stopwatch.GetTimestamp();
+            Debug.WriteLine($"Pre-flight request URL: {request.RequestUri}");
             using (var sendResult = await client.SendAsync(request, cancellationToken))
             {
                 var end = Stopwatch.GetTimestamp();
                 var delta = ((end - start) * 1000) / Stopwatch.Frequency; //in milliseconds
 
-                properties.Add("HttpStatusCode", sendResult.StatusCode.ToString());
-                properties.Add("Method", request.Method.ToString());
-                properties.Add("ReasonPhrase", sendResult.ReasonPhrase);
-                metrics.Add("DurationMS", delta);
-
-                platformResponse.RequestDurationMS = requestSw.ElapsedMilliseconds;
+                platformResponse.RequestDurationMS = delta;
                 monitor.Report("Received Response from Http Request", 0.7);
-                requestSw.Stop();
 
                 platformResponse.Url = sendResult.RequestMessage.RequestUri.ToString();
-                Debug.WriteLine($"Post-flight request URL: {platformResponse.Url}");
                 platformResponse.Timestamp = DateTimeOffset.UtcNow;
                 platformResponse.HttpStatusCode = sendResult.StatusCode;
-                Debug.WriteLine($"Status Code: {platformResponse.HttpStatusCode}");
 
                 try
                 {
@@ -226,7 +210,6 @@ namespace Mojio.Platform.SDK
                         platformResponse.ARRAffinityInstance =
                             (from c in cookie.Split(';') where c.StartsWith("") select c.Split('=').LastOrDefault())
                                 .FirstOrDefault();
-                        properties.Add("ARRAffinityInstance", platformResponse.ARRAffinityInstance);
                     }
                 }
                 catch (Exception)
@@ -250,7 +233,6 @@ namespace Mojio.Platform.SDK
                     {
                         var left = json;
                         if (left.Length > 100) left = left.Substring(0, 100);
-                        properties.Add("raw", left);
                     }
 
                     monitor.Report("Deserializing data", 0.95);
@@ -310,7 +292,6 @@ namespace Mojio.Platform.SDK
                                 {
                                     platformResponse.ErrorMessage = platformResponse.ErrorMessage + ", " + content;
                                 }
-                                properties.Add("ErrorMessage", platformResponse.ErrorMessage);
                             }
                         }
                         catch (Exception)
@@ -320,14 +301,7 @@ namespace Mojio.Platform.SDK
                 }
             }
             monitor.Report("Finished", 1);
-
             monitor.Stop();
-
-            _log.Event(
-                request.RequestUri.ToString(),
-                properties,
-                metrics
-            );
 
             return platformResponse;
         }
