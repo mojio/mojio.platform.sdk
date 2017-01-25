@@ -3,6 +3,13 @@ using System.Collections.Generic;
 
 namespace Mojio.Platform.SDK.Contracts.Entities
 {
+    public interface IUsersResponse
+    {
+        List<IUser> Data { get; set; }
+        int Results { get; set; }
+        IDictionary<string, string> Links { get; set; }
+    }
+
     public interface IUser
     {
         string UserName { get; set; }
