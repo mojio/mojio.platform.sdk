@@ -1,0 +1,20 @@
+﻿{
+  "NaStaging": {
+    "ClientId": "ae17fc66-7948-4e18-86f2-6f05423d6812",
+    "Credentials": [
+      {
+        "username": "gilfoyle",
+        "email": "gilfoyle@piedpiper.com",
+        "password": "DineshSucks"
+      },
+      {
+        "username": "richardhendricks",
+        "email": "richard@piedpiper.com",
+        "password": "I'mtheCE0!!"
+      }
+    ],
+    "RedirectUri": "https://www.moj.io",
+    "SecretKey": "c4c5ff38-cc89-4747-9771-f45e57d2d332"
+  }
+}
+
