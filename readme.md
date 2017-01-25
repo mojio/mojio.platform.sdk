@@ -1,7 +1,7 @@
 # C# SDK for Mojio Platform version 2
 
 ### Nuget Package
-![Install-Package Mojio.Platform.SDK.SimpleClient](https://www.nuget.org/packages/Mojio.Platform.SDK.SimpleClient/)
+[Install-Package Mojio.Platform.SDK.SimpleClient](https://www.nuget.org/packages/Mojio.Platform.SDK.SimpleClient/)
 
 ### Current Build Status (master):
 ![Build Status](https://mojio.visualstudio.com/_apis/public/build/definitions/1b4733a9-5dad-47aa-b18a-f4a981d9f0a6/3/badge)
