@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Mojio.Platform.SDK.CLI.Commands
 {
-    [CommandDescriptor(Name = "get-user", Description = "Gets the specified user", Usage = "get-user  /id:<user-id>")]
+    [CommandDescriptor(Name = "get-user", Description = "Gets the specified user", Usage = "get-user  /i:<user-id>")]
     public class GetUserCommand : BaseCommand
     {
         [Argument(ArgumentType.Required, ShortName = "i")]
