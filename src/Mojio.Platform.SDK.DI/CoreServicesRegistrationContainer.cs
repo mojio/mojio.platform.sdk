@@ -158,6 +158,7 @@ namespace Mojio.Platform.SDK.Entities.DI
             container.Register<ILinks, Links>();
             container.Register<IWifiRadio, WifiRadio>();
 
+            container.Register<IServerStatus, ServerStatus>();
 
             RegisterActivityStreams(container);
         }
