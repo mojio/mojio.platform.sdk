@@ -1,9 +1,9 @@
 {
   "title": "Mojio Platform SDK V2 - Live / Observer - WebSocket",
   "description": "Mojio Platform SDK V2 - Live / Observer - WebSocket",
-  "version": "2.2.1",
+  "version": "1.1.0",
   "dependencies": {
-    "Mojio.Platform.SDK.Contracts": "2.2.1.*",
+    "Mojio.Platform.SDK.Contracts": "1.1.0.*",
     "NETStandard.Library": "1.6.0",
     "System.Net.WebSockets.Client": "4.3.0"
   },
