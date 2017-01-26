@@ -17,7 +17,6 @@ namespace Mojio.Platform.SDK.Contracts.Client
 
         Task<IPlatformResponse<IApp>> UpdateApp(IApp app, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
-
         Task<IPlatformResponse<IMessageResponse>> GetAppSecret(Guid id, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
         Task<IPlatformResponse<IMessageResponse>> DeleteAppSecret(Guid id, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
