@@ -55,7 +55,7 @@ namespace Mojio.Platform.SDK.Tests
         {
             var vehicles = await _loginSimpleClient.Me();
             Assert.NotNull(vehicles?.Response?.Id);
-            Assert.True(vehicles?.Response?.Id != Guid.NewGuid());         
+            Assert.True(vehicles?.Response?.Id != null);         
 
         }
     }

@@ -7,6 +7,6 @@ namespace Mojio.Platform.SDK.Contracts.Client
 {
     public interface IClientUsers
     {
-        Task<IPlatformResponse<IUser>> GetUser(Guid userId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+        Task<IPlatformResponse<IUser>> GetUser(string userId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
     }
 }

@@ -10,7 +10,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         List<ITelephoneNumber> PhoneNumbers { get; set; }
         IImage Image { get; set; }
         List<string> Tags { get; set; }
-        Guid Id { get; set; }
+        string Id { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }
         IDictionary<string, string> Links { get; set; }
