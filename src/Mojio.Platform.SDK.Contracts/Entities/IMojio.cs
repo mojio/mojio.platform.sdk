@@ -23,7 +23,7 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         IGpsRadio GpsRadio { get; set; }
         IConnectedState ConnectedState { get; set; }
         Guid OwnerId { get; set; }
-        Guid Id { get; set; }
+        string Id { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }
         bool Deleted { get; set; }

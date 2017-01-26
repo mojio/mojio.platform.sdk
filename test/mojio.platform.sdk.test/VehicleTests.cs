@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Entities;
-using Mojio.Platform.SDK.SimpleClient;
-using Mojio.Platform.SDK.Tests;
 using Xunit;
 
 namespace mojio.platform.sdk.test

@@ -12,7 +12,7 @@ namespace Mojio.Platform.SDK
 {
     public partial class Client : IClientWifi, IClientCapabilities
     {
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(Guid mojioId, string ssid = null, string password = null, WifiRadioStatus? radioStatus = null,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(string mojioId, string ssid = null, string password = null, WifiRadioStatus? radioStatus = null,
             TimeSpan? timeToLive = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null,
             bool skipCache = false)
         {
@@ -37,7 +37,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IUpdateWifiSettingsStatus>>(null);
         }
 
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(Guid mojioId, Guid transactionId, CancellationToken? cancellationToken = null,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(string mojioId, string transactionId, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null, bool skipCache = false)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);

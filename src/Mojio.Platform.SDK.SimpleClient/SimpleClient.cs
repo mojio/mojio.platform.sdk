@@ -491,7 +491,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.AddUserToGroup(id, users, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(Guid mojioId, string ssid = null,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(string mojioId, string ssid = null,
             string password = null, WifiRadioStatus? radioStatus = null,
             TimeSpan? timeToLive = null, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null,
@@ -504,7 +504,7 @@ namespace Mojio.Platform.SDK.SimpleClient
                         progress);
         }
 
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(Guid mojioId, Guid transactionId,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(string mojioId, string transactionId,
             CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null, bool skipCache = false)
         {
