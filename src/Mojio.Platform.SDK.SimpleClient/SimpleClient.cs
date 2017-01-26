@@ -364,7 +364,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.Vehicles(skip, top, filter, select, orderby, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(Guid vehicleId, int skip = 0,
+        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(string vehicleId, int skip = 0,
             int top = 10, string fields = null, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null)
         {
@@ -372,21 +372,21 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.VehicleHistoryStates(vehicleId, skip, top, fields, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(Guid vehicleId,
+        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(string vehicleId,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.VehicleVinLookup(vehicleId, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(Guid vehicleId,
+        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(string vehicleId,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.VehicleNextService(vehicleId, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(Guid vehicleId, int skip = 0, int top = 10,
+        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(string vehicleId, int skip = 0, int top = 10,
             string filter = null, string select = null, string orderby = null,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
@@ -395,7 +395,7 @@ namespace Mojio.Platform.SDK.SimpleClient
                 await SdkClient.VehicleTrips(vehicleId, skip, top, filter, select, orderby, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(Guid vehicleId, int skip = 0,
+        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(string vehicleId, int skip = 0,
             int top = 10, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
