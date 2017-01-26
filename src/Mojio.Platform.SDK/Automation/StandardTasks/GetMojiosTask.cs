@@ -44,12 +44,6 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
                     }
 
                     properties.Add("Mojio_List", list);
-
-                    var first = results.Response.Data.FirstOrDefault();
-                    if (first != null)
-                    {
-                        properties.Add("MojioId", first.Id.ToString());
-                    }
                 }
 
             }
