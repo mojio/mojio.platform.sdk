@@ -11,7 +11,7 @@ namespace Mojio.Platform.SDK.Automation.StandardProfiles
     {
         static readonly Random Rnd = new Random();
 
-        public iOSAutomationProfile(ILog log, ISerializer serializer) : base (log)
+        public iOSAutomationProfile(ILog log, ISerializer serializer, IEventTimingFactory timingFactory) : base(log, timingFactory)
         {
             this.Tasks = new List<IAutomationTask>()
             {
@@ -19,10 +19,13 @@ namespace Mojio.Platform.SDK.Automation.StandardProfiles
                 new LoginOnceTask(log, serializer) {LoadTestProfile = true},
                 new GetVehiclesTask(log, serializer),
                 new GetMeTask(log, serializer),
-                new GetMojiosTask(log, serializer),                
+                new GetMojiosTask(log, serializer),
                 new GetTripsTask(log, serializer) {Skip = 0, Top = 100},
+                new SleepTask() {Delay = 100},
                 new GetTripsTask(log, serializer) {Skip = 100, Top = 100},
+                new SleepTask() {Delay = 100},
                 new GetTripsTask(log, serializer) {Skip = 200, Top = 100},
+                new SleepTask() {Delay = 100},
 
             };
 
@@ -30,6 +33,4 @@ namespace Mojio.Platform.SDK.Automation.StandardProfiles
             this.Period = Rnd.Next(1000, 10000);
         }
     }
-
-
 }
