@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Mojio.Platform.SDK.Automation;
 using Configuration = Mojio.Platform.SDK.SimpleClient.Configuration;
 
 namespace Mojio.Platform.SDK.CLI
@@ -43,6 +44,9 @@ namespace Mojio.Platform.SDK.CLI
             if (string.IsNullOrEmpty(ClientSecret)) ClientSecret = "aead4980-c966-4a26-abee-6bdb1ea23e5c";
             var RedirectUri = configuration["RedirectUri"];
             if (string.IsNullOrEmpty(RedirectUri)) RedirectUri = "https://www.moj.io";
+
+            //lets make our automation registration available as well.  optional of course
+            (new AutomationRegistrationContainer()).Register(DIContainer.Current);
 
             //DIContainer.Current.Register<ILog, BareLogger>("Debug");
             DIContainer.Current.Register<ILog, ConsoleLogger>("Debug");

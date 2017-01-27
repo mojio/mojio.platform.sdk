@@ -3,13 +3,20 @@ using System.Collections.Generic;
 
 namespace Mojio.Platform.SDK.Contracts.Entities
 {
+    public interface IUsersResponse
+    {
+        IList<IUser> Data { get; set; }
+        int Results { get; set; }
+        IDictionary<string, string> Links { get; set; }
+    }
+
     public interface IUser
     {
         string UserName { get; set; }
-        List<IEmail> Emails { get; set; }
-        List<ITelephoneNumber> PhoneNumbers { get; set; }
+        IList<IEmail> Emails { get; set; }
+        IList<ITelephoneNumber> PhoneNumbers { get; set; }
         IImage Image { get; set; }
-        List<string> Tags { get; set; }
+        IList<string> Tags { get; set; }
         string Id { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }

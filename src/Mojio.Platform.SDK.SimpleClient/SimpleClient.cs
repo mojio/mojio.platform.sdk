@@ -192,6 +192,13 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.GetUser(userId, cancellationToken, progress);
         }
 
+        public async Task<IPlatformResponse<IUsersResponse>> Users(int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null,
+            IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.Users(skip, top, filter, select, orderby, cancellationToken, progress);
+        }
+
         public async Task<IPlatformResponse<IList<IPushObserver>>> GetObservers(ObserverEntity entity,
             Guid? entityId = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
@@ -553,6 +560,13 @@ namespace Mojio.Platform.SDK.SimpleClient
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.DeleteGeofence(id, cancellationToken, progress);
+        }
+
+        public async Task<IPlatformResponse<IServerStatus>> GetServerStatus(CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.GetServerStatus(cancellationToken, progress);
+
         }
     }
 }
