@@ -23,7 +23,10 @@ namespace mojio.platform.sdk.test
         public static Environments Environment = Environments.NaStaging;
 
         public static IDIContainer DiContainer => Mojio.Platform.SDK.Entities.DI.DIContainer.Current;
-        public static IClient GetNewSimpleClient => new SimpleClient(Environment, new Configuration { ClientId = ClientId, ClientSecret = ClientSecret, RedirectUri = RedirectUri });
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IClient GetNewSimpleClient => new SimpleClient(Environment, new Configuration { ClientId = Mother.ClientId, ClientSecret = Mother.ClientSecret, RedirectUri = Mother.RedirectUri });
 
         public static Random Random => new Random();
 
