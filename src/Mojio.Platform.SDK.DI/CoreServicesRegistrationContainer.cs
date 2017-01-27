@@ -161,6 +161,8 @@ namespace Mojio.Platform.SDK.Entities.DI
 
             container.Register<IServerStatus, ServerStatus>();
 
+            container.Register<IEventTimingFactory, EventTimingRecorderFactory>();
+
             RegisterActivityStreams(container);
         }
 

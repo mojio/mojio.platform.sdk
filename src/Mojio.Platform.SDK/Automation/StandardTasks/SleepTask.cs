@@ -8,6 +8,10 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
 {
     public class SleepTask : BaseAutomationTask
     {
+        public SleepTask()
+        {
+            Key = "Sleep";
+        }
         public int Delay { get; set; } = 100;
 
         public override async Task Execute(IClient client, IDictionary<string, string> properties)

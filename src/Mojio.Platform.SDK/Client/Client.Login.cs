@@ -94,8 +94,6 @@ namespace Mojio.Platform.SDK
                 refreshResult.Response.IsLoggedIn = true;
                 Authorization.Refreshed = true;
                 refreshResult.Response.Success = true;
-
-                _log.Debug("Valid expired token found, try to refresh our token - success");
                 return refreshResult;
             }
             return null;
@@ -109,7 +107,6 @@ namespace Mojio.Platform.SDK
 
             if (!string.IsNullOrEmpty(authorization.AccessToken) && !authorization.HasExpired)
             {
-                _log.Debug("Valid non-expired token found, login success");
                 var result = _container.Resolve<IPlatformResponse<IAuthorization>>();
                 result.Success = true;
                 result.Response = authorization;
@@ -120,7 +117,6 @@ namespace Mojio.Platform.SDK
             if (!string.IsNullOrEmpty(authorization.RefreshToken) && authorization.HasExpired)
             {
                 //lets try to refresh the token
-                _log.Debug("Valid expired token found, try to refresh our token");
                 var refreshPayload = string.Format("grant_type=refresh_token&refresh_token={0}&redirect_uri={1}&client_id={2}&client_secret={3}", System.Net.WebUtility.UrlEncode(authorization.RefreshToken), System.Net.WebUtility.UrlEncode(Configuration.RedirectUri), System.Net.WebUtility.UrlEncode(Configuration.ClientId), System.Net.WebUtility.UrlEncode(Configuration.ClientSecret));
                 var refreshResult = await _clientBuilder.Request<IAuthorization>(ApiEndpoint.Accounts, "oauth2/token", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, refreshPayload, null, "application/x-www-form-urlencoded");
                 if (refreshResult.Success)
@@ -132,17 +128,13 @@ namespace Mojio.Platform.SDK
                     refreshResult.Response = authorization;
                     refreshResult.Response.IsLoggedIn = true;
                     authorization.Refreshed = true;
-                    _log.Debug("Valid expired token found, try to refresh our token - success");
                     refreshResult.Response.Success = true;
 
                     return refreshResult;
                 }
             }
 
-            _log.Info("No valid login access token found, calling login via username and password");
-
             var payload = string.Format("grant_type=password&username={0}&password={1}&redirect_uri={2}&client_id={3}&client_secret={4}&scope={5}", System.Net.WebUtility.UrlEncode(authorization.UserName), System.Net.WebUtility.UrlEncode(authorization.Password), System.Net.WebUtility.UrlEncode(Configuration.RedirectUri), System.Net.WebUtility.UrlEncode(Configuration.ClientId), System.Net.WebUtility.UrlEncode(Configuration.ClientSecret), System.Net.WebUtility.UrlEncode(authorization.Scope));
-
             var loginResult = await _clientBuilder.Request<IAuthorization>(ApiEndpoint.Accounts, "oauth2/token", tokenP.CancellationToken, tokenP.Progress, HttpMethod.Post, payload, null, "application/x-www-form-urlencoded");
 
             if (loginResult.Success)
@@ -155,7 +147,6 @@ namespace Mojio.Platform.SDK
                 loginResult.Response.IsLoggedIn = true;
                 loginResult.Response.Refreshed = true;
                 loginResult.Response.Success = true;
-                _log.Debug("Login via username and password - success");
             }
             return loginResult;
         }

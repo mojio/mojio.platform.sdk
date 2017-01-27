@@ -11,7 +11,7 @@ namespace Mojio.Platform.SDK.Automation.StandardProfiles
     {
         static readonly Random Rnd = new Random();
 
-        public iOSAutomationProfile(ILog log, ISerializer serializer) : base(log)
+        public iOSAutomationProfile(ILog log, ISerializer serializer, IEventTimingFactory timingFactory) : base(log, timingFactory)
         {
             this.Tasks = new List<IAutomationTask>()
             {
