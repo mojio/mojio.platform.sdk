@@ -6,7 +6,7 @@
     "Mojio.Platform.SDK": "1.1.0.*",
     "Mojio.Platform.SDK.Bot": "1.1.0.*",
     "Mojio.Platform.SDK.Contracts": "1.1.0.*",
-    "NETStandard.Library": "1.6.0",
+    "NETStandard.Library": "1.2.0",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
