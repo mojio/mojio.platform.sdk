@@ -7,11 +7,11 @@ using Mojio.Platform.SDK.Contracts.Instrumentation;
 
 namespace Mojio.Platform.SDK.Automation.StandardProfiles
 {
-    public class iOSAutomationProfile : AutomationProfile
+    public class iOSMotionAutomationProfile : AutomationProfile
     {
         static readonly Random Rnd = new Random();
 
-        public iOSAutomationProfile(ILog log, ISerializer serializer, IEventTimingFactory timingFactory) : base(log, timingFactory)
+        public iOSMotionAutomationProfile(ILog log, ISerializer serializer, IEventTimingFactory timingFactory) : base(log, timingFactory)
         {
             this.Tasks = new List<IAutomationTask>()
             {

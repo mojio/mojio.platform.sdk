@@ -8,7 +8,8 @@ namespace Mojio.Platform.SDK.Automation
     {
         public void Register(IDIContainer container)
         {
-            container.Register<IAutomationProfile, iOSAutomationProfile>("ios");
+            container.Register<IAutomationProfile, iOSMotionAutomationProfile>("ios");
+            container.Register<IAutomationProfile, AndroidMotionAutomationProfile>("android");
             container.Register<IAutomationProfile, AutomationProfile>();
             container.Register<IAutomationTask, AutomationTask>();
         }
