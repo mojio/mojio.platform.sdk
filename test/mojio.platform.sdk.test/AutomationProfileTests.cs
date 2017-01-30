@@ -33,8 +33,8 @@ namespace mojio.platform.sdk.test
         {
             var profile = Mother.DIContainer.Resolve<IAutomationProfile>(profileName);
             Assert.NotNull(profile);
-
-            await profile.Execute(_loginSimpleClient, new Dictionary<string, string>() {{"username", Mother.Username}, {"password", Mother.Password} });
+            var logger = new ConsoleLogger(Mother.DIContainer.Resolve<ISerializer>());
+            await profile.Execute(logger, _loginSimpleClient, new Dictionary<string, string>() {{"username", Mother.Username}, {"password", Mother.Password} });
         }
 
     }
