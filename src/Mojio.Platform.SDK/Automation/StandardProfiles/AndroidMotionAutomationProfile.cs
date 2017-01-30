@@ -15,16 +15,16 @@ namespace Mojio.Platform.SDK.Automation.StandardProfiles
         {
             this.Tasks = new List<IAutomationTask>()
             {
-                new GetApiVersionTask(log, serializer),
-                new LoginOnceTask(log, serializer) {LoadTestProfile = true},
-                new GetVehiclesTask(log, serializer),
-                new GetMeTask(log, serializer),
-                new GetMojiosTask(log, serializer),
-                new GetTripsTask(log, serializer) {Skip = 0, Top = 100},
+                new GetApiVersionTask(log, serializer,timingFactory),
+                new LoginOnceTask(log, serializer,timingFactory) {LoadTestProfile = true},
+                new GetVehiclesTask(log, serializer,timingFactory),
+                new GetMeTask(log, serializer,timingFactory),
+                new GetMojiosTask(log, serializer,timingFactory),
+                new GetTripsTask(log, serializer,timingFactory) {Skip = 0, Top = 100},
                 new SleepTask() {Delay = 100},
-                new GetTripsTask(log, serializer) {Skip = 100, Top = 100},
+                new GetTripsTask(log, serializer,timingFactory) {Skip = 100, Top = 100},
                 new SleepTask() {Delay = 100},
-                new GetTripsTask(log, serializer) {Skip = 200, Top = 100},
+                new GetTripsTask(log, serializer,timingFactory) {Skip = 200, Top = 100},
                 new SleepTask() {Delay = 100},
 
             };

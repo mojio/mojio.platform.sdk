@@ -10,18 +10,23 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
-        public LoginAlwaysTask(ILog log, ISerializer serializer)
+        public LoginAlwaysTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "LoginAlways";
         }
 
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
+            {
+
                 if (properties != null && properties.ContainsKey("LoadTestProfile"))
                 {
                     LoadTestProfile = false;
@@ -41,6 +46,7 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
                     var results = await client.Login(username, password);
 
                 }
+            }
         }
     }
 }

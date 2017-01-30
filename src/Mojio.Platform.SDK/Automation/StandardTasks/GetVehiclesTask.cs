@@ -12,11 +12,13 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
-        public GetVehiclesTask(ILog log, ISerializer serializer)
+        public GetVehiclesTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "GetVehicles";
         }
 
@@ -27,8 +29,11 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
         public string OrderBy { get; set; }
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
+            {
+
                 var results = await client.Vehicles(Skip, Top, Filter, Select, OrderBy);
                 if (results?.Response?.Data != null)
                 {
@@ -46,6 +51,7 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
                     }
 
                 }
+            }
         }
     }
 }

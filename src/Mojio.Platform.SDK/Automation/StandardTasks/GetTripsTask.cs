@@ -11,6 +11,7 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
         public int Skip { get; set; } = 0;
         public int Top { get; set; } = 10;
@@ -18,18 +19,22 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
         public string Select { get; set; }
         public string OrderBy { get; set; }
 
-        public GetTripsTask(ILog log, ISerializer serializer)
+        public GetTripsTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "GetTrips";
         }
 
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
+            {
                 var results = await client.Trips(Skip, Top, Filter, Select, OrderBy);
+            }
         }
     }
 }

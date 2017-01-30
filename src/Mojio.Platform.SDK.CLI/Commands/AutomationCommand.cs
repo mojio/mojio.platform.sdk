@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Automation;
 using Mojio.Platform.SDK.Entities.DI;
 
@@ -32,8 +33,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
                 if (!string.IsNullOrEmpty(Password)) props.Add("password", Password);
 
                 if(!LoadTest) props.Add("LoadTestProfile", "false");
-
-                await profile.Execute(SimpleClient, props);
+                var logger = new ConsoleLogger(DIContainer.Current.Resolve<ISerializer>());
+                await profile.Execute(logger, SimpleClient, props);
 
                 Log.Debug(profile.Properties);
             }

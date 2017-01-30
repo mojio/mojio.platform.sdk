@@ -10,42 +10,48 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
-        public LoginOnceTask(ILog log, ISerializer serializer)
+        public LoginOnceTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "LoginOnce";
         }
 
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
 
-            if (!string.IsNullOrEmpty(client?.Authorization?.MojioApiToken)) return;
-
-            if (properties != null && properties.ContainsKey("LoadTestProfile"))
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
             {
-                LoadTestProfile = false;
-            }
 
-            if (!LoadTestProfile)
-            {
-                if (properties != null && properties.ContainsKey("username") && properties.ContainsKey("password"))
+                if (!string.IsNullOrEmpty(client?.Authorization?.MojioApiToken)) return;
+
+                if (properties != null && properties.ContainsKey("LoadTestProfile"))
                 {
-                    var username = properties["username"];
-                    var password = properties["password"];
-
-                    var results = await client.Login(username, password);
-
+                    LoadTestProfile = false;
                 }
-            }
-            else
-            {
-                var username = $"loadtest{Rnd.Next(0, 20000)}";
-                var password = "Password1";
-                var results = await client.Login(username, password);
+
+                if (!LoadTestProfile)
+                {
+                    if (properties != null && properties.ContainsKey("username") && properties.ContainsKey("password"))
+                    {
+                        var username = properties["username"];
+                        var password = properties["password"];
+
+                        var results = await client.Login(username, password);
+
+                    }
+                }
+                else
+                {
+                    var username = $"loadtest{Rnd.Next(0, 20000)}";
+                    var password = "Password1";
+                    var results = await client.Login(username, password);
+                }
             }
         }
     }

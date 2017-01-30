@@ -26,7 +26,7 @@ namespace Mojio.Platform.SDK.Automation
         }
 
 
-        public async Task Execute(IClient client, IDictionary<string, string> properties)
+        public async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
             if (this.Properties != null && properties != null)
             {
@@ -44,13 +44,13 @@ namespace Mojio.Platform.SDK.Automation
                 {
                     if (t.GetType() == typeof(SleepTask))
                     {
-                        await t.Execute(client, Properties);
+                        await t.Execute(timingLogger, client, Properties);
                     }
                     else
                     {
                         using (_timingFactory.EventTimer(_log, t.Key, "execute"))
                         {
-                            await t.Execute(client, Properties);
+                            await t.Execute(timingLogger, client, Properties);
                         }
                     }
 

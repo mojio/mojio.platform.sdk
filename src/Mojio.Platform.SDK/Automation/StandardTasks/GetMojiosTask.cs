@@ -12,11 +12,13 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
-        public GetMojiosTask(ILog log, ISerializer serializer)
+        public GetMojiosTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "GetMojios";
         }
 
@@ -27,25 +29,29 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
         public string OrderBy { get; set; }
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
-            var results = await client.Mojios(Skip, Top, Filter, Select, OrderBy);
-
-
-            if (results?.Response?.Data != null)
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
             {
 
-                if (results.Response.Data.Any())
+                var results = await client.Mojios(Skip, Top, Filter, Select, OrderBy);
+
+
+                if (results?.Response?.Data != null)
                 {
-                    var list = "";
-                    foreach (var m in results.Response.Data)
+
+                    if (results.Response.Data.Any())
                     {
-                        list = list + ";" + m.Id;
+                        var list = "";
+                        foreach (var m in results.Response.Data)
+                        {
+                            list = list + ";" + m.Id;
+                        }
+
+                        properties.Add("Mojio_List", list);
                     }
 
-                    properties.Add("Mojio_List", list);
                 }
-
             }
         }
     }

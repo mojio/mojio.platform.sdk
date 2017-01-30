@@ -5,6 +5,7 @@ using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Automation;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
+using Mojio.Platform.SDK.Contracts.Instrumentation;
 
 namespace Mojio.Platform.SDK.Automation.StandardTasks
 {
@@ -13,7 +14,7 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
         protected static Random Rnd = new Random();
 
         public string Key { get; set; }
-        public abstract Task Execute(IClient client, IDictionary<string, string> properties);
+        public abstract Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties);
 
     }
 }

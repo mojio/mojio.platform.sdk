@@ -12,30 +12,36 @@ namespace Mojio.Platform.SDK.Automation.StandardTasks
     {
         private readonly ILog _log;
         private readonly ISerializer _serializer;
+        private readonly IEventTimingFactory _timerFactory;
 
-        public GetCapabilitiesTask(ILog log, ISerializer serializer)
+        public GetCapabilitiesTask(ILog log, ISerializer serializer, IEventTimingFactory timerFactory)
         {
             _log = log;
             _serializer = serializer;
+            _timerFactory = timerFactory;
             Key = "GetCapabilities";
         }
 
         public bool LoadTestProfile { get; set; } = true;
 
-        public override async Task Execute(IClient client, IDictionary<string, string> properties)
+        public override async Task Execute(ILog timingLogger, IClient client, IDictionary<string, string> properties)
         {
-            if (properties != null && properties.ContainsKey("Mojio_List"))
+            using (_timerFactory.EventTimer(timingLogger, Key, "Execute"))
             {
-                var listString = properties["Mojio_List"];
-                if (!string.IsNullOrEmpty(listString))
+
+                if (properties != null && properties.ContainsKey("Mojio_List"))
                 {
-                    var list = from l in listString.Split(';') where !string.IsNullOrEmpty(l) select l;
-                    foreach (var mojioId in list)
+                    var listString = properties["Mojio_List"];
+                    if (!string.IsNullOrEmpty(listString))
                     {
-                        Guid mojioIdGuid;
-                        if (Guid.TryParse(mojioId, out mojioIdGuid))
+                        var list = from l in listString.Split(';') where !string.IsNullOrEmpty(l) select l;
+                        foreach (var mojioId in list)
                         {
-                            var results = await client.Capabilities(mojioIdGuid);
+                            Guid mojioIdGuid;
+                            if (Guid.TryParse(mojioId, out mojioIdGuid))
+                            {
+                                var results = await client.Capabilities(mojioIdGuid);
+                            }
                         }
                     }
                 }
