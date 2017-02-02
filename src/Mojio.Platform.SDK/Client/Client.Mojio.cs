@@ -44,7 +44,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IMojio>>(null);
         }
 
-        public async Task<IPlatformResponse<IMojio>> RenameMojio(Guid id, string name, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IMojio>> RenameMojio(string id, string name, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 

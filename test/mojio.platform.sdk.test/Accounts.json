@@ -1,0 +1,18 @@
+﻿{
+  "NaStaging": [
+    {
+      "username": "gilfoyle",
+      "email": "gilfoyle@piedpiper.com",
+      "password": "DineshSucks"
+    },
+    {
+      "username": "richardhendricks",
+      "email": "richard@piedpiper.com",
+      "password": "I'mtheCE0!!"
+    }
+  ],
+  "NaProduction": [
+
+  ]
+}
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using mojio.platform.sdk.test;
 using Mojio.Platform.SDK.Contracts;
 using Mojio.Platform.SDK.Contracts.Client;
 using Mojio.Platform.SDK.Contracts.Entities;
@@ -16,15 +17,16 @@ namespace Mojio.Platform.SDK.Tests
         private IPlatformResponse<IAuthorization> loginResults = null;
         public BasicTests()
         {
-            loginResults = _loginSimpleClient.Login(Mother.Username, Mother.Password).Result;
+            loginResults = _loginSimpleClient.Login(Mother.Credentials.Item1, Mother.Credentials.Item3).Result;
         }
 
         [Fact]
         [Trait("Category", "Functional")]
         [Trait("Category", "UnitTest")]
-        public async Task BasicLoginTest()
+        public Task BasicLoginTest()
         {
             Assert.NotNull(loginResults?.Response?.MojioApiToken);
+            return Task.CompletedTask;
         }
 
         [Fact]
@@ -53,7 +55,7 @@ namespace Mojio.Platform.SDK.Tests
         {
             var vehicles = await _loginSimpleClient.Me();
             Assert.NotNull(vehicles?.Response?.Id);
-            Assert.True(vehicles?.Response?.Id != Guid.NewGuid());         
+            Assert.True(vehicles?.Response?.Id != null);         
 
         }
     }

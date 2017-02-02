@@ -17,7 +17,7 @@ namespace Mojio.Platform.SDK.Entities.Machine
         public IGpsRadio GpsRadio { get; set; }
         public IConnectedState ConnectedState { get; set; }
         public Guid OwnerId { get; set; }
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastModified { get; set; }
         public bool Deleted { get; set; }

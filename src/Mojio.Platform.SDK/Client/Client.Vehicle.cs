@@ -51,7 +51,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IVehiclesResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(Guid vehicleId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(string vehicleId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -64,7 +64,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IVinDetails>>(null);
         }
 
-        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(Guid vehicleId, int skip = 0, int top = 10, string fields = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(string vehicleId, int skip = 0, int top = 10, string fields = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -84,7 +84,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IVehiclesResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(Guid vehicleId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(string vehicleId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -98,7 +98,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IServiceScheduleResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(Guid vehicleId, int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(string vehicleId, int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 
@@ -119,7 +119,7 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<ITripsResponse>>(null);
         }
 
-        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(Guid vehicleId, int skip = 0, int top = 10, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(string vehicleId, int skip = 0, int top = 10, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
 

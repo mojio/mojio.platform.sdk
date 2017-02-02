@@ -17,7 +17,7 @@ namespace Mojio.Platform.SDK.Entities
         public IList<ITelephoneNumber> PhoneNumbers { get; set; }
         public IImage Image { get; set; }
         public IList<string> Tags { get; set; }
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastModified { get; set; }
         public IDictionary<string, string> Links { get; set; }

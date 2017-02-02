@@ -186,8 +186,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.Me(cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IUser>> GetUser(Guid userId, CancellationToken? cancellationToken = null,
-            IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IUser>> GetUser(string userId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.GetUser(userId, cancellationToken, progress);
@@ -349,8 +348,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.ClaimMojio(imei, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IMojio>> RenameMojio(Guid id, string name,
-            CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        public async Task<IPlatformResponse<IMojio>> RenameMojio(string id, string name, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.RenameMojio(id, name, cancellationToken, progress);
@@ -371,7 +369,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.Vehicles(skip, top, filter, select, orderby, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(Guid vehicleId, int skip = 0,
+        public async Task<IPlatformResponse<IVehiclesResponse>> VehicleHistoryStates(string vehicleId, int skip = 0,
             int top = 10, string fields = null, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null)
         {
@@ -379,21 +377,21 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.VehicleHistoryStates(vehicleId, skip, top, fields, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(Guid vehicleId,
+        public async Task<IPlatformResponse<IVinDetails>> VehicleVinLookup(string vehicleId,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.VehicleVinLookup(vehicleId, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(Guid vehicleId,
+        public async Task<IPlatformResponse<IServiceScheduleResponse>> VehicleNextService(string vehicleId,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
             return await SdkClient.VehicleNextService(vehicleId, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(Guid vehicleId, int skip = 0, int top = 10,
+        public async Task<IPlatformResponse<ITripsResponse>> VehicleTrips(string vehicleId, int skip = 0, int top = 10,
             string filter = null, string select = null, string orderby = null,
             CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
@@ -402,7 +400,7 @@ namespace Mojio.Platform.SDK.SimpleClient
                 await SdkClient.VehicleTrips(vehicleId, skip, top, filter, select, orderby, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(Guid vehicleId, int skip = 0,
+        public async Task<IPlatformResponse<IVehicleLocationResponse>> VehicleLocations(string vehicleId, int skip = 0,
             int top = 10, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             SetupTokenAndProgress(cancellationToken, progress);
@@ -499,7 +497,7 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.AddUserToGroup(id, users, cancellationToken, progress);
         }
 
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(Guid mojioId, string ssid = null,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> UpdateWifiSettings(string mojioId, string ssid = null,
             string password = null, WifiRadioStatus? radioStatus = null,
             TimeSpan? timeToLive = null, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null,
@@ -512,7 +510,7 @@ namespace Mojio.Platform.SDK.SimpleClient
                         progress);
         }
 
-        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(Guid mojioId, Guid transactionId,
+        public async Task<IPlatformResponse<IUpdateWifiSettingsStatus>> GetWifiSettingsAfterUpdate(string mojioId, string transactionId,
             CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null, bool skipCache = false)
         {

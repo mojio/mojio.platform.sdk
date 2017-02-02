@@ -56,16 +56,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
         {
             await Authorize();
 
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.UpdateWifiSettings(g, SSID, Password, RadioStatus, TimeToLive);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid mojio id specified");
-            }
+            var result = await SimpleClient.UpdateWifiSettings(Id, SSID, Password, RadioStatus, TimeToLive);
+            Log.Debug(result);
 
             UpdateAuthorization();
         }
@@ -85,24 +77,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
         {
             await Authorize();
 
-            Guid m;
-            if (Guid.TryParse(Id, out m))
-            {
-                Guid t;
-                if (Guid.TryParse(TransactionId, out t))
-                {
-                    var result = await SimpleClient.GetWifiSettingsAfterUpdate(m, t);
-                    Log.Debug(result);
-                }
-                else
-                {
-                    Log.Debug("Invalid transaction id specified");
-                }
-            }
-            else
-            {
-                Log.Debug("Invalid mojio id specified");
-            }
+            var result = await SimpleClient.GetWifiSettingsAfterUpdate(Id, TransactionId);
+            Log.Debug(result);
 
             UpdateAuthorization();
         }

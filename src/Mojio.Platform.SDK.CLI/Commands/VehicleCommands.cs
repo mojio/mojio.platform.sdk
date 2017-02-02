@@ -25,16 +25,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
             await Authorize();
 
             if (string.IsNullOrEmpty(Id)) return;
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.VehicleLocations(g, Skip, Top);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid Vehicle id specified");
-            }
+
+            var result = await SimpleClient.VehicleLocations(Id, Skip, Top);
+            Log.Debug(result);
+
             UpdateAuthorization();
         }
     }
@@ -59,16 +53,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
             await Authorize();
 
             if (string.IsNullOrEmpty(Id)) return;
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.VehicleHistoryStates(g, Skip, Top, Fields);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid Vehicle id specified");
-            }
+
+            var result = await SimpleClient.VehicleHistoryStates(Id, Skip, Top, Fields);
+            Log.Debug(result);
+
             UpdateAuthorization();
         }
     }
@@ -115,16 +103,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
             await Authorize();
 
             if (string.IsNullOrEmpty(Id)) return;
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.VehicleNextService(g);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid Vehicle id specified");
-            }
+
+            var result = await SimpleClient.VehicleNextService(Id);
+            Log.Debug(result);
+
             UpdateAuthorization();
         }
     }
@@ -183,16 +165,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
             await Authorize();
 
             if (string.IsNullOrEmpty(Id)) return;
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.VehicleTrips(g, Skip, Top, Filter, Select, OrderBy);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid Vehicle id specified");
-            }
+
+            var result = await SimpleClient.VehicleTrips(Id, Skip, Top, Filter, Select, OrderBy);
+            Log.Debug(result);
+
             UpdateAuthorization();
         }
     }
@@ -208,16 +184,9 @@ namespace Mojio.Platform.SDK.CLI.Commands
             await Authorize();
 
             if (string.IsNullOrEmpty(Id)) return;
-            Guid g;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.VehicleVinLookup(g);
-                Log.Debug(result);
-            }
-            else
-            {
-                Log.Debug("Invalid Vehicle id specified");
-            }
+
+            var result = await SimpleClient.VehicleVinLookup(Id);
+            Log.Debug(result);
 
             UpdateAuthorization();
         }

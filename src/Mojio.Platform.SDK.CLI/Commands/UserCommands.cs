@@ -12,17 +12,10 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public override async Task Execute()
         {
             await Authorize();
-            var g = Guid.Empty;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.GetUser(g);
-                Log.Debug(result);
-                UpdateAuthorization();
-            }
-            else
-            {
-                Log.Info("Invalid Id specified.");
-            }
+
+            var result = await SimpleClient.GetUser(Id);
+            Log.Debug(result);
+            UpdateAuthorization();
         }
     }
     [CommandDescriptor(Name = "get-users", Description = "Gets the specified user", Usage = "get-users")]

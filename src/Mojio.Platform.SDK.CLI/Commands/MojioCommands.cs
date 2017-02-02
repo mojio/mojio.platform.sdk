@@ -16,17 +16,9 @@ namespace Mojio.Platform.SDK.CLI.Commands
         {
             await Authorize();
 
-            var g = Guid.Empty;
-            if (Guid.TryParse(Id, out g))
-            {
-                var result = await SimpleClient.RenameMojio(g, Name);
-                Log.Debug(result);
-                UpdateAuthorization();
-            }
-            else
-            {
-                Log.Info("Invalid Id specified.");
-            }
+            var result = await SimpleClient.RenameMojio(Id, Name);
+            Log.Debug(result);
+            UpdateAuthorization();
         }
     }
 
