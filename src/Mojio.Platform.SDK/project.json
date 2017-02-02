@@ -45,13 +45,14 @@
       "buildOptions": {
         "define": [
           "PORTABLE"
-        ]
+        ]        
       },
       "frameworkAssemblies": {
         "Microsoft.CSharp": ""
       },
       "dependencies": {
-        "Microsoft.Net.Http": "2.2.29"
+        "Microsoft.Net.Http": "2.2.29",
+        "Microsoft.Bcl.Compression" : "3.9.85" 
       }
     },
     "netstandard1.1": {

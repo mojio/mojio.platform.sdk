@@ -6,7 +6,10 @@ using Mojio.Platform.SDK.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -204,12 +207,12 @@ namespace Mojio.Platform.SDK
                 {
                     var cookie =
                         (from h in sendResult.Headers where h.Key == "Set-Cookie" select h.Value.FirstOrDefault())
-                            .FirstOrDefault();
+                        .FirstOrDefault();
                     if (cookie != null)
                     {
                         platformResponse.ARRAffinityInstance =
                             (from c in cookie.Split(';') where c.StartsWith("") select c.Split('=').LastOrDefault())
-                                .FirstOrDefault();
+                            .FirstOrDefault();
                     }
                 }
                 catch (Exception)
@@ -226,8 +229,9 @@ namespace Mojio.Platform.SDK
                         return platformResponse;
                     }
 
-                    monitor.Report("Reading data from Response", 0.9);
-                    var json = await sendResult.Content.ReadAsStringAsync();
+                    monitor.Report("Reading data from Response, with optional decompression", 0.9);
+                    var json = await ReadContentAsString(sendResult);
+
 
                     if (!string.IsNullOrEmpty(json))
                     {
@@ -306,6 +310,31 @@ namespace Mojio.Platform.SDK
             return platformResponse;
         }
 
+
+        private async Task<string> ReadContentAsString(HttpResponseMessage response)
+        {
+            // Check whether response is compressed
+            if (response.Content.Headers.ContentEncoding.Any(x => x == "gzip"))
+            {
+                // Decompress manually
+                using (var s = await response.Content.ReadAsStreamAsync())
+                {
+                    using (var decompressed = new GZipStream(s, CompressionMode.Decompress, false))
+                    {
+                        using (var rdr = new StreamReader(decompressed))
+                        {
+                            return await rdr.ReadToEndAsync();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Use standard implementation if not compressed
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
         public HttpClient ImagesClient(string contentType = "application/json")
         {
             var client = Client;
@@ -340,7 +369,7 @@ namespace Mojio.Platform.SDK
             client.BaseAddress = new Uri(
                 //"https://babygroot.moj.io"
                 _configuration.Environment.APIUri
-                );
+            );
 
             return client;
         }
