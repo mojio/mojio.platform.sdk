@@ -15,5 +15,10 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\Mojio.Platform.SDK.licenseheader">
+      <Link>Mojio.Platform.SDK.licenseheader</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
