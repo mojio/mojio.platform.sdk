@@ -88,20 +88,28 @@ namespace Mojio.Platform.SDK.CLI
 
             DIContainer.Current.Register(typeof(IObserver<>), typeof(LoggingObserver<>));
 
-#if DOTNETCORE
-            var asm = System.Reflection.Assembly.Load(new AssemblyName("Mojio.Platform.SDK.Live.WebSocket"));
-            if (asm != null)
+            #if DOTNETCORE
+            try
             {
-                var containerType = asm.GetType("Mojio.Platform.SDK.Live.WebSocket.WebSocketRegistrationContainer");
-                if (containerType != null)
+                var asm = System.Reflection.Assembly.Load(new AssemblyName("Mojio.Platform.SDK.Live.WebSocket"));
+                if (asm != null)
                 {
-                    var instance = asm.CreateInstance(containerType.FullName) as IRegistrationContainer;
-                    if (instance != null)
+                    var containerType = asm.GetType("Mojio.Platform.SDK.Live.WebSocket.WebSocketRegistrationContainer");
+                    if (containerType != null)
                     {
-                        instance.Register(DIContainer.Current);
+                        var instance = asm.CreateInstance(containerType.FullName) as IRegistrationContainer;
+                        if (instance != null)
+                        {
+                            instance.Register(DIContainer.Current);
+                        }
                     }
                 }
             }
+            catch (global::System.Exception)
+            {
+                
+            }
+
 #endif
 
             if (logger == null)

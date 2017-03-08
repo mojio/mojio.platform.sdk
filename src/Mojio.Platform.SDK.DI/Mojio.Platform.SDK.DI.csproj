@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Mojio Platform SDK V2 - Dependancy Injection</Description>
+    <AssemblyTitle>Mojio Platform SDK V2 - Dependancy Injection</AssemblyTitle>
+    <VersionPrefix>1.2.1</VersionPrefix>
+    <TargetFramework>netstandard1.1</TargetFramework>
+
+    <AssemblyName>Mojio.Platform.SDK.DI</AssemblyName>
+    <PackageId>Mojio.Platform.SDK.DI</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mojio.Platform.SDK\Mojio.Platform.SDK.csproj" />
+    <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+  </ItemGroup>
+
+</Project>

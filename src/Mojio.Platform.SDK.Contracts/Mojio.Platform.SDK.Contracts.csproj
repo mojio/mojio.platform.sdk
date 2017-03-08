@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Mojio Platform SDK V2 - Contract Definitions</Description>
+    <AssemblyTitle>Mojio Platform SDK V2 - Contract Definitions</AssemblyTitle>
+    <VersionPrefix>1.2.1</VersionPrefix>
+    <TargetFramework>netstandard1.1</TargetFramework>
+
+    <AssemblyName>Mojio.Platform.SDK.Contracts</AssemblyName>
+    <PackageId>Mojio.Platform.SDK.Contracts</PackageId>
+    <PackageProjectUrl>https://github.com/mojio/mojio.platform.sdk</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mojio/mojio.platform.sdk</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+  </ItemGroup>
+
+</Project>

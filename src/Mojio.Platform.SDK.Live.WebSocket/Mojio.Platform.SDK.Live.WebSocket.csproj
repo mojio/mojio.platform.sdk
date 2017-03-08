@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Mojio Platform SDK V2 - Live / Observer - WebSocket</Description>
+    <AssemblyTitle>Mojio Platform SDK V2 - Live / Observer - WebSocket</AssemblyTitle>
+    <VersionPrefix>1.2.1</VersionPrefix>
+    <TargetFramework>netstandard1.1</TargetFramework>
+
+    <AssemblyName>Mojio.Platform.SDK.Live.WebSocket</AssemblyName>
+    <PackageId>Mojio.Platform.SDK.Live.WebSocket</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+  </ItemGroup>
+
+
+</Project>

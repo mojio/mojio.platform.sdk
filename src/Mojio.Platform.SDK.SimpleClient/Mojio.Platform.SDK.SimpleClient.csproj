@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Mojio Platform SDK V2 - A simple client wrapper around the entire SDK, start here.</Description>
+    <AssemblyTitle>Mojio Platform SDK V2 - A simple client wrapper around the entire SDK, start here.</AssemblyTitle>
+    <VersionPrefix>1.2.1</VersionPrefix>
+    <TargetFramework>netstandard1.1</TargetFramework>
+
+    <AssemblyName>Mojio.Platform.SDK.SimpleClient</AssemblyName>
+    <PackageId>Mojio.Platform.SDK.SimpleClient</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj" />
+    <ProjectReference Include="..\Mojio.Platform.SDK.DI\Mojio.Platform.SDK.DI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+  </ItemGroup>
+
+</Project>
