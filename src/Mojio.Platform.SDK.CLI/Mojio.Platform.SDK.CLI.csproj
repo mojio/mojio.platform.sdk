@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj" />
+    <ProjectReference Include="..\Mojio.Platform.SDK.SimpleClient\Mojio.Platform.SDK.SimpleClient.csproj" />
+  </ItemGroup>
+
+</Project>
