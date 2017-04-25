@@ -4,6 +4,7 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Version>1.3.0</Version>
     <Description />
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
