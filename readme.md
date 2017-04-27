@@ -4,7 +4,7 @@
 [Install-Package Mojio.Platform.SDK.SimpleClient](https://www.nuget.org/packages/Mojio.Platform.SDK.SimpleClient/)
 
 ### Current Build Status (master):
-![Build Status](https://mojio.visualstudio.com/_apis/public/build/definitions/1b4733a9-5dad-47aa-b18a-f4a981d9f0a6/3/badge)
+![Build Status](https://mojio.visualstudio.com/_apis/public/build/definitions/3370db57-f413-4042-b837-dbdacf80ce19/31/badge)
 
 ----
 
