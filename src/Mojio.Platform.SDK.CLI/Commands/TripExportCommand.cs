@@ -28,6 +28,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
 
         public override async Task Execute()
         {
+            var spinner = new ConsoleSpinner();
+
             DateTimeOffset start = DateTimeOffset.UtcNow.AddDays(-1);
             DateTimeOffset end = DateTimeOffset.UtcNow;
 
@@ -54,6 +56,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
                 return;
             }
 
+            spinner.Turn();
+
             if (string.IsNullOrEmpty(ItemTemplate)) ItemTemplate = "DefaultTemplate.tmpl";
 
             await Authorize();
@@ -70,7 +74,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
             {
                 var result = await SimpleClient.Trips(page, pageSize);
 
-                Console.Write(".");
+                spinner.Turn();
 
                 if (result.Success)
                 {
@@ -84,6 +88,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
                         {
                             var ct = new CustomTrip(trip);
                             var locations = await SimpleClient.TripHistoryLocations(trip.Id, 0, 9999);
+
+                            spinner.Turn();
 
                             if (locations.Success)
                             {
