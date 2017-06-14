@@ -17,6 +17,9 @@ namespace Mojio.Platform.SDK.CLI.Commands
         [Argument(ArgumentType.AtMostOnce, ShortName = "s")]
         public string Start { get; set; } = DateTimeOffset.UtcNow.AddDays(-1).ToString();
 
+        [Argument(ArgumentType.AtMostOnce, ShortName = "v")]
+        public string VehicleId { get; set; } = null;
+
         [Argument(ArgumentType.AtMostOnce, ShortName = "e")]
         public string End { get; set; } = DateTimeOffset.UtcNow.ToString();
 
@@ -70,14 +73,29 @@ namespace Mojio.Platform.SDK.CLI.Commands
 
             var vehicles = await SimpleClient.Vehicles(0, 1000);
 
+            Guid g = Guid.Empty;
+            var hasVehicle = Guid.TryParse(VehicleId, out g);
+
             while (keepScrolling)
             {
-                var result = await SimpleClient.Trips(page, pageSize);
+                IPlatformResponse<ITripsResponse> result;
+                if (hasVehicle)
+                {
+                    result = await SimpleClient.VehicleTrips(g, page, pageSize);
+                }
+                else
+                {
+                    result = await SimpleClient.Trips(page, pageSize);
+                }
+
+                UpdateStatusBar(exportedList, vehicles, null, page);
 
                 spinner.Turn();
 
                 if (result.Success)
                 {
+                    if (result.Response.Data.Count == 0) break;
+
                     foreach (var trip in result.Response.Data)
                     {
                         ///scroll through the list of trips
@@ -90,14 +108,15 @@ namespace Mojio.Platform.SDK.CLI.Commands
                             var locations = await SimpleClient.TripHistoryLocations(trip.Id, 0, 9999);
 
                             spinner.Turn();
-
+                            UpdateStatusBar(exportedList, vehicles, trip, page);
                             if (locations.Success)
                             {
                                 ct.Path = locations.Response.Data;
                             }
                             exportedList.Add(ct);
                         }
-                        if (IsOlderThanStart(start, date)) keepScrolling = false;
+                        //if (!hasVehicle && IsOlderThanStart(start, date)) keepScrolling = false;
+                        //if (hasVehicle && IsNewerThanEnd(start, date)) keepScrolling = false;
                     }
                 }
                 else
@@ -138,6 +157,22 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
 
+        private void UpdateStatusBar(List<ITrip> trips, IPlatformResponse<IVehiclesResponse> vehicles, ITrip trip, int page)
+        {
+            var pos = new { Console.CursorLeft, Console.CursorTop };
+
+            Console.SetCursorPosition(pos.CursorLeft, pos.CursorTop - 1);
+            if (trip != null)
+            {
+                Console.Write($"Trips:{trips.Count}, Page:{page}, Current:{trip.Id} - {trip.StartTimestamp} {new string(' ', 10)}");
+            }
+            else
+            {
+                Console.Write($"Trips:{trips.Count}, Page:{page}, Scanning for trips in range. {new string(' ', 20)}");
+            }
+            Console.SetCursorPosition(pos.CursorLeft, pos.CursorTop);
+        }
+
         private bool IsInRange(DateTimeOffset start, DateTimeOffset end, DateTimeOffset current)
         {
             return current >= start && start < end;
@@ -146,6 +181,11 @@ namespace Mojio.Platform.SDK.CLI.Commands
         private bool IsOlderThanStart(DateTimeOffset start, DateTimeOffset current)
         {
             return current <= start;
+        }
+
+        private bool IsNewerThanEnd(DateTimeOffset end, DateTimeOffset current)
+        {
+            return current > end;
         }
     }
 
