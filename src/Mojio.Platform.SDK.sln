@@ -1,27 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B3106721-F7FA-44F4-8FCC-71125BF7D264}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.Bot", "Mojio.Platform.SDK.Bot\Mojio.Platform.SDK.Bot.csproj", "{913DC479-ED3F-4E17-948C-5EE6A09A23AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.Bot", "Mojio.Platform.SDK.Bot\Mojio.Platform.SDK.Bot.csproj", "{913DC479-ED3F-4E17-948C-5EE6A09A23AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.CLI", "Mojio.Platform.SDK.CLI\Mojio.Platform.SDK.CLI.csproj", "{5C1955A7-6298-4A46-95D0-26E1194AF8C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.CLI", "Mojio.Platform.SDK.CLI\Mojio.Platform.SDK.CLI.csproj", "{5C1955A7-6298-4A46-95D0-26E1194AF8C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.DI", "Mojio.Platform.SDK.DI\Mojio.Platform.SDK.DI.csproj", "{2E33B059-A282-4F6A-B0F8-B10CF8E53D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.DI", "Mojio.Platform.SDK.DI\Mojio.Platform.SDK.DI.csproj", "{2E33B059-A282-4F6A-B0F8-B10CF8E53D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.Contracts", "Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj", "{226EFC5B-DA13-4AC7-910E-1AF289E6CDCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.Contracts", "Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj", "{226EFC5B-DA13-4AC7-910E-1AF289E6CDCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.Live", "Mojio.Platform.SDK.Live\Mojio.Platform.SDK.Live.csproj", "{C54D8A51-B6C3-4E96-8012-928F45A2C90F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.Live", "Mojio.Platform.SDK.Live\Mojio.Platform.SDK.Live.csproj", "{C54D8A51-B6C3-4E96-8012-928F45A2C90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.Live.WebSocket", "Mojio.Platform.SDK.Live.WebSocket\Mojio.Platform.SDK.Live.WebSocket.csproj", "{37D2BFFD-556D-4110-A1F6-A7803501F408}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.Live.WebSocket", "Mojio.Platform.SDK.Live.WebSocket\Mojio.Platform.SDK.Live.WebSocket.csproj", "{37D2BFFD-556D-4110-A1F6-A7803501F408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.SimpleClient", "Mojio.Platform.SDK.SimpleClient\Mojio.Platform.SDK.SimpleClient.csproj", "{B6016ABB-5C8D-4C02-B356-79314374EBC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.SimpleClient", "Mojio.Platform.SDK.SimpleClient\Mojio.Platform.SDK.SimpleClient.csproj", "{B6016ABB-5C8D-4C02-B356-79314374EBC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK", "Mojio.Platform.SDK\Mojio.Platform.SDK.csproj", "{6BA9F412-EDB6-494C-99FD-603357572E51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK", "Mojio.Platform.SDK\Mojio.Platform.SDK.csproj", "{6BA9F412-EDB6-494C-99FD-603357572E51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mojio.Platform.SDK.Test", "Mojio.Platform.SDK.Test\Mojio.Platform.SDK.Test.csproj", "{2ADD05D9-B775-4EC2-B315-DE53350E7702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mojio.Platform.SDK.Test", "Mojio.Platform.SDK.Test\Mojio.Platform.SDK.Test.csproj", "{2ADD05D9-B775-4EC2-B315-DE53350E7702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

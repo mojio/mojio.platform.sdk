@@ -11,12 +11,22 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="nustache.core" Version="1.0.0-alfa2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mojio.Platform.SDK.Contracts\Mojio.Platform.SDK.Contracts.csproj" />
     <ProjectReference Include="..\Mojio.Platform.SDK.SimpleClient\Mojio.Platform.SDK.SimpleClient.csproj" />
     <ProjectReference Include="..\Mojio.Platform.SDK\Mojio.Platform.SDK.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="KMLTemplate.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DefaultTemplate.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+	 <Style id="yellowLineGreenPoly">
+      <LineStyle>
+        <color>800080ff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>80008000</color>
+      </PolyStyle>
+    </Style>
+	{{#Trips}}
+	  <Placemark>
+		<name>Trip {{StartTimestamp}} ({{Distance}}, {{Duration}})</name>
+		<description>
+		{{Id}}
+		Start: {{StartTimestamp}}
+				Odo: {{StartOdometer.Value}}
+				Address: {{StartLocation.Address.FormattedAddress}}
+		End:	{{EndTimestamp}}
+				Odo: {{EndOdometer.Value}}
+				Address: {{EndLocation.Address.FormattedAddress}}
+		Distance: {{Distance}}
+		Duration: {{Duration}}
+		</description>
+		<Point>
+		  <coordinates>{{StartLocation.Lng}},{{StartLocation.Lat}},{{StartLocation.Altitude}}</coordinates>
+		</Point>
+		<styleUrl>#yellowLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates> 
+			{{#Path}}
+				{{Lng}},{{Lat}},{{Altitude}}
+			{{/Path}}
+        </coordinates>
+      </LineString>
+	  </Placemark>
+	{{/Trips}}
+</Document>
+</kml>
