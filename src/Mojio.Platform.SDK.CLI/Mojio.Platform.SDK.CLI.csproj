@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="rchartier%4010.10.102.206~\**" />
+    <EmbeddedResource Remove="rchartier%4010.10.102.206~\**" />
+    <None Remove="rchartier%4010.10.102.206~\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
     <PackageReference Include="nustache.core" Version="1.0.0-alfa2" />
