@@ -12,13 +12,13 @@
     </Style>
 	{{#Trips}}
 	  <Placemark>
-		<name>Trip {{StartTimestamp}} ({{Distance}}, {{Duration}})</name>
+		<name>Trip {{StartLocalDateTime}} ({{Distance}}, {{Duration}})</name>
 		<description>
 		{{Id}}
-		Start: {{StartTimestamp}}
+		Start: {{StartLocalDateTime}}
 				Odo: {{StartOdometer.Value}}
 				Address: {{StartLocation.Address.FormattedAddress}}
-		End:	{{EndTimestamp}}
+		End:	{{EndLocalDateTime}}
 				Odo: {{EndOdometer.Value}}
 				Address: {{EndLocation.Address.FormattedAddress}}
 		Distance: {{Distance}}

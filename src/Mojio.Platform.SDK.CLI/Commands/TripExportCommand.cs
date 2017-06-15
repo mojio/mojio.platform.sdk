@@ -175,17 +175,17 @@ namespace Mojio.Platform.SDK.CLI.Commands
 
         private bool IsInRange(DateTimeOffset start, DateTimeOffset end, DateTimeOffset current)
         {
-            return current >= start && start < end;
+            return current.LocalDateTime >= start.LocalDateTime && start.LocalDateTime < end.LocalDateTime;
         }
 
         private bool IsOlderThanStart(DateTimeOffset start, DateTimeOffset current)
         {
-            return current <= start;
+            return current.LocalDateTime <= start.LocalDateTime;
         }
 
         private bool IsNewerThanEnd(DateTimeOffset end, DateTimeOffset current)
         {
-            return current > end;
+            return current.LocalDateTime > end.LocalDateTime;
         }
     }
 
@@ -197,6 +197,9 @@ namespace Mojio.Platform.SDK.CLI.Commands
         {
             _trip = trip;
         }
+
+        public string StartLocalDateTime { get { return StartTimestamp.ToLocalTime().ToString("F"); } }
+        public string EndLocalDateTime { get { return EndTimestamp.ToLocalTime().ToString("F"); } }
 
         public string Name { get { return _trip.Name; } set { _trip.Name = value; } }
         public Guid VehicleId { get { return _trip.VehicleId; } set { _trip.VehicleId = value; } }
