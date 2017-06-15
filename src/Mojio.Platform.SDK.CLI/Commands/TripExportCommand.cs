@@ -73,6 +73,13 @@ namespace Mojio.Platform.SDK.CLI.Commands
 
             var vehicles = await SimpleClient.Vehicles(0, 1000);
 
+            var exportedVehicles = new List<IVehicle>();
+            foreach (var v in vehicles.Response.Data)
+            {
+                var customV = new CustomVehicle(v);
+                exportedVehicles.Add(customV);
+            }
+
             Guid g = Guid.Empty;
             var hasVehicle = Guid.TryParse(VehicleId, out g);
 
@@ -105,6 +112,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
                         if (IsInRange(start, end, date))
                         {
                             var ct = new CustomTrip(trip);
+                            ct.Vehicle = (from v in vehicles.Response.Data where v.Id == ct.VehicleId.ToString() select v).FirstOrDefault();
                             var locations = await SimpleClient.TripHistoryLocations(trip.Id, 0, 9999);
 
                             spinner.Turn();
@@ -125,8 +133,16 @@ namespace Mojio.Platform.SDK.CLI.Commands
                 }
                 page = page + pageSize;
             }
+            foreach (var t in exportedList)
+            {
+                var vehicle = (from v in exportedVehicles where v.Id == t.VehicleId.ToString() select v).FirstOrDefault();
+                if (vehicle != null)
+                {
+                    (vehicle as CustomVehicle).Trips.Add(t);
+                }
+            }
 
-            var final = new { Trips = exportedList, Vehicles = vehicles };
+            var final = new { Trips = exportedList, Vehicles = exportedVehicles };
 
             if (string.IsNullOrEmpty(ItemTemplate) || !System.IO.File.Exists(ItemTemplate))
 
@@ -226,6 +242,65 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public IMeasurement StartFuelLevel { get { return _trip.StartFuelLevel; } set { _trip.StartFuelLevel = value; } }
         public float? Distance { get { return EndOdometer?.Value - StartOdometer?.Value; } }
 
+        public IVehicle Vehicle { get; set; }
+
         public IList<ILocation> Path { get; set; }
+    }
+
+    public class CustomVehicle : IVehicle
+    {
+        private readonly IVehicle _vehicle;
+
+        public CustomVehicle(IVehicle vehicle)
+        {
+            _vehicle = vehicle;
+        }
+
+        public VehicleState VehicleState { get { return _vehicle.VehicleState; } }
+        public bool Selected { get { return _vehicle.Selected; } set { _vehicle.Selected = value; } }
+        public IImage Image { get { return _vehicle.Image; } set { _vehicle.Image = value; } }
+        public string Name { get { return _vehicle.Name; } set { _vehicle.Name = value; } }
+        public string VIN { get { return _vehicle.VIN; } set { _vehicle.VIN = value; } }
+        public Guid MojioId { get { return _vehicle.MojioId; } set { _vehicle.MojioId = value; } }
+        public DateTimeOffset LastContactTime { get { return _vehicle.LastContactTime; } set { _vehicle.LastContactTime = value; } }
+        public IList<IDiagnosticCode> DiagnosticCodes { get { return _vehicle.DiagnosticCodes; } set { _vehicle.DiagnosticCodes = value; } }
+        public IAccelerometer Accelerometer { get { return _vehicle.Accelerometer; } set { _vehicle.Accelerometer = value; } }
+        public IMeasurement Acceleration { get { return _vehicle.Acceleration; } set { _vehicle.Acceleration = value; } }
+        public IMeasurement Deceleration { get { return _vehicle.Deceleration; } set { _vehicle.Deceleration = value; } }
+        public IMeasurement Speed { get { return _vehicle.Speed; } set { _vehicle.Speed = value; } }
+        public IOdometer Odometer { get { return _vehicle.Odometer; } set { _vehicle.Odometer = value; } }
+        public IMeasurement RPM { get { return _vehicle.RPM; } set { _vehicle.RPM = value; } }
+        public IMeasurement FuelEfficiency { get { return _vehicle.FuelEfficiency; } set { _vehicle.FuelEfficiency = value; } }
+        public string FuelEfficiencyCalculationMethod { get { return _vehicle.FuelEfficiencyCalculationMethod; } set { _vehicle.FuelEfficiencyCalculationMethod = value; } }
+        public IRiskMeasurement FuelLevel { get { return _vehicle.FuelLevel; } set { _vehicle.FuelLevel = value; } }
+        public string FuelType { get { return _vehicle.FuelType; } set { _vehicle.FuelType = value; } }
+        public DateTimeOffset GatewayTime { get { return _vehicle.GatewayTime; } set { _vehicle.GatewayTime = value; } }
+        public IState HarshEventState { get { return _vehicle.HarshEventState; } set { _vehicle.HarshEventState = value; } }
+        public IState IdleState { get { return _vehicle.IdleState; } set { _vehicle.IdleState = value; } }
+        public IState IgnitionState { get { return _vehicle.IgnitionState; } set { _vehicle.IgnitionState = value; } }
+        public IBattery Battery { get { return _vehicle.Battery; } set { _vehicle.Battery = value; } }
+        public IHeading Heading { get { return _vehicle.Heading; } set { _vehicle.Heading = value; } }
+        public ILocation Location { get { return _vehicle.Location; } set { _vehicle.Location = value; } }
+        public IState AccidentState { get { return _vehicle.AccidentState; } set { _vehicle.AccidentState = value; } }
+        public IVinCommon VinDetails { get { return _vehicle.VinDetails; } set { _vehicle.VinDetails = value; } }
+        public IState TowState { get { return _vehicle.TowState; } set { _vehicle.TowState = value; } }
+        public IState ParkedState { get { return _vehicle.ParkedState; } set { _vehicle.ParkedState = value; } }
+        public IList<string> Tags { get { return _vehicle.Tags; } set { _vehicle.Tags = value; } }
+        public IList<string> OwnerGroups { get { return _vehicle.OwnerGroups; } set { _vehicle.OwnerGroups = value; } }
+        public string Id { get { return _vehicle.Id; } set { _vehicle.Id = value; } }
+        public DateTimeOffset CreatedOn { get { return _vehicle.CreatedOn; } set { _vehicle.CreatedOn = value; } }
+        public DateTimeOffset LastModified { get { return _vehicle.LastModified; } set { _vehicle.LastModified = value; } }
+        public IDictionary<string, string> Links { get { return _vehicle.Links; } set { _vehicle.Links = value; } }
+        public string LicensePlate { get { return _vehicle.LicensePlate; } set { _vehicle.LicensePlate = value; } }
+        public bool MilStatus { get { return _vehicle.MilStatus; } set { _vehicle.MilStatus = value; } }
+        public string CurrentTrip { get { return _vehicle.CurrentTrip; } set { _vehicle.CurrentTrip = value; } }
+        public IState DisturbanceState { get { return _vehicle.DisturbanceState; } set { _vehicle.DisturbanceState = value; } }
+        public IVirtualodometer VirtualOdometer { get { return _vehicle.VirtualOdometer; } set { _vehicle.VirtualOdometer = value; } }
+        public DateTimeOffset Time { get { return _vehicle.Time; } set { _vehicle.Time = value; } }
+        public IMeasurement VirtualFuelConsumption { get { return _vehicle.VirtualFuelConsumption; } set { _vehicle.VirtualFuelConsumption = value; } }
+        public IMeasurement VirtualFuelEfficiency { get { return _vehicle.VirtualFuelEfficiency; } set { _vehicle.VirtualFuelEfficiency = value; } }
+        public IList<Guid> WithinGeofences { get { return _vehicle.WithinGeofences; } set { _vehicle.WithinGeofences = value; } }
+
+        public IList<ITrip> Trips { get; set; } = new List<ITrip>();
     }
 }

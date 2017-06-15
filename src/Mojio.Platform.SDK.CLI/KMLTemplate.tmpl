@@ -15,13 +15,19 @@
 		<name>Trip {{StartLocalDateTime}} ({{Distance}}, {{Duration}})</name>
 		<description>
 		{{Id}}
+		
+		Vehicle: {{VehicleId}}, {{Vehicle.Name}}, {{Vehicle.VIN}}
+
 		Start: {{StartLocalDateTime}}
 				Odo: {{StartOdometer.Value}}
 				Address: {{StartLocation.Address.FormattedAddress}}
+		
 		End:	{{EndLocalDateTime}}
 				Odo: {{EndOdometer.Value}}
 				Address: {{EndLocation.Address.FormattedAddress}}
+		
 		Distance: {{Distance}}
+		
 		Duration: {{Duration}}
 		</description>
 		<Point>
