@@ -1,4 +1,6 @@
-﻿Id,StartTimestamp,EndTimestamp,StartOdometer,EndOdometer,StartLocationLat,StartLocationLng,StartLocationAddress,EndLocationLat,EndLocationLng,EndLocationAddress
-{{#Trips}}
-	{{Id}},{{StartTimestamp}},{{EndTimestamp}},{{StartOdometer.Value}},{{EndOdometer.Value}},{{StartLocation.Lat}},{{StartLocation.Lng}},"{{StartLocation.Address.FormattedAddress}}",{{EndLocation.Lat}},{{EndLocation.Lng}},"{{EndLocation.Address.FormattedAddress}}"
-{{/Trips}}
+﻿VehicleName,VehicleId,TripId,Distance,Duration,StartTimestamp,EndTimestamp,StartOdometer,EndOdometer,StartLocationLat,StartLocationLng,StartLocationAddress,EndLocationLat,EndLocationLng,EndLocationAddress
+{{#Vehicles}}
+	{{#Trips}}
+{{Vehicle.Name}},{{Vehicle.Id}},{{Id}},{{Distance}},{{Duration}},{{StartTimestamp}},{{EndTimestamp}},{{StartOdometer.Value}},{{EndOdometer.Value}},{{StartLocation.Lat}},{{StartLocation.Lng}},"{{StartLocation.Address.FormattedAddress}}",{{EndLocation.Lat}},{{EndLocation.Lng}},"{{EndLocation.Address.FormattedAddress}}"
+	{{/Trips}}
+{{/Vehicles}}

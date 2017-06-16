@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mojio.Platform.SDK.Contracts;
-using Mojio.Platform.SDK.Contracts.Entities;
 using Mojio.Platform.SDK.Entities.DI;
 using Nustache.Core;
+using Mojio.Platform.SDK.Entities.Machine;
+using Mojio.Platform.SDK.Contracts.Entities;
+using Mojio.Platform.SDK.Contracts;
 
 namespace Mojio.Platform.SDK.CLI.Commands
 {
@@ -88,11 +89,11 @@ namespace Mojio.Platform.SDK.CLI.Commands
                 IPlatformResponse<ITripsResponse> result;
                 if (hasVehicle)
                 {
-                    result = await SimpleClient.VehicleTrips(g, page, pageSize);
+                    result = await SimpleClient.VehicleTrips(g, page, pageSize, orderby: "CreatedOn desc"/*, filter: $"CreatedOn >= '{Start}' AND CreatedOn <= '{End}'"*/);
                 }
                 else
                 {
-                    result = await SimpleClient.Trips(page, pageSize);
+                    result = await SimpleClient.Trips(page, pageSize, orderby: "CreatedOn desc"/*, filter: $"CreatedOn >= '{Start}' AND CreatedOn <= '{End}'"*/);
                 }
 
                 UpdateStatusBar(exportedList, vehicles, null, page);
@@ -123,7 +124,8 @@ namespace Mojio.Platform.SDK.CLI.Commands
                             }
                             exportedList.Add(ct);
                         }
-                        //if (!hasVehicle && IsOlderThanStart(start, date)) keepScrolling = false;
+
+                        if (IsOlderThanStart(start, date)) keepScrolling = false;
                         //if (hasVehicle && IsNewerThanEnd(start, date)) keepScrolling = false;
                     }
                 }
@@ -184,14 +186,14 @@ namespace Mojio.Platform.SDK.CLI.Commands
             }
             else
             {
-                Console.Write($"Trips:{trips.Count}, Page:{page}, Scanning for trips in range. {new string(' ', 20)}");
+                Console.Write($"Trips:{trips.Count}, Page:{page}, Scanning for trips in range. {new string(' ', 30)}");
             }
             Console.SetCursorPosition(pos.CursorLeft, pos.CursorTop);
         }
 
         private bool IsInRange(DateTimeOffset start, DateTimeOffset end, DateTimeOffset current)
         {
-            return current.LocalDateTime >= start.LocalDateTime && start.LocalDateTime < end.LocalDateTime;
+            return current.LocalDateTime >= start.LocalDateTime && current.LocalDateTime <= end.LocalDateTime;
         }
 
         private bool IsOlderThanStart(DateTimeOffset start, DateTimeOffset current)
@@ -256,7 +258,6 @@ namespace Mojio.Platform.SDK.CLI.Commands
             _vehicle = vehicle;
         }
 
-        public VehicleState VehicleState { get { return _vehicle.VehicleState; } }
         public bool Selected { get { return _vehicle.Selected; } set { _vehicle.Selected = value; } }
         public IImage Image { get { return _vehicle.Image; } set { _vehicle.Image = value; } }
         public string Name { get { return _vehicle.Name; } set { _vehicle.Name = value; } }
@@ -302,5 +303,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
         public IList<Guid> WithinGeofences { get { return _vehicle.WithinGeofences; } set { _vehicle.WithinGeofences = value; } }
 
         public IList<ITrip> Trips { get; set; } = new List<ITrip>();
+
+        public Contracts.Entities.VehicleState VehicleState { get { return _vehicle.VehicleState; } }
     }
 }
