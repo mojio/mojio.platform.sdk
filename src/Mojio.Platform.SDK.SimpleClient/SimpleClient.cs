@@ -45,7 +45,10 @@ namespace Mojio.Platform.SDK.SimpleClient
 
             var factory = DIContainer.Current.Resolve<IEnvironmentFactory>();
             var ee = factory.GetEnvironment(environment);
-            configuration.Environment = ee;
+
+            if (configuration != null)
+                configuration.Environment = ee;
+
             DIContainer.Current.RegisterInstance(ee);
             DIContainer.Current.RegisterInstance(ee, environment.ToString());
             DIContainer.Current.RegisterInstance(configuration);

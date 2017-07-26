@@ -19,6 +19,15 @@ namespace Mojio.Platform.SDK.Contracts
 {
     public enum Environments
     {
+        //Canada production
+        RogersProduction,
+
+        // Canada staging
+        RogersStaging,
+
+        //Rogers develop
+        RogersDevelop,
+
         //traffic manager url
         Production,
 

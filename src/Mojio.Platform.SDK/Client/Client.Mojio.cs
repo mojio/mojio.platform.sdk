@@ -34,7 +34,7 @@ namespace Mojio.Platform.SDK
 
             if ((await Login(Authorization, cancellationToken, progress)).Success)
             {
-                string path = $"v2/mojios?{RandomQueryString()}";
+                var path = "v2/mojios?";
                 if (skip > 0) path = path + $"&skip={skip}";
                 if (top > 0) path = path + $"&top={top}";
 

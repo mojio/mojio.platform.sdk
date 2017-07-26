@@ -77,6 +77,22 @@ namespace Mojio.Platform.SDK.Entities.Environments
                     prefix = "eu-staging-";
                     break;
 
+                case Contracts.Environments.RogersProduction:
+                    prefix = "rogers-";
+                    break;
+
+                case Contracts.Environments.RogersStaging:
+                    prefix = "rogers-staging-";
+                    break;
+
+                case Contracts.Environments.RogersDevelop:
+                    prefix = "rogers-develop-";
+                    break;
+
+                case Contracts.Environments.Production:
+                    prefix = "na-";
+                    break;
+
                 default: //US Production
                     break;
             }
