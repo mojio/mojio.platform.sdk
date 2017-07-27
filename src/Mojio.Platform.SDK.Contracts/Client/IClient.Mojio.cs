@@ -26,6 +26,8 @@ namespace Mojio.Platform.SDK.Contracts.Client
     {
         Task<IPlatformResponse<IMojioResponse>> Mojios(int skip = 0, int top = 10, string filter = null, string select = null, string orderby = null, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
+        Task<IPlatformResponse<IMojio>> Mojio(Guid mojioId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
+
         Task<IPlatformResponse<IMojio>> ClaimMojio(string imei, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);
 
         Task<IPlatformResponse<IMojio>> RenameMojio(Guid id, string name, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null);

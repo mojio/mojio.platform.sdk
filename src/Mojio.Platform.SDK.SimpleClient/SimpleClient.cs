@@ -362,6 +362,12 @@ namespace Mojio.Platform.SDK.SimpleClient
             return await SdkClient.Mojios(skip, top, filter, select, orderby, cancellationToken, progress);
         }
 
+        public async Task<IPlatformResponse<IMojio>> Mojio(Guid mojioId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            SetupTokenAndProgress(cancellationToken, progress);
+            return await SdkClient.Mojio(mojioId, cancellationToken, progress);
+        }
+
         public async Task<IPlatformResponse<IMojio>> ClaimMojio(string imei, CancellationToken? cancellationToken = null,
             IProgress<ISDKProgress> progress = null)
         {

@@ -49,6 +49,20 @@ namespace Mojio.Platform.SDK
             return await Task.FromResult<IPlatformResponse<IMojioResponse>>(null);
         }
 
+        public async Task<IPlatformResponse<IMojio>> Mojio(Guid mojioId, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
+        {
+            var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
+
+            if ((await Login(Authorization, cancellationToken, progress)).Success)
+            {
+                var path = string.Concat("v2/mojios/", mojioId.ToString());
+
+                return await _clientBuilder.Request<IMojio>(ApiEndpoint.Api, path, tokenP.CancellationToken);
+            }
+            _log.Fatal(new Exception("Authorization Failed"));
+            return await Task.FromResult<IPlatformResponse<IMojio>>(null);
+        }
+
         public async Task<IPlatformResponse<IMojio>> ClaimMojio(string imei, CancellationToken? cancellationToken = null, IProgress<ISDKProgress> progress = null)
         {
             var tokenP = IssueNewTokenAndProgressContainer(cancellationToken, progress);
