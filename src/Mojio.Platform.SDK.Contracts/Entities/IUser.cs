@@ -35,6 +35,8 @@ namespace Mojio.Platform.SDK.Contracts.Entities
         IImage Image { get; set; }
         IList<string> Tags { get; set; }
         Guid Id { get; set; }
+        Guid OwnerId { get; set; }
+        Guid TenantId { get; set; }
         DateTimeOffset CreatedOn { get; set; }
         DateTimeOffset LastModified { get; set; }
         IDictionary<string, string> Links { get; set; }
