@@ -85,10 +85,6 @@ namespace Mojio.Platform.SDK.Entities.Environments
                     prefix = "rogers-staging-";
                     break;
 
-                case Contracts.Environments.RogersDevelop:
-                    prefix = "rogers-develop-";
-                    break;
-
                 case Contracts.Environments.Production:
                     prefix = "na-";
                     break;

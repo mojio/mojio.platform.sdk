@@ -25,9 +25,6 @@ namespace Mojio.Platform.SDK.Contracts
         // Canada staging
         RogersStaging,
 
-        //Rogers develop
-        RogersDevelop,
-
         //traffic manager url
         Production,
 
