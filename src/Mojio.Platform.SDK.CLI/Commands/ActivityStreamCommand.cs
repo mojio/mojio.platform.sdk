@@ -36,9 +36,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
     }
-
-#if DOTNETCORE
-
+    
     [CommandDescriptor(Name = "watch-activities", Description = "Begin watching user activities",
          Usage = "watch-activities")]
     public class WatchActivityCommand : BaseCommand
@@ -67,6 +65,5 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
     }
-
-#endif
+    
 }

@@ -239,9 +239,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
     }
-
-#if DOTNETCORE
-
+    
     [CommandDescriptor(Name = "watch-vehicle", Description = "Begin watching all of the vehicles, or just one", Usage = "watch-vehicle /Id:VehicleId")]
     public class WatchVehicleCommand : BaseCommand
     {
@@ -272,6 +270,5 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
     }
-
-#endif
+    
 }

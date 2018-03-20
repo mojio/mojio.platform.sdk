@@ -26,8 +26,6 @@ using Mojio.Platform.SDK.Entities.DI;
 namespace Mojio.Platform.SDK.CLI.Commands
 {
     
-#if DOTNETCORE
-
     [CommandDescriptor(Name = "watch-mojio", Description = "Begin watching a mojio or all mojios", Usage = "watch-mojio /id:MojioId")]
     public class WatchMojoCommand : BaseCommand
     {
@@ -89,8 +87,7 @@ namespace Mojio.Platform.SDK.CLI.Commands
             UpdateAuthorization();
         }
     }
-
-#endif
+    
 
     [CommandDescriptor(Name = "list-watched-mojios", Description = "List currently watched mojios", Usage = "list-watched-mojios")]
     public class ListWatchedMojiosCommand : BaseCommand

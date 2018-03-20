@@ -87,8 +87,7 @@ namespace Mojio.Platform.SDK.CLI
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
             DIContainer.Current.Register(typeof(IObserver<>), typeof(LoggingObserver<>));
-
-#if DOTNETCORE
+            
             var asm = System.Reflection.Assembly.Load(new AssemblyName("Mojio.Platform.SDK.Live.WebSocket"));
             if (asm != null)
             {
@@ -102,7 +101,6 @@ namespace Mojio.Platform.SDK.CLI
                     }
                 }
             }
-#endif
 
             if (logger == null)
             {
